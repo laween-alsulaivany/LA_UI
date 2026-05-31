@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./assets/la-ui-logo.svg" alt="LA UI" width="280">
+</p>
+
 # LA UI
 
 This repo is my personal CSS style guide for app interfaces.

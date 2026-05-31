@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="160" viewBox="0 0 520 160" role="img" aria-labelledby="title desc">
+  <title id="title">LA UI logo</title>
+  <desc id="desc">LA UI logo with block-style LA monogram and style guide wordmark.</desc>
+  <defs>
+    <mask id="la-brandmark-a-notch">
+      <rect width="128" height="128" fill="white" />
+      <path fill="black" d="M73 84 C73 81.8 74.8 80 77 80 H82 C84.2 80 86 81.8 86 84 V96 H73 Z" />
+    </mask>
+  </defs>
+
+  <g transform="translate(24 16)">
+    <g fill="#be4c0a">
+      <rect x="23" y="18" width="25" height="77" rx="5" />
+      <rect x="53" y="18" width="56" height="37" rx="5" />
+      <rect x="53" y="60" width="56" height="35" rx="5" mask="url(#la-brandmark-a-notch)" />
+      <rect x="23" y="100" width="86" height="25" rx="3" />
+    </g>
+  </g>
+
+  <g transform="translate(178 50)">
+    <text x="0" y="38" fill="#171412" font-family="IBM Plex Sans, Segoe UI, Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="-0.8">LA UI</text>
+    <text x="2" y="72" fill="#6d655f" font-family="IBM Plex Sans, Segoe UI, Arial, sans-serif" font-size="18" font-weight="500">Reusable app style guide</text>
+  </g>
+</svg>

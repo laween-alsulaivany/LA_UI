@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">LA UI mark</title>
+  <desc id="desc">Block-style LA monogram mark for the LA UI style guide.</desc>
+  <defs>
+    <mask id="la-brandmark-a-notch">
+      <rect width="128" height="128" fill="white" />
+      <path fill="black" d="M73 84 C73 81.8 74.8 80 77 80 H82 C84.2 80 86 81.8 86 84 V96 H73 Z" />
+    </mask>
+  </defs>
+  <g fill="#be4c0a">
+    <rect x="23" y="18" width="25" height="77" rx="5" />
+    <rect x="53" y="18" width="56" height="37" rx="5" />
+    <rect x="53" y="60" width="56" height="35" rx="5" mask="url(#la-brandmark-a-notch)" />
+    <rect x="23" y="100" width="86" height="25" rx="3" />
+  </g>
+</svg>
