@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/la-ui-logo.svg" alt="LA UI" width="280">
+  <img src="./assets/la-ui-mark.svg" alt="LA UI" width="280">
 </p>
 
 # LA UI
