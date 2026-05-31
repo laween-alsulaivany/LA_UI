@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <script>(function(){var t=localStorage.getItem('la-theme');if(t)document.documentElement.setAttribute('data-theme',t);}());</script>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>LA UI Style Guide — Buttons</title>
+  <title>LA UI Style Guide - Buttons</title>
   <link rel="stylesheet" href="app.css" />
   <link rel="stylesheet" href="showcase-only-new.css" />
 </head>
@@ -19,7 +19,7 @@
         <div class="sg-section-title">
           <div>
             <h2>05. Components: buttons.css</h2>
-            <p>Buttons are intentionally limited. Use the variant that matches the action, not the one that looks nicest on the page.</p>
+            <p>Buttons are intentionally limited. Use the variant that matches the action, not the one that happens to look best on the page.</p>
           </div>
         </div>
 
@@ -27,13 +27,13 @@
           <div>
             <h3>Variant rule</h3>
             <ul>
-              <li><span class="sg-inline-code">primary</span> — main action, usually one per action group</li>
-              <li><span class="sg-inline-code">secondary</span> — normal supporting action</li>
-              <li><span class="sg-inline-code">ghost</span> — quiet toolbar or icon action</li>
-              <li><span class="sg-inline-code">danger</span> — destructive action with visible border</li>
-              <li><span class="sg-inline-code">danger-ghost</span> — destructive action with low visual weight</li>
-              <li><span class="sg-inline-code">link</span> — inline text action, not for standalone buttons</li>
-              <li><span class="sg-inline-code">disabled</span> — any button can be disabled to prevent interaction</li>
+              <li><span class="sg-inline-code">primary</span> : main action, usually one per action group</li>
+              <li><span class="sg-inline-code">secondary</span> : normal supporting action</li>
+              <li><span class="sg-inline-code">ghost</span> : quiet toolbar or icon action</li>
+              <li><span class="sg-inline-code">danger</span> : destructive action with visible border</li>
+              <li><span class="sg-inline-code">danger-ghost</span> : destructive action with low visual weight</li>
+              <li><span class="sg-inline-code">link</span> : inline text action, not for standalone buttons</li>
+              <li><span class="sg-inline-code">disabled</span> : any button can be disabled to prevent interaction</li>
             </ul>
           </div>
 
@@ -48,7 +48,7 @@
         <!-- ── Variants ──────────────────────────────────────────── -->
 
         <h3>Variants</h3>
-        <p class="sg-soft">Each variant signals intent. Do not choose a variant based on color preference. The system has exactly the variants it needs.</p>
+        <p class="sg-soft">Each variant signals intent. Choose by action type, not color preference.</p>
 
         <div class="sg-top-gap">
           <p class="sg-label"><code>.la-btn + variant</code></p>
@@ -70,7 +70,7 @@
 
         <div class="sg-top-gap la-flex-row" style="align-items: flex-end; gap: var(--la-12);">
           <div>
-            <p class="sg-label"><code>.la-btn</code> — default</p>
+            <p class="sg-label"><code>.la-btn</code> : default</p>
             <button class="la-btn la-btn-primary" type="button">Default</button>
           </div>
           <div>
@@ -86,7 +86,7 @@
         <!-- ── Full-width ─────────────────────────────────────────── -->
 
         <h3>Full-width</h3>
-        <p class="sg-soft">Use <code class="sg-inline-code">.la-btn-full</code> when the button should span the width of its container, typically in auth flows, mobile layouts, or narrow form panels.</p>
+        <p class="sg-soft">Use <code class="sg-inline-code">.la-btn-full</code> when the button should span its container, usually in auth flows, mobile layouts, or narrow form panels.</p>
 
         <div class="sg-top-gap">
           <p class="sg-label"><code>.la-btn-full</code></p>

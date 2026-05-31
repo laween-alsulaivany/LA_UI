@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <script>(function(){var t=localStorage.getItem('la-theme');if(t)document.documentElement.setAttribute('data-theme',t);}());</script>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>LA UI Style Guide — Tokens</title>
+  <title>LA UI Style Guide - Tokens</title>
   <link rel="stylesheet" href="app.css" />
   <link rel="stylesheet" href="showcase-only-new.css" />
 </head>
@@ -19,7 +19,7 @@
         <div class="sg-section-title">
           <div>
             <h2>01. Foundation: tokens.css</h2>
-            <p>Tokens are the values the UI system is allowed to use. For a new client, change token values first, that is probably all you need to do. Do not rewrite component CSS just to change a brand.</p>
+            <p>Tokens are the values the UI system is allowed to use. For a new client, change token values first. That may be all you need. Do not rewrite component CSS just to change a brand.</p>
           </div>
         </div>
 
@@ -30,14 +30,14 @@
           </div>
           <div>
             <h3>Dark mode</h3>
-            <p>Dark mode is token-ready and completely optional. If the app does not need it, you can ignore it entirely. Switch token values, not component CSS.</p>
+            <p>Dark mode is handled through tokens and is optional. If the app does not need it, ignore it. Switch token values, not component CSS.</p>
           </div>
         </div>
 
         <!-- ── Color tokens ──────────────────────────────────────── -->
 
         <h3>Color tokens</h3>
-        <p class="sg-soft">Token names stay the same across apps. Only the values change for a client theme. Use the toggle to preview how tokens resolve in dark mode.</p>
+        <p class="sg-soft">Token names stay the same across apps. Only the values change for a client theme. Use the toggle to preview dark mode values.</p>
 
         <div class="sg-top-gap">
           <div id="sg-token-color-preview" class="sg-example sg-theme-preview" data-theme="light">
@@ -65,7 +65,7 @@
                       <td class="la-cell-strong"><code>--la-brand</code></td>
                       <td><span class="sg-swatch" style="background: var(--la-brand)"></span></td>
                       <td class="sg-token-table-value" data-sg-token-value="--la-brand">var(--la-brand)</td>
-                      <td class="sg-token-table-usage">Primary brand color. Use for identity marks, selected accents, and recognizable branded UI moments.</td>
+                      <td class="sg-token-table-usage">Primary brand color. Use for identity marks, selected accents, and recognizable brand moments.</td>
                     </tr>
                     <tr>
                       <td class="la-cell-strong"><code>--la-brand-hover</code></td>
@@ -105,7 +105,7 @@
               <div class="sg-token-group-head">
                 <div>
                   <h3>Action colors</h3>
-                  <p>Used by primary buttons, active links, selected states, and important interactive controls. Sometimes these are the same as the brand colors if the color palette is limited.</p>
+                  <p>Used by primary buttons, active links, selected states, and important interactive controls. These can match the brand colors when the palette is limited.</p>
                 </div>
               </div>
               <div class="la-table-wrap sg-token-table-wrap">
@@ -159,7 +159,7 @@
                       <td class="la-cell-strong"><code>--la-ink-soft</code></td>
                       <td><span class="sg-swatch" style="background: var(--la-ink-soft)"></span></td>
                       <td class="sg-token-table-value" data-sg-token-value="--la-ink-soft">var(--la-ink-soft)</td>
-                      <td class="sg-token-table-usage">Secondary text color. Use when text should still feel clear but less dominant.</td>
+                      <td class="sg-token-table-usage">Secondary text color. Use when text should be clear but less dominant.</td>
                     </tr>
                     <tr>
                       <td class="la-cell-strong"><code>--la-muted</code></td>
@@ -187,7 +187,7 @@
               <div class="sg-token-group-head">
                 <div>
                   <h3>Page and surface colors</h3>
-                  <p>Most app backgrounds, cards, panels, table rows, and selected states should come from this group.</p>
+                  <p>Use this group for most app backgrounds, cards, panels, table rows, and selected states.</p>
                 </div>
               </div>
               <div class="la-table-wrap sg-token-table-wrap">
@@ -263,7 +263,7 @@
               <div class="sg-token-group-head">
                 <div>
                   <h3>Status colors</h3>
-                  <p>Only use these when the UI is communicating a real state: info, success, warning, danger, or disabled. Please only use these when you have to. </p>
+                  <p>Use these only when the UI communicates a real state: info, success, warning, danger, or disabled. </p>
                 </div>
               </div>
               <div class="la-table-wrap sg-token-table-wrap">
@@ -312,7 +312,7 @@
         <!-- ── Type scale ─────────────────────────────────────────── -->
 
         <h3>Type scale</h3>
-        <p class="sg-soft">Keep text sizing predictable. New font sizes should be added here only when there is a real repeated need.</p>
+        <p class="sg-soft">Keep text sizing predictable. Add new font sizes here only when there is a repeated need.</p>
 
         <div class="sg-top-gap">
           <div class="la-table-wrap sg-token-table-wrap">
@@ -508,7 +508,7 @@
         <!-- ── Shape and shadows ──────────────────────────────────── -->
 
         <h3>Shape and shadows</h3>
-        <p class="sg-soft">These keep controls, panels, popovers, and the app shell consistent. Do not use arbitrary border-radius or box-shadow values in component CSS. Never use sharp corners.</p>
+        <p class="sg-soft">These keep controls, panels, popovers, and the app shell consistent. Do not use arbitrary border-radius or box-shadow values in component CSS.</p>
 
         <!-- Radius scale -->
         <div class="sg-top-gap">
@@ -547,7 +547,7 @@
             <div class="sg-shadow-card">
               <div class="sg-label"><code>--la-shadow-shell</code></div>
               <h4 style="margin: 0;">Shell shadow</h4>
-              <p class="sg-soft">Use for app shells, floating cards, or larger containers that should lift gently from the page.</p>
+              <p class="sg-soft">Use for app shells, floating cards, or larger containers that need subtle lift.</p>
               <div class="sg-shadow-demo">
                 <div class="sg-shadow-shell-box"></div>
               </div>
@@ -555,7 +555,7 @@
             <div class="sg-shadow-card">
               <div class="sg-label"><code>--la-shadow-popover</code></div>
               <h4 style="margin: 0;">Popover shadow</h4>
-              <p class="sg-soft">Use for menus, popovers, floating panels, and overlays that need clearer separation.</p>
+              <p class="sg-soft">Use for menus, popovers, floating panels, and overlays that need clear separation.</p>
               <div class="sg-shadow-demo">
                 <div class="sg-shadow-popover-box">
                   <div class="sg-shadow-popover-head"></div>

@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <script>(function(){var t=localStorage.getItem('la-theme');if(t)document.documentElement.setAttribute('data-theme',t);}());</script>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>LA UI Style Guide — Base</title>
+  <title>LA UI Style Guide - Base</title>
   <link rel="stylesheet" href="app.css" />
   <link rel="stylesheet" href="showcase-only-new.css" />
 </head>
@@ -19,14 +19,14 @@
         <div class="sg-section-title">
           <div>
             <h2>02. Foundation: base.css</h2>
-            <p>Base CSS sets the plain HTML defaults for every app. Keep it boring. Components belong in their own files, not here.</p>
+            <p>Base CSS sets the plain HTML defaults for every app. Keep this layer boring. Components belong in their own files, not here.</p>
           </div>
         </div>
 
         <div class="sg-guideline-card la-split-aside">
           <div>
             <h3>Use for</h3>
-            <p>Box sizing, document background and font, plain link reset, media max-width, form control font inheritance, keyboard focus, selection color, and reduced motion. That is the full list.</p>
+            <p>Use base.css for box sizing, document background and font, plain link reset, media max-width, form control font inheritance, keyboard focus, selection color, and reduced motion. That is the full list.</p>
           </div>
           <div>
             <h3>Avoid for</h3>
@@ -48,10 +48,10 @@
         <p class="sg-soft"><code>html</code> and <code>body</code> both get <code>min-height: 100%</code> and <code>background: var(--la-page)</code> to prevent the background from stopping at a short page. <code>body</code> sets the global font, text color, and line height. Every other element inherits from here unless a component overrides it.</p>
 
         <div class="sg-top-gap">
-          <p class="sg-label">Body text — font, size, line-height, color</p>
+          <p class="sg-label">Body text: font, size, line-height, color</p>
           <div class="sg-base-sample" style="margin-top: var(--la-2); max-width: 600px;">
             <p>This paragraph renders at <code>var(--la-text-md)</code> with <code>var(--la-line-base)</code> line height and <code>var(--la-ink-soft)</code> color. Every element on the page inherits these unless a component class overrides them. The font comes from <code>var(--la-font)</code>.</p>
-            <p style="margin-top: var(--la-2);">A second paragraph here shows the natural block margin behavior, base.css sets none. Spacing between content blocks is the responsibility of the component or the utility layer.</p>
+            <p style="margin-top: var(--la-2);">This second paragraph shows the natural block margin behavior. base.css sets none. Components and utilities control spacing between content blocks.</p>
           </div>
         </div>
 
@@ -59,7 +59,7 @@
         <!-- ── Headings ───────────────────────────────────────────── -->
 
         <h3>Headings</h3>
-        <p class="sg-soft">Base.css overrides browser default heading sizes so every heading maps to the design token scale. <code>h1</code>–<code>h2</code> use <code>--la-weight-strong</code> (700) and negative letter-spacing. <code>h3</code>–<code>h4</code> use <code>--la-weight-bold</code> (600). All four use <code>--la-line-title</code> line height.</p>
+        <p class="sg-soft">base.css overrides browser heading sizes so every heading maps to the design token scale. <code>h1</code> to <code>h2</code> use <code>--la-weight-strong</code> (700) and negative letter-spacing. <code>h3</code> to <code>h4</code> use <code>--la-weight-bold</code> (600). All four use <code>--la-line-title</code> line height.</p>
 
         <div class="sg-top-gap">
           <p class="sg-label">All four heading levels</p>
@@ -76,18 +76,18 @@
             <div class="sg-guideline-card">
               <h3>Token mapping</h3>
               <ul>
-                <li><code>h1</code> — <code>var(--la-text-2xl)</code>, letter-spacing <code>-0.03em</code></li>
-                <li><code>h2</code> — <code>var(--la-text-xl)</code>, letter-spacing <code>-0.02em</code></li>
-                <li><code>h3</code> — <code>var(--la-text-lg)</code></li>
-                <li><code>h4</code> — <code>var(--la-text-md)</code></li>
+                <li><code>h1</code> : <code>var(--la-text-2xl)</code>, letter-spacing <code>-0.03em</code></li>
+                <li><code>h2</code> : <code>var(--la-text-xl)</code>, letter-spacing <code>-0.02em</code></li>
+                <li><code>h3</code> : <code>var(--la-text-lg)</code></li>
+                <li><code>h4</code> : <code>var(--la-text-md)</code></li>
               </ul>
             </div>
             <div class="sg-guideline-card">
               <h3>Usage notes</h3>
               <ul>
                 <li>Heading margins come from base.css. Reset them to <code>0</code> inside component classes when spacing needs to be different.</li>
-                <li>Only one <code>h1</code> per page. Use <code>h2</code> for section titles, <code>h3</code>–<code>h4</code> for subsections.</li>
-                <li>Never skip levels for visual size — use a utility class if you need a different size.</li>
+                <li>Only one <code>h1</code> per page. Use <code>h2</code> for section titles, <code>h3</code> to <code>h4</code> for subsections.</li>
+                <li>Never skip levels for visual size. Use a utility class if you need a different size.</li>
               </ul>
             </div>
           </div>
@@ -123,7 +123,7 @@
         <p class="sg-soft"><code>img</code> and <code>svg</code> are set to <code>display: block</code> (removes the inline baseline gap) and <code>max-width: 100%</code> (prevents overflow). No other defaults.</p>
 
         <div class="sg-top-gap">
-          <p class="sg-label"><code>img</code> and <code>svg</code> — block display, max-width 100%</p>
+          <p class="sg-label"><code>img</code> and <code>svg</code> : block display, max-width 100%</p>
           <div class="sg-mini-media-row" style="margin-top: var(--la-2);">
             <img
               src="https://picsum.photos/seed/la-ui/120/80"
@@ -139,17 +139,17 @@
               <rect x="62" y="44" width="30" height="8" rx="4" fill="var(--la-brand-ink)" opacity="0.2" />
             </svg>
           </div>
-          <p class="sg-label" style="margin-top: var(--la-3);">Left: <code>&lt;img&gt;</code> element — right: inline <code>&lt;svg&gt;</code> element. Both render as <code>display: block</code> with no baseline gap beneath them.</p>
+          <p class="sg-label" style="margin-top: var(--la-3);">Left: <code>&lt;img&gt;</code> element: right: inline <code>&lt;svg&gt;</code> element. Both render as <code>display: block</code> with no baseline gap beneath them.</p>
         </div>
 
 
         <!-- ── Form controls ─────────────────────────────────────── -->
 
         <h3>Form controls</h3>
-        <p class="sg-soft">Browsers do not inherit the page font into form controls by default. Base.css fixes that with <code>font: inherit; color: inherit</code> on <code>button</code>, <code>input</code>, <code>select</code>, and <code>textarea</code>. This means every form element uses the same type scale as body text until a component class changes it.</p>
+        <p class="sg-soft">Browsers do not inherit the page font into form controls by default. Base.css fixes that with <code>font: inherit; color: inherit</code> on <code>button</code>, <code>input</code>, <code>select</code>, and <code>textarea</code>. Every form element uses the same type scale as body text until a component class changes it.</p>
 
         <div class="sg-top-gap">
-          <p class="sg-label">Font inheritance — all controls at the body default</p>
+          <p class="sg-label">Font inheritance: all controls at the body default</p>
           <div class="la-flex-row" style="margin-top: var(--la-2);">
             <button class="la-btn la-btn-secondary" type="button">Button font</button>
             <input class="la-input" type="text" value="Input font" style="width: 160px;" />
@@ -158,12 +158,12 @@
             </select>
           </div>
           <div style="margin-top: var(--la-3);">
-            <textarea class="la-input" rows="2" style="width: 100%; max-width: 420px;">Textarea font — resize: vertical only</textarea>
+            <textarea class="la-input" rows="2" style="width: 100%; max-width: 420px;">Textarea font: resize: vertical only</textarea>
           </div>
         </div>
 
         <div class="sg-top-gap">
-          <p class="sg-label">Disabled state — <code>cursor: not-allowed</code></p>
+          <p class="sg-label">Disabled state: <code>cursor: not-allowed</code></p>
           <div class="la-flex-row" style="margin-top: var(--la-2);">
             <button class="la-btn la-btn-secondary" type="button" disabled >Disabled button</button>
             <input class="la-input" type="text" value="Disabled input" disabled style="width: 180px;" />
@@ -180,7 +180,7 @@
         <p class="sg-soft"><code>:focus-visible</code> removes the browser outline and applies <code>var(--la-focus)</code> as a box-shadow. <code>::selection</code> uses <code>var(--la-brand-soft)</code> so highlighted text picks up the brand color.</p>
 
         <div class="sg-top-gap">
-          <p class="sg-label"><code>:focus-visible</code> — tab to see the brand focus ring</p>
+          <p class="sg-label"><code>:focus-visible</code> : tab to see the brand focus ring</p>
           <div class="la-flex-row" style="margin-top: var(--la-2);">
             <button class="la-btn" type="button">Tab to me</button>
             <button class="la-btn la-btn-secondary" type="button">Tab to me too</button>
@@ -189,9 +189,9 @@
         </div>
 
         <div class="sg-top-gap">
-          <p class="sg-label"><code>::selection</code> — select this text to see the brand highlight</p>
+          <p class="sg-label"><code>::selection</code> : select this text to see the brand highlight</p>
           <div class="sg-base-sample" style="margin-top: var(--la-2); max-width: 480px;">
-            <p>Select some of this text with your mouse or keyboard and the highlight will use <code>var(--la-brand-soft)</code> instead of the default blue. Keep the selection color subtle — it should never compete with text readability.</p>
+            <p>Select some of this text with your mouse or keyboard. The highlight uses <code>var(--la-brand-soft)</code> instead of the default blue. Keep the selection color subtle so text stays readable.</p>
           </div>
         </div>
 
@@ -202,9 +202,9 @@
         <p class="sg-soft">The <code>code</code> element gets a small background, border, and monospace font. This is the only element-level visual rule in base.css. Everything else is invisible infrastructure.</p>
 
         <div class="sg-top-gap">
-          <p class="sg-label"><code>code</code> — inline code element</p>
+          <p class="sg-label"><code>code</code> : inline code element</p>
           <div class="sg-base-sample" style="margin-top: var(--la-2); max-width: 560px;">
-            <p>Use <code>var(--la-brand)</code> for brand colors, <code>var(--la-text-sm)</code> for small text, and <code>var(--la-radius-md)</code> for medium border radius. These are the only token names you should type by hand — everything else should come from a component class.</p>
+            <p>Use <code>var(--la-brand)</code> for brand colors, <code>var(--la-text-sm)</code> for small text, and <code>var(--la-radius-md)</code> for medium border radius. Type these token names by hand only when needed. Everything else should come from a component class.</p>
           </div>
         </div>
 
@@ -212,7 +212,7 @@
         <!-- ── Reduced motion ─────────────────────────────────────── -->
 
         <h3>Reduced motion</h3>
-        <p class="sg-soft">When a user enables "reduce motion" in their OS settings, base.css collapses all transition durations to <code>0.01ms</code> and forces animations to a single iteration. This disables visual motion without removing layout behavior — elements still move to their final position instantly rather than not moving at all.</p>
+        <p class="sg-soft">When a user enables "reduce motion" in their OS settings, base.css collapses all transition durations to <code>0.01ms</code> and forces animations to a single iteration. This removes visible motion while keeping layout behavior intact.</p>
 
         <div class="sg-top-gap">
           <pre class="la-code-block" style="margin-top: var(--la-2);">@media (prefers-reduced-motion: reduce) {
@@ -225,7 +225,7 @@
     scroll-behavior: auto !important;
   }
 }</pre>
-          <p class="la-small la-muted" style="margin-top: var(--la-2);">This rule fires on the system-level setting, not a class. You do not need to do anything for it to work — it is always active in base.css.</p>
+          <p class="la-small la-muted" style="margin-top: var(--la-2);">This rule follows the system-level setting, not a class. No extra setup is needed because it is always active in base.css.</p>
         </div>
 
       </section>

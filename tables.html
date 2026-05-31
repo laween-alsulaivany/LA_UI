@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <script>(function(){var t=localStorage.getItem('la-theme');if(t)document.documentElement.setAttribute('data-theme',t);}());</script>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>LA UI Style Guide — Tables</title>
+  <title>LA UI Style Guide - Tables</title>
   <link rel="stylesheet" href="app.css" />
   <link rel="stylesheet" href="showcase-only-new.css" />
 </head>
@@ -19,14 +19,14 @@
         <div class="sg-section-title">
           <div>
             <h2>08. Components: tables.css</h2>
-            <p>Tables are for scan-heavy structured data. Keep columns readable, actions compact, and filters visible.</p>
+            <p>Tables are for structured data that users need to scan. Keep columns readable, actions compact, and filters visible.</p>
           </div>
         </div>
           <div class="sg-guideline-card">
             <h3>Use tables for</h3>
             <ul>
-              <li>Admin lists, imports, reports, review queues, and data-heavy pages.</li>
-              <li>Wrap all tables in <code>.la-table-wrap</code> to handle overflow and border.</li>
+              <li>Use tables for admin lists, imports, reports, review queues, and data-heavy pages.</li>
+              <li>Wrap all tables in <code>.la-table-wrap</code> to handle overflow and borders.</li>
             </ul>
           </div>
 
@@ -36,7 +36,7 @@
         <p class="sg-soft">Always wrap in <code>.la-table-wrap</code> for scroll and border handling. Use <code>.la-table-wrap-plain</code> when the table sits inside a panel or card that already provides the border. Cell helpers control text weight, color, and number formatting.</p>
 
         <div class="sg-top-gap">
-          <p class="sg-label"><code>.la-table-wrap .la-table</code> — cell helpers</p>
+          <p class="sg-label"><code>.la-table-wrap .la-table</code> : cell helpers</p>
           <div class="la-table-wrap" style="margin-top: var(--la-2);">
             <table class="la-table">
               <thead>
@@ -77,14 +77,14 @@
 
         <div class="sg-top-gap-sm la-flex-row" style="align-items: flex-start; gap: var(--la-4);">
           <div style="flex: 1; min-width: 0;">
-            <p class="sg-label"><code>.la-table-empty</code> — inline empty state</p>
-            <p class="sg-soft" style="font-size: var(--la-text-xs); margin-bottom: var(--la-2);">Renders inside <code>.la-table-wrap</code> in place of the table. Use this for table-scoped empty results (e.g. no matching filter). For page-level empty states with an icon and action, use <code>.la-empty</code> from feedback.css instead.</p>
+            <p class="sg-label"><code>.la-table-empty</code> : inline empty state</p>
+            <p class="sg-soft" style="font-size: var(--la-text-xs); margin-bottom: var(--la-2);">Renders inside <code>.la-table-wrap</code> in place of the table. Use this for table-scoped empty results, such as no matching filter. For page-level empty states with an icon and action, use <code>.la-empty</code> from feedback.css instead.</p>
             <div class="la-table-wrap">
               <div class="la-table-empty">No records found.</div>
             </div>
           </div>
           <div style="flex: 1; min-width: 0;">
-            <p class="sg-label"><code>.la-table-wrap-plain</code> — borderless inside a panel</p>
+            <p class="sg-label"><code>.la-table-wrap-plain</code> : borderless inside a panel</p>
             <div class="la-panel" style="margin-top: var(--la-2);">
               <div class="la-panel-header">
                 <h3 class="la-panel-title">Inside a panel</h3>
@@ -105,7 +105,7 @@
         <!-- ── Row states ─────────────────────────────────────────── -->
 
         <h3>Row states</h3>
-        <p class="sg-soft"><code>.la-row-highlight</code> tints the row amber for items needing attention. <code>.la-row-invalid</code> tints the row red for error rows. Both intensify on hover. <code>.la-row-muted</code> dims the row and suppresses hover, for disabled or archived rows. <code>.la-td-actions</code> keeps the action column compact and right-aligned. <code>.la-table-actions</code> is the bulk-action row below the table.</p>
+        <p class="sg-soft"><code>.la-row-highlight</code> tints the row amber for items that need attention. <code>.la-row-invalid</code> tints the row red for error rows. Both states intensify on hover. <code>.la-row-muted</code> dims the row and suppresses hover for disabled or archived rows. <code>.la-td-actions</code> keeps the action column compact and right-aligned. <code>.la-table-actions</code> is the bulk-action row below the table.</p>
 
         <div class="sg-top-gap">
           <p class="sg-label"><code>.la-row-highlight .la-row-invalid .la-row-muted .la-td-actions</code></p>
@@ -151,7 +151,7 @@
         <!-- ── Sortable columns ───────────────────────────────────── -->
 
         <h3>Sortable columns</h3>
-        <p class="sg-soft">Add <code>data-sortable</code> to <code>.la-table</code> — the table expands to content width and headers stay on one line. Wrap each header's content in <code>.la-th-inner</code> to lay out the sort link and column filter button side by side. Sort links get a subtle <code>⇕</code> hint via CSS so users know the column is clickable. <code>.la-th--sorted</code> marks the active column in brand color and hides the hint arrow. <code>.la-th--formula</code> styles computed columns.</p>
+        <p class="sg-soft">Add <code>data-sortable</code> to <code>.la-table</code> : the table expands to content width and headers stay on one line. Wrap each header's content in <code>.la-th-inner</code> to place the sort link and column filter button side by side. Sort links get a subtle <code>⇕</code> hint through CSS so users know the column is clickable. <code>.la-th--sorted</code> marks the active column in brand color and hides the hint arrow. <code>.la-th--formula</code> styles computed columns.</p>
 
         <div class="sg-top-gap">
           <p class="sg-label"><code>.la-table[data-sortable] .la-th-inner .la-sort-link .la-col-filter</code></p>
@@ -230,7 +230,7 @@
         <!-- ── Filter panel ───────────────────────────────────────── -->
 
         <h3>Filter panel</h3>
-        <p class="sg-soft">The filter panel is normally <code>position: absolute</code> and opened by a column filter button. In production it is toggled by JS. The demo shows it static so the internals are visible. <code>.la-filter-panel-body</code> holds the search input, select-all, and value list. <code>.la-filter-panel-footer</code> holds the clear and apply actions.</p>
+        <p class="sg-soft">The filter panel is normally <code>position: absolute</code> and opened by a column filter button. In production, JS toggles it. The demo keeps it static so the internals are visible. <code>.la-filter-panel-body</code> holds the search input, select-all, and value list. <code>.la-filter-panel-footer</code> holds the clear and apply actions.</p>
 
         <div class="sg-top-gap sg-filter-panel-wrap">
           <p class="sg-label"><code>.la-filter-panel .la-filter-panel-body .la-filter-search .la-filter-values .la-filter-panel-footer</code></p>

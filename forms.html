@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <script>(function(){var t=localStorage.getItem('la-theme');if(t)document.documentElement.setAttribute('data-theme',t);}());</script>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>LA UI Style Guide — Forms</title>
+  <title>LA UI Style Guide - Forms</title>
   <link rel="stylesheet" href="app.css" />
   <link rel="stylesheet" href="showcase-only-new.css" />
 </head>
@@ -19,22 +19,22 @@
         <div class="sg-section-title">
           <div>
             <h2>07. Components: forms.css</h2>
-            <p>Forms should stay predictable: label, control, help text, and errors in the same order every time.</p>
+            <p>Forms should stay predictable. Keep label, control, help text, and errors in the same order every time.</p>
           </div>
         </div>
 
           <div class="sg-guideline-card">
             <h3>Use forms for</h3>
             <ul>
-              <li>Django forms, admin forms, filters, search rows, auth screens, and basic field display.</li>
-              <li>All interactive inputs should use <code>.la-input</code>, <code>.la-select</code>, or <code>.la-textarea</code>. Never raw unstyled controls.</li>
+              <li>Use forms for Django forms, admin forms, filters, search rows, auth screens, and basic field display.</li>
+              <li>All interactive inputs should use <code>.la-input</code>, <code>.la-select</code>, or <code>.la-textarea</code>. Do not use raw unstyled controls.</li>
             </ul>
           </div>
 
         <!-- ── Form layout ────────────────────────────────────────── -->
 
         <h3>Form layout</h3>
-        <p class="sg-soft"><code>.la-form</code> is a grid stack for field rows. Wrap related fields in a <code>.la-fieldset</code>. Use <code>.la-field-grid</code> for side-by-side fields on wider forms. <code>.la-form-sm</code> and <code>.la-form-md</code> limit width.</p>
+        <p class="sg-soft"><code>.la-form</code> is a grid stack for field rows. Wrap related fields in a <code>.la-fieldset</code>. Use <code>.la-field-grid</code> for side by side fields on wider forms. <code>.la-form-sm</code> and <code>.la-form-md</code> limit width.</p>
 
         <div class="sg-top-gap la-flex-row" style="align-items: flex-start; gap: var(--la-8);">
 
@@ -66,7 +66,7 @@
           </form>
 
           <form class="la-form la-form-md" style="flex: 1; min-width: 0;">
-            <p class="sg-label"><code>.la-field-grid</code> — two columns</p>
+            <p class="sg-label"><code>.la-field-grid</code> : two columns</p>
             <fieldset class="la-fieldset">
               <h3 class="la-fieldset-title">Contact info</h3>
               <div class="la-field-grid">
@@ -95,7 +95,7 @@
         <!-- ── Field states ───────────────────────────────────────── -->
 
         <h3>Field states</h3>
-        <p class="sg-soft">Apply state classes to the <code>.la-field-row</code> wrapper, not the input. The input border and help text color update together. Use success and warning states only when the feedback is genuinely useful.</p>
+        <p class="sg-soft">Apply state classes to the <code>.la-field-row</code> wrapper, not the input. The input border and help text color update together. Use success and warning states only when the feedback is useful.</p>
 
         <div class="sg-top-gap" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--la-4);">
           <div class="la-field-row la-field-error">
@@ -118,7 +118,7 @@
         <!-- ── Password and checkboxes ────────────────────────────── -->
 
         <h3>Password and checkboxes</h3>
-        <p class="sg-soft"><code>.la-password-wrap</code> positions the toggle button inside the input. <code>.la-check-label</code> wraps a checkbox or radio with its label inline. Use <code>.la-option-stack</code> for vertically stacked option lists.</p>
+        <p class="sg-soft"><code>.la-password-wrap</code> places the toggle button inside the input. <code>.la-check-label</code> wraps a checkbox or radio with its label inline. Use <code>.la-option-stack</code> for vertically stacked option lists.</p>
 
         <div class="sg-top-gap la-flex-row" style="align-items: flex-start; gap: var(--la-8);">
 
@@ -136,7 +136,7 @@
           </div>
 
           <div>
-            <p class="sg-label"><code>.la-check-label</code> — inline</p>
+            <p class="sg-label"><code>.la-check-label</code> : inline</p>
             <div style="margin-top: var(--la-2); display: grid; gap: var(--la-2);">
               <label class="la-check-label"><input type="checkbox" checked /> Email me updates</label>
               <label class="la-check-label"><input type="checkbox" /> Subscribe to digest</label>
@@ -146,7 +146,7 @@
           </div>
 
           <div>
-            <p class="sg-label"><code>.la-option-stack</code> — stacked group</p>
+            <p class="sg-label"><code>.la-option-stack</code> : stacked group</p>
             <div class="la-option-stack" style="margin-top: var(--la-2);">
               <label class="la-check-label"><input type="checkbox" checked /> Reviewer</label>
               <label class="la-check-label"><input type="checkbox" /> Approver</label>
@@ -160,7 +160,7 @@
         <!-- ── Auth form ──────────────────────────────────────────── -->
 
         <h3>Auth form</h3>
-        <p class="sg-soft"><code>.la-auth-card</code> centres the form and constrains width. <code>.la-auth-form</code> styles Django's raw auth markup. <code>.errorlist</code> is unprefixed because Django outputs it directly.</p>
+        <p class="sg-soft"><code>.la-auth-card</code> centers the form and constrains width. <code>.la-auth-form</code> styles Django's raw auth markup. <code>.errorlist</code> is unprefixed because Django outputs it directly.</p>
 
         <div class="sg-top-gap" style="max-width: 540px;">
           <div class="la-card la-auth-card" style="max-width: 100%;">
@@ -191,7 +191,7 @@
         <!-- ── Filter form ────────────────────────────────────────── -->
 
         <h3>Filter form</h3>
-        <p class="sg-soft">Inline filter row above tables and lists. Uses raw <code>&lt;select&gt;</code> and <code>&lt;input&gt;</code> elements — <code>.la-filter-form</code> styles them to match the control height without needing <code>.la-select</code> wrappers.</p>
+        <p class="sg-soft">Inline filter row for tables and lists. Uses raw <code>&lt;select&gt;</code> and <code>&lt;input&gt;</code> elements: <code>.la-filter-form</code> styles them to match the control height without requiring <code>.la-select</code> wrappers.</p>
 
         <div class="sg-top-gap">
           <p class="sg-label"><code>.la-filter-form</code></p>

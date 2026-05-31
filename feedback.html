@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <script>(function(){var t=localStorage.getItem('la-theme');if(t)document.documentElement.setAttribute('data-theme',t);}());</script>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>LA UI Style Guide — Feedback</title>
+  <title>LA UI Style Guide - Feedback</title>
   <link rel="stylesheet" href="app.css" />
   <link rel="stylesheet" href="showcase-only-new.css" />
 </head>
@@ -19,14 +19,14 @@
         <div class="sg-section-title">
           <div>
             <h2>09. Components: feedback.css</h2>
-            <p>Feedback components explain state clearly without adding noise. Use status colors only when there is a real state. Do not use danger or error styling for routine messages.</p>
+            <p>Feedback components explain state without adding noise. Use status colors only for real states. Do not use danger or error styling for routine messages.</p>
           </div>
         </div>
 
         <!-- ── Loading & progress ────────────────────────────────── -->
 
         <h3>Loading &amp; progress</h3>
-        <p class="sg-soft">Use the spinner for short indeterminate waits. Use a progress bar when completion can be measured or the wait exceeds a few seconds.</p>
+        <p class="sg-soft">Use the spinner for short waits with no known completion point. Use a progress bar when completion can be measured or the wait may take more than a few seconds.</p>
 
         <div class="sg-top-gap la-grid-2">
           <div>
@@ -66,7 +66,7 @@
         <!-- ── Empty state ───────────────────────────────────────── -->
 
         <h3>Empty state</h3>
-        <p class="sg-soft">Show when a list or data set has no results. Provide a clear heading, a short explanation, and an action if the user can create something.</p>
+        <p class="sg-soft">Show this when a list or data set has no results. Include a clear heading, short explanation, and action when the user can create something.</p>
 
         <div class="sg-top-gap">
           <p class="sg-label"><code>.la-empty</code></p>
@@ -80,7 +80,7 @@
         <!-- ── Notices ───────────────────────────────────────────── -->
 
         <h3>Notices</h3>
-        <p class="sg-soft">Inline notices for contextual feedback. They are identical, only the variant changes. Dismiss buttons are wired by <code class="sg-inline-code">app.js</code>.</p>
+        <p class="sg-soft">Inline notices for contextual feedback. The structure stays the same; only the variant changes. Dismiss buttons are wired by <code class="sg-inline-code">app.js</code>.</p>
 
         <div class="sg-top-gap">
           <p class="sg-label"><code>.la-notice + variant</code></p>
@@ -103,7 +103,7 @@
         <!-- ── Toast & modal ─────────────────────────────────────── -->
 
         <h3>Toast and modal</h3>
-        <p class="sg-soft">Toasts stack at the edge of the viewport for temporary feedback. Modals block interaction and require a deliberate response. Both use the notice structure internally.</p>
+        <p class="sg-soft">Toasts stack at the edge of the viewport for temporary feedback. Modals block interaction until the user responds. Both use the notice structure internally.</p>
 
         <div class="sg-top-gap la-grid-2">
           <div class="sg-static-toast">
@@ -120,7 +120,7 @@
             </div>
                     <div class="sg-top-gap">
           <p class="sg-label">Demo</p>
-          <p class="sg-soft" style="font-size: var(--la-text-xs); margin-bottom: var(--la-2);">Toasts stack in the bottom-right corner and auto-dismiss after 4 seconds. Click dismiss early to remove.</p>
+          <p class="sg-soft" style="font-size: var(--la-text-xs); margin-bottom: var(--la-2);">Toasts stack in the bottom-right corner and close automatically after 4 seconds. Use dismiss to remove one early.</p>
           <div class="la-flex-row">
             <button class="la-btn la-btn-secondary la-btn-sm" type="button" onclick="demoToast('info', 'Background sync started.')">Info toast</button>
             <button class="la-btn la-btn-secondary la-btn-sm" type="button" onclick="demoToast('success', 'Changes saved successfully.')">Success toast</button>
@@ -137,7 +137,7 @@
                     <h3 class="la-modal-title">Confirm action</h3>
                   </div>
                   <div class="la-modal-body">
-                    <p class="la-modal-message">Use a modal when the user must confirm something important before continuing.</p>
+                    <p class="la-modal-message">Use a modal when the user must confirm an important action before continuing.</p>
                   </div>
                   <div class="la-modal-footer">
                     <button class="la-btn la-btn-secondary la-btn-sm" type="button">Cancel</button>
@@ -153,7 +153,7 @@
         <!-- ── Alerts ────────────────────────────────────────────── -->
 
         <h3>Alerts</h3>
-        <p class="sg-soft">Page-level alerts for significant conditions. Warning is for recoverable issues; danger is for destructive or irreversible actions that need a clear signal. They are identical, only the variant changes, use this sparingly.</p>
+        <p class="sg-soft">Page-level alerts are for significant conditions. Warning is for recoverable issues. Danger is for destructive or irreversible actions. The structure stays the same; only the variant changes. Use this sparingly.</p>
 
         <div class="sg-top-gap la-stack-sm">
           <div>
@@ -161,7 +161,7 @@
             <div class="la-alert la-alert-warning">
               <h3 class="la-alert-title">Warning alert</h3>
               <div class="la-alert-body">
-                <p>This change may affect existing records. Review before continuing.</p>
+                <p>This change may affect existing records. Review it before continuing.</p>
               </div>
             </div>
           </div>
@@ -196,7 +196,7 @@
         <!-- ── Badges and scope ───────────────────────────── -->
 
         <h3>Badges and scope</h3>
-        <p class="sg-soft">Badges label a record's category or standing. Scope labels communicate data visibility boundaries.</p>
+        <p class="sg-soft">Badges label a record's category or standing. Scope labels show data visibility boundaries.</p>
 
         <div class="sg-top-gap">
           <p class="sg-label"><code>.la-badge + variant</code></p>

@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <script>(function(){var t=localStorage.getItem('la-theme');if(t)document.documentElement.setAttribute('data-theme',t);}());</script>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>LA UI Style Guide — Navigation</title>
+  <title>LA UI Style Guide - Navigation</title>
   <link rel="stylesheet" href="app.css" />
   <link rel="stylesheet" href="showcase-only-new.css" />
 </head>
@@ -19,7 +19,7 @@
         <div class="sg-section-title">
           <div>
             <h2>04. Components: navigation.css</h2>
-            <p>Navigation patterns tell the user where they are, where they can go, and which view is active. Pick the right pattern for the context.</p>
+            <p>Navigation patterns show location and available views. Pick the right pattern for the context.</p>
           </div>
         </div>
 
@@ -30,14 +30,14 @@
           </div>
           <div>
             <h3>Nav link variants</h3>
-            <p>Pick one type per nav: code label, icon, or plain. Do not mix all three in the same nav. Use <span class="sg-inline-code">.la-nav-link--plain</span> when there is nothing to show in the left slot.</p>
+            <p>Pick one left-slot type per nav: code label, icon, or plain. Do not mix slot types in the same nav. Use <span class="sg-inline-code">.la-nav-link--plain</span> when the left slot should be empty.</p>
           </div>
         </div>
 
         <!-- ── Sidebar nav ────────────────────────────────────────── -->
 
         <h3>Sidebar nav</h3>
-        <p class="sg-soft">Built from <code>.la-nav-section</code> groups. Each group has an optional <code>.la-nav-title</code> and a <code>.la-nav</code> stack of links. Three left-slot variants: code, icon, or plain.</p>
+        <p class="sg-soft">Built from <code>.la-nav-section</code> groups. Each group has an optional <code>.la-nav-title</code> and a <code>.la-nav</code> stack of links. The left slot can use a code label, icon, or plain layout.</p>
 
         <div class="sg-top-gap la-flex-row" style="align-items: flex-start; gap: var(--la-8);">
           <div>
@@ -123,11 +123,11 @@
         <!-- ── Breadcrumbs ─────────────────────────────────────────── -->
 
         <h3>Breadcrumbs</h3>
-        <p class="sg-soft">Two patterns. <code>.la-breadcrumbs</code> is for the topbar, shows parent context inline. <code>.la-breadcrumb-trail</code> is a page-level trail with links and <code>aria-current="page"</code> on the last item.</p>
+        <p class="sg-soft">There are two patterns. <code>.la-breadcrumbs</code> is for the topbar and shows parent context inline. <code>.la-breadcrumb-trail</code> is a page-level trail with links and <code>aria-current="page"</code> on the last item.</p>
 
         <div class="sg-top-gap la-flex-row" style="align-items: flex-start; gap: var(--la-10);">
           <div>
-            <p class="sg-label"><code>.la-breadcrumbs</code> — topbar</p>
+            <p class="sg-label"><code>.la-breadcrumbs</code> : topbar</p>
             <div class="la-breadcrumbs">
               <a href="#navigation" data-breadcrumb-parent>App</a>
               <span data-breadcrumb-sep>/</span>
@@ -135,7 +135,7 @@
             </div>
           </div>
           <div>
-            <p class="sg-label"><code>.la-breadcrumb-trail</code> — page trail</p>
+            <p class="sg-label"><code>.la-breadcrumb-trail</code> : page trail</p>
             <nav class="la-breadcrumb-trail" aria-label="Breadcrumb">
               <a href="#navigation">Home</a>
               <span>/</span>
@@ -149,7 +149,7 @@
         <!-- ── Tabs ───────────────────────────────────────────────── -->
 
         <h3>Tabs</h3>
-        <p class="sg-soft">Use to switch between related views of the same content. Do not use tabs for page-to-page navigation, use the sidebar nav for that.</p>
+        <p class="sg-soft">Use tabs to switch between related views of the same content. Do not use tabs for page-to-page navigation; use the sidebar nav for that.</p>
 
         <div class="sg-top-gap">
           <p class="sg-label"><code>.la-tabs .la-tab-btn</code></p>
@@ -182,7 +182,7 @@
         <!-- ── Table switcher ─────────────────────────────────────── -->
 
         <h3>Table switcher</h3>
-        <p class="sg-soft">Use to switch between related table views without leaving the page. The <code>.la-table-switcher-sep</code> separator can cluster links into logical groups.</p>
+        <p class="sg-soft">Use this to switch between related table views without leaving the page. The <code>.la-table-switcher-sep</code> separator can group related links.</p>
 
         <div class="sg-top-gap">
           <p class="sg-label"><code>.la-table-switcher</code></p>

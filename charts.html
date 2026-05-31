@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <script>(function(){var t=localStorage.getItem('la-theme');if(t)document.documentElement.setAttribute('data-theme',t);}());</script>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>LA UI Style Guide — Charts</title>
+  <title>LA UI Style Guide - Charts</title>
   <link rel="stylesheet" href="app.css" />
   <link rel="stylesheet" href="showcase-only-new.css" />
 </head>
@@ -19,18 +19,18 @@
         <div class="sg-section-title">
           <div>
             <h2>11. Components: charts.css</h2>
-            <p>Chart containers, bar charts, horizontal bars, donut rings, sparklines, and legends. All sizing uses CSS custom properties set inline on the element. No JS required for static charts.</p>
+            <p>Chart containers for bars, donut rings, sparklines, and legends. Sizing comes from inline CSS custom properties on each element. Static charts do not need JS.</p>
           </div>
         </div>
 
         <div class="sg-guideline-card la-split-aside">
           <div>
             <h3>Use for</h3>
-            <p>Dashboard KPI cards, status breakdowns, resource allocation bars, inline sparklines in tables, and any data visualization that belongs inside the app shell rather than a separate report.</p>
+            <p>Use these for dashboard metrics, status breakdowns, allocation bars, inline table sparklines, and app-shell visualizations that do not need a separate report.</p>
           </div>
           <div>
             <h3>Keep it simple</h3>
-            <p>These components work best with 1–2 data series. For complex multi-series charts, scatter plots, or live-updating data, use a charting library and apply <code>.la-chart-wrap</code> as the container. Token colors will carry through to anything you render inside.</p>
+            <p>These patterns work best with 1 to 2 data series. For complex multi-series charts, scatter plots, or live-updating data, use a charting library and apply <code>.la-chart-wrap</code> as the container. Token colors will carry through to rendered content.</p>
           </div>
         </div>
 
@@ -38,7 +38,7 @@
         <!-- ── Bar chart ──────────────────────────────────────────── -->
 
         <h3>Bar chart</h3>
-        <p class="sg-soft"><code>.la-bar-chart</code> is a flex row aligned to the bottom. Each <code>.la-bar-col</code> holds a <code>.la-bar</code> and an optional <code>.la-bar-label</code>. Set the bar height with <code>style="--h: 72%"</code>. Add <code>data-value="12"</code> for a CSS-only hover tooltip.</p>
+        <p class="sg-soft"><code>.la-bar-chart</code> uses a bottom-aligned flex row. Each <code>.la-bar-col</code> holds a <code>.la-bar</code> and an optional <code>.la-bar-label</code>. Set the bar height with <code>style="--h: 72%"</code>. Add <code>data-value="12"</code> to show a CSS-only hover tooltip.</p>
 
         <div class="sg-top-gap">
           <p class="sg-label"><code>.la-chart-wrap .la-bar-chart .la-bar-col .la-bar[data-value] .la-bar-label</code></p>
@@ -96,7 +96,7 @@
 
         <!-- two-series bar -->
         <div class="sg-top-gap">
-          <p class="sg-label"><code>.la-bar--2 — secondary series</code></p>
+          <p class="sg-label"><code>.la-bar--2: secondary series</code></p>
           <div class="la-chart-wrap" style="margin-top: var(--la-2); max-width: 560px;">
             <div class="la-chart-header">
               <div>
@@ -153,7 +153,7 @@
         <!-- ── Horizontal bar ─────────────────────────────────────── -->
 
         <h3>Horizontal bar</h3>
-        <p class="sg-soft"><code>.la-hbar-chart</code> stacks labeled rows. Each <code>.la-hbar-row</code> is a three-column grid: label, track, value. Set fill width with <code>style="--w: 72%"</code> on <code>.la-hbar-fill</code>. Use fill modifiers (<code>--danger</code>, <code>--warning</code>, <code>--success</code>) when the value carries status meaning.</p>
+        <p class="sg-soft"><code>.la-hbar-chart</code> stacks labeled rows. Each <code>.la-hbar-row</code> uses three columns: label, track, and value. Set fill width with <code>style="--w: 72%"</code> on <code>.la-hbar-fill</code>. Use fill modifiers (<code>--danger</code>, <code>--warning</code>, <code>--success</code>) when the value represents status.</p>
 
         <div class="sg-top-gap">
           <p class="sg-label"><code>.la-hbar-chart .la-hbar-row .la-hbar-label .la-hbar-track .la-hbar-fill .la-hbar-value</code></p>
@@ -258,7 +258,7 @@
         <!-- ── Donut / ring chart ─────────────────────────────────── -->
 
         <h3>Donut / ring chart</h3>
-        <p class="sg-soft"><code>.la-donut</code> uses <code>conic-gradient</code> to draw the fill. Set the filled percentage with <code>style="--p: 78"</code> (0–100). Nest <code>.la-donut-center</code> inside for the label. The <code>--sm</code> and <code>--xs</code> modifiers give a smaller ring for tighter spaces.</p>
+        <p class="sg-soft"><code>.la-donut</code> uses <code>conic-gradient</code> to draw the fill. Set the filled percentage with <code>style="--p: 78"</code> (0 to 100). Nest <code>.la-donut-center</code> inside for the label. The <code>--sm</code> and <code>--xs</code> modifiers provide smaller rings for tight spaces.</p>
 
         <div class="sg-top-gap">
           <p class="sg-label"><code>.la-donut[style="--p: N"] .la-donut-center .la-donut-value .la-donut-label</code></p>
@@ -348,7 +348,7 @@
         <!-- ── Line chart (inline SVG) ────────────────────────────── -->
 
         <h3>Line chart</h3>
-        <p class="sg-soft">For line and area charts, render a <code>&lt;svg&gt;</code> directly and apply <code>.la-sparkline-line</code> and <code>.la-sparkline-area</code> to the path elements. The chart wrapper, title, legend, and grid lines are the same CSS classes used by other chart types.</p>
+        <p class="sg-soft">For line and area charts, render an inline <code>&lt;svg&gt;</code> and apply <code>.la-sparkline-line</code> and <code>.la-sparkline-area</code> to the path elements. The wrapper, title, legend, and grid lines use the same CSS classes as the other chart types.</p>
 
         <div class="sg-top-gap">
           <p class="sg-label"><code>.la-chart-wrap</code> with inline SVG using <code>.la-sparkline-line</code> and <code>.la-sparkline-area</code></p>
@@ -499,7 +499,7 @@
         <!-- ── Legend ─────────────────────────────────────────────── -->
 
         <h3>Legend</h3>
-        <p class="sg-soft"><code>.la-chart-legend</code> is a flex row of swatch + label pairs. Add <code>.la-chart-legend--stack</code> for a vertical list. Each <code>.la-chart-legend-dot</code> has modifier classes for all chart and status colors.</p>
+        <p class="sg-soft"><code>.la-chart-legend</code> is a flex row of swatch and label pairs. Add <code>.la-chart-legend--stack</code> for a vertical list. Each <code>.la-chart-legend-dot</code> has modifier classes for chart and status colors.</p>
 
         <div class="sg-top-gap">
           <p class="sg-label"><code>.la-chart-legend .la-chart-legend-item .la-chart-legend-dot .la-chart-legend-label</code></p>
@@ -552,10 +552,10 @@
         <!-- ── Stat card with chart ───────────────────────────────── -->
 
         <h3>Stat cards with charts</h3>
-        <p class="sg-soft">Combine a KPI metric with a mini chart inside a <code>.la-card</code> or <code>.la-chart-wrap</code>. Use <code>.la-donut--sm</code> or a compact bar chart alongside a headline number. This pattern is common in dashboard summary rows.</p>
+        <p class="sg-soft">Place a KPI metric with a mini chart inside a <code>.la-card</code> or <code>.la-chart-wrap</code>. Use <code>.la-donut--sm</code> or a compact bar chart next to a headline number. This works well in dashboard summary rows.</p>
 
         <div class="sg-top-gap">
-          <p class="sg-label">KPI stat cards — metric + mini chart</p>
+          <p class="sg-label">KPI stat cards: metric + mini chart</p>
           <div style="margin-top: var(--la-2); display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: var(--la-4);">
 
             <div class="la-chart-wrap la-chart-wrap--sm">
@@ -623,7 +623,7 @@
         <!-- ── Empty state ────────────────────────────────────────── -->
 
         <h3>Empty state</h3>
-        <p class="sg-soft">When there is no data to show, use <code>.la-chart-empty</code> inside the chart wrapper. Keep the message short and specific about why the chart is empty.</p>
+        <p class="sg-soft">When there is no data, use <code>.la-chart-empty</code> inside the chart wrapper. Keep the message short and specific.</p>
 
         <div class="sg-top-gap">
           <p class="sg-label"><code>.la-chart-empty .la-chart-empty-icon</code></p>
