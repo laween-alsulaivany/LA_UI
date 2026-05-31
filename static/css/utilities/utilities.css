@@ -1,0 +1,480 @@
+/* =============================================================================
+   utilities.css
+   small helpers only, do not turn this into a second framework
+============================================================================= */
+
+
+/* =======================================
+   TEXT HELPERS
+========================================== */
+
+/* muted text helper */
+.la-muted {
+    color: var(--la-muted);
+}
+
+/* small text helper */
+.la-small {
+    font-size: var(--la-text-sm);
+}
+
+/* monospace text helper */
+.la-mono {
+    font-family: var(--la-mono);
+}
+
+/* inline brand text link */
+.la-text-link {
+    color: var(--la-brand-active);
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    cursor: pointer;
+    transition: color var(--la-transition-fast);
+}
+
+/* inline brand text link hover */
+.la-text-link:hover {
+    color: var(--la-brand);
+    text-decoration: none;
+}
+
+/* small section label used in dashboards */
+.la-dash-title {
+    margin: var(--la-6) 0 var(--la-3);
+    color: var(--la-muted);
+    font-size: var(--la-text-sm);
+    font-weight: var(--la-weight-bold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+/* short helper text under a title */
+.la-page-subtext {
+    margin: 0;
+    color: var(--la-muted);
+    font-size: var(--la-text-sm);
+    line-height: var(--la-line-base);
+}
+
+/* simple back link */
+.la-back-link {
+    display: inline-block;
+    color: var(--la-brand-ink);
+    font-size: var(--la-text-sm);
+    font-weight: var(--la-weight-light);
+    text-decoration: none;
+    transition: color var(--la-transition-fast);
+}
+
+/* back link hover */
+.la-back-link:hover {
+    color: var(--la-brand);
+}
+
+
+/* =======================================
+   ACCESSIBILITY
+========================================== */
+
+/* screen reader only text */
+.la-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* hard hide helper */
+.la-hidden {
+    display: none !important;
+}
+
+/* force inline display */
+.la-d-inline {
+    display: inline;
+}
+
+/* remove wrapper box but keep children in layout */
+.la-form-contents {
+    display: contents;
+}
+
+
+/* =======================================
+   LAYOUT GRIDS
+========================================== */
+
+/* content plus fixed side panel */
+.la-split {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 330px;
+    gap: var(--la-6);
+    align-items: start;
+}
+
+/* two column grid */
+.la-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--la-4);
+}
+
+/* three column grid */
+.la-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--la-4);
+}
+
+/* four column grid */
+.la-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--la-4);
+}
+
+/* auto wrapping grid for unknown item counts */
+.la-grid-auto {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--la-4);
+}
+
+
+/* =======================================
+   STACK AND FLEX
+========================================== */
+
+/* normal vertical stack */
+.la-stack {
+    display: grid;
+    gap: var(--la-4);
+}
+
+/* tighter vertical stack */
+.la-stack-sm {
+    display: grid;
+    gap: var(--la-2);
+}
+
+/* vertical flex stack */
+.la-flex-col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--la-4);
+}
+
+/* wrapping flex row */
+.la-flex-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--la-3);
+}
+
+/* flex grow helper, one share */
+.la-flex-1 {
+    flex: 1;
+}
+
+/* flex grow helper, two shares */
+.la-flex-2 {
+    flex: 2;
+}
+
+/* flex grow helper, three shares */
+.la-flex-3 {
+    flex: 3;
+}
+
+/* push one flex item to the cross-axis end */
+.la-align-end {
+    align-self: flex-end;
+}
+
+
+/* =======================================
+   MIN-WIDTH HELPERS
+========================================== */
+
+/* minimum width helper, 120px */
+.la-min-w-120 {
+    min-width: 120px;
+}
+
+/* minimum width helper, 140px */
+.la-min-w-140 {
+    min-width: 140px;
+}
+
+/* minimum width helper, 160px */
+.la-min-w-160 {
+    min-width: 160px;
+}
+
+/* minimum width helper, 190px */
+.la-min-w-190 {
+    min-width: 190px;
+}
+
+/* minimum width helper, 200px */
+.la-min-w-200 {
+    min-width: 200px;
+}
+
+/* minimum width helper, 220px */
+.la-min-w-220 {
+    min-width: 220px;
+}
+
+
+/* =======================================
+   SPACING
+========================================== */
+
+/* zero all margin */
+.la-m-0 {
+    margin: 0;
+}
+
+/* small top margin */
+.la-mt-2 {
+    margin-top: var(--la-2);
+}
+
+/* medium top margin */
+.la-mt-4 {
+    margin-top: var(--la-4);
+}
+
+/* large top margin */
+.la-mt-6 {
+    margin-top: var(--la-6);
+}
+
+/* small bottom margin */
+.la-mb-3 {
+    margin-bottom: var(--la-3);
+}
+
+/* medium bottom margin */
+.la-mb-4 {
+    margin-bottom: var(--la-4);
+}
+
+/* medium-large bottom margin */
+.la-mb-5 {
+    margin-bottom: var(--la-5);
+}
+
+/* large bottom margin */
+.la-mb-6 {
+    margin-bottom: var(--la-6);
+}
+
+
+/* =======================================
+   DIVIDERS
+========================================== */
+
+/* normal horizontal divider */
+.la-divider {
+    margin: var(--la-6) 0;
+    border: 0;
+    border-top: 1px solid var(--la-border);
+}
+
+/* stronger branded section divider */
+.la-section-divider {
+    margin: var(--la-5) 0;
+    border: 0;
+    border-top: 2.5px solid var(--la-brand);
+    border-radius: var(--la-radius-pill);
+    opacity: 0.65;
+}
+
+.la-separator {
+    display: block;
+    align-self: center;
+    width: 1px;
+    height: 18px;
+    background: var(--la-border-strong);
+}
+
+
+
+/* =======================================
+   CODE BLOCK
+========================================== */
+
+/* code block or preformatted snippet */
+.la-code-block {
+    margin: var(--la-3) 0;
+    padding: var(--la-3);
+    border-radius: var(--la-radius-sm);
+    background: var(--la-surface-subtle);
+    color: var(--la-ink);
+    font-family: var(--la-mono);
+    font-size: var(--la-text-sm);
+    line-height: var(--la-line-base);
+    overflow: auto;
+}
+
+
+/* =======================================
+   TOOLTIP
+========================================== */
+
+/* tooltip anchor setup */
+[data-tooltip] {
+    position: relative;
+    cursor: default;
+}
+
+/* tooltip bubble and arrow shared behavior */
+[data-tooltip]::before,
+[data-tooltip]::after {
+    position: absolute;
+    left: 50%;
+    z-index: var(--la-z-tooltip);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(-50%);
+    transition: opacity var(--la-transition-fast);
+}
+
+/* tooltip bubble */
+[data-tooltip]::before {
+    content: attr(data-tooltip);
+    bottom: calc(100% + 7px);
+    max-width: 260px;
+    padding: 4px 8px;
+    border: 1px solid var(--la-border-strong);
+    border-radius: var(--la-radius-xs);
+    background: var(--la-ink);
+    color: var(--la-surface);
+    font-family: var(--la-font);
+    font-size: var(--la-text-xs);
+    font-weight: 400;
+    line-height: 1.4;
+    white-space: nowrap;
+    box-shadow: var(--la-shadow-popover);
+}
+
+/* tooltip arrow */
+[data-tooltip]::after {
+    content: "";
+    bottom: calc(100% + 3px);
+    border: 4px solid transparent;
+    border-top-color: var(--la-ink);
+}
+
+/* show tooltip on hover or keyboard focus */
+[data-tooltip]:hover::before,
+[data-tooltip]:hover::after,
+[data-tooltip]:focus-visible::before,
+[data-tooltip]:focus-visible::after {
+    opacity: 1;
+}
+
+
+/* =======================================
+   COMPONENT HELPERS
+========================================== */
+
+/* compact input inside rows or tables */
+.la-input-inline {
+    width: auto;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+/* row for filters and quick actions */
+.la-filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--la-2);
+    margin-bottom: var(--la-4);
+}
+
+/* footer strip under a table card */
+.la-card-table-footer {
+    padding: var(--la-2) var(--la-4);
+    border-top: 1px solid var(--la-border);
+    color: var(--la-muted);
+    font-size: var(--la-text-sm);
+}
+
+/* lucide svg baseline */
+.la-lucide {
+    display: block;
+    flex-shrink: 0;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+
+/* =======================================
+   PAGE HEADER
+========================================== */
+
+/* standard page title block — title left, optional actions right */
+.la-page-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--la-5);
+    margin-bottom: var(--la-6);
+}
+
+/* heading inside a page header should not add extra bottom margin */
+.la-page-header h1,
+.la-page-header h2 {
+    margin-bottom: 0;
+}
+
+/* description text directly below the heading */
+.la-page-header p {
+    margin: var(--la-1) 0 0;
+    color: var(--la-ink-soft);
+    font-size: var(--la-text-sm);
+}
+
+/* right-side action group — use .la-flex-row for button groups */
+.la-page-header-actions {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    gap: var(--la-2);
+}
+
+
+/* =======================================
+   RESPONSIVE
+========================================== */
+
+/* stack split layouts on tablets */
+@media (max-width: 980px) {
+    .la-split {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* collapse layout grids on phones */
+@media (max-width: 720px) {
+    .la-grid-2,
+    .la-grid-3,
+    .la-grid-4 {
+        grid-template-columns: 1fr;
+    }
+}

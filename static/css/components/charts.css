@@ -1,0 +1,418 @@
+/* =============================================================================
+   charts.css
+   chart wrappers, vertical bar charts, horizontal bars, donut rings,
+   sparklines, legends, and chart-specific empty states.
+
+   All chart sizes are controlled by CSS custom properties set inline:
+     --h  (bar column height, e.g. style="--h: 72%")
+     --w  (horizontal bar fill width, e.g. style="--w: 58%")
+     --p  (donut fill percent 0–100, e.g. style="--p: 68")
+
+   Use --la-chart-* tokens for color. For complex line or scatter charts,
+   these classes style the wrapper — render the chart itself with inline SVG.
+============================================================================= */
+
+
+/* =======================================
+   CHART WRAPPER
+========================================== */
+
+/* outer container shared by all chart types */
+.la-chart-wrap {
+    background: var(--la-surface);
+    border: 1px solid var(--la-border);
+    border-radius: var(--la-radius-md);
+    padding: var(--la-5);
+}
+
+/* tighter padding inside a card or dense layout */
+.la-chart-wrap--sm {
+    padding: var(--la-4);
+}
+
+
+/* =======================================
+   CHART HEADER
+========================================== */
+
+/* flex row: title on the left, legend or controls on the right */
+.la-chart-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--la-4);
+    margin-bottom: var(--la-5);
+}
+
+/* chart title, deliberately matches table / panel heading weight */
+.la-chart-title {
+    font-size: var(--la-text-sm);
+    font-weight: var(--la-weight-bold);
+    color: var(--la-ink);
+    line-height: var(--la-line-title);
+    margin: 0;
+}
+
+/* supporting subtitle or date range */
+.la-chart-subtitle {
+    font-size: var(--la-text-xs);
+    color: var(--la-ink-soft);
+    margin: var(--la-1) 0 0;
+}
+
+/* increase / decrease indicators */
+.la-chart-subtitle-increase {
+    font-size: var(--la-text-xs);
+    color: var(--la-success);
+    margin: var(--la-1) 0 0;
+
+}
+
+.la-chart-subtitle-decrease {
+    font-size: var(--la-text-xs);
+    color: var(--la-danger);
+    margin: var(--la-1) 0 0;
+}
+
+
+
+/* =======================================
+   BAR CHART  (vertical columns)
+========================================== */
+
+/* flex row aligned to the bottom; set an explicit height on the parent */
+.la-bar-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: var(--la-2);
+    height: 160px;
+    position: relative;
+}
+
+/* optional horizontal grid rules drawn behind the columns */
+.la-bar-chart-grid {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    pointer-events: none;
+}
+
+.la-bar-chart-gridline {
+    width: 100%;
+    height: 1px;
+    background: var(--la-chart-grid);
+}
+
+/* column wrapper: fills full grid height, stacks bar + label */
+.la-bar-col {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--la-2);
+    position: relative;
+}
+
+/* the bar itself — height driven by the --h custom property on the element */
+.la-bar {
+    width: 100%;
+    max-width: 44px;
+    height: var(--h, 50%);
+    background: var(--la-chart);
+    border-radius: var(--la-radius-xs) var(--la-radius-xs) 0 0;
+    cursor: default;
+    position: relative;
+    transition: opacity var(--la-transition-fast);
+}
+
+.la-bar:hover {
+    opacity: 0.8;
+}
+
+/* tooltip shown above the bar on hover, driven by the data-value attribute */
+.la-bar::after {
+    content: attr(data-value);
+    position: absolute;
+    bottom: calc(100% + 5px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--la-ink);
+    color: var(--la-ink-inverse);
+    font-size: var(--la-text-xs);
+    font-weight: var(--la-weight-bold);
+    white-space: nowrap;
+    padding: 2px var(--la-2);
+    border-radius: var(--la-radius-xs);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--la-transition-fast);
+}
+
+.la-bar:hover::after {
+    opacity: 1;
+}
+
+/* secondary series */
+.la-bar--2 {
+    background: var(--la-chart-2);
+}
+
+/* grayed-out period, e.g. future or out-of-range */
+.la-bar--muted {
+    background: var(--la-chart-grid);
+}
+
+/* axis label pinned below each column */
+.la-bar-label {
+    font-size: var(--la-text-xs);
+    color: var(--la-ink-soft);
+    text-align: center;
+    white-space: nowrap;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+
+/* =======================================
+   HORIZONTAL BAR
+========================================== */
+
+/* stacked list of labeled progress bars */
+.la-hbar-chart {
+    display: flex;
+    flex-direction: column;
+    gap: var(--la-3);
+}
+
+/* one row: label — track — value */
+.la-hbar-row {
+    display: grid;
+    grid-template-columns: minmax(80px, 160px) 1fr auto;
+    align-items: center;
+    gap: var(--la-3);
+}
+
+.la-hbar-label {
+    font-size: var(--la-text-sm);
+    color: var(--la-ink);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* background track */
+.la-hbar-track {
+    height: 8px;
+    background: var(--la-chart-grid);
+    border-radius: var(--la-radius-pill);
+    overflow: hidden;
+}
+
+/* taller variant for more visual weight */
+.la-hbar-track--lg {
+    height: 12px;
+}
+
+/* filled portion — width driven by the --w custom property on the element */
+.la-hbar-fill {
+    height: 100%;
+    width: var(--w, 50%);
+    background: var(--la-chart);
+    border-radius: var(--la-radius-pill);
+}
+
+.la-hbar-fill--2 { background: var(--la-chart-2); }
+.la-hbar-fill--danger  { background: var(--la-danger); }
+.la-hbar-fill--warning { background: var(--la-warning); }
+.la-hbar-fill--success { background: var(--la-success); }
+
+.la-hbar-value {
+    font-size: var(--la-text-xs);
+    color: var(--la-ink-soft);
+    white-space: nowrap;
+    text-align: right;
+    min-width: 36px;
+}
+
+
+/* =======================================
+   DONUT / RING CHART
+========================================== */
+
+/* outer circle drawn with conic-gradient */
+/* set --p (0–100) for the filled percentage; default 75 */
+.la-donut {
+    --p: 75;
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    background: conic-gradient(
+        var(--la-chart) calc(var(--p) * 1%),
+        var(--la-chart-grid) 0
+    );
+    transform: rotate(-90deg);
+    position: relative;
+    flex-shrink: 0;
+}
+
+/* inner circle that cuts the ring hole */
+.la-donut::after {
+    content: '';
+    position: absolute;
+    inset: 22%;
+    background: var(--la-surface);
+    border-radius: 50%;
+}
+
+/* label slot centered inside the ring, counter-rotated to stay upright */
+.la-donut-center {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(90deg);
+    z-index: 1;
+}
+
+.la-donut-value {
+    font-size: var(--la-text-lg);
+    font-weight: var(--la-weight-strong);
+    color: var(--la-ink);
+    line-height: 1;
+}
+
+.la-donut-label {
+    font-size: var(--la-text-xs);
+    color: var(--la-ink-soft);
+    margin-top: var(--la-1);
+}
+
+/* compact donut */
+.la-donut--sm {
+    width: 80px;
+    height: 80px;
+}
+
+.la-donut--sm .la-donut-value {
+    font-size: var(--la-text-md);
+}
+
+/* micro donut for inline use, no center label */
+.la-donut--xs {
+    width: 36px;
+    height: 36px;
+}
+
+.la-donut--xs::after {
+    inset: 28%;
+}
+
+
+/* =======================================
+   SPARKLINE
+========================================== */
+
+/* inline SVG trend line, typically 80–120px wide × 28–36px tall */
+.la-sparkline {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* the trend line inside the SVG */
+.la-sparkline-line {
+    fill: none;
+    stroke: var(--la-chart);
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* area fill under the line */
+.la-sparkline-area {
+    fill: var(--la-chart-soft);
+    stroke: none;
+}
+
+/* secondary-color sparkline */
+.la-sparkline--2 .la-sparkline-line {
+    stroke: var(--la-chart-2);
+}
+
+/* flat/no-change sparkline */
+.la-sparkline--muted .la-sparkline-line {
+    stroke: var(--la-border-strong);
+}
+
+
+/* =======================================
+   CHART LEGEND
+========================================== */
+
+/* horizontal row of swatch + label pairs */
+.la-chart-legend {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--la-3);
+}
+
+/* stacked column variant */
+.la-chart-legend--stack {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--la-2);
+}
+
+.la-chart-legend-item {
+    display: flex;
+    align-items: center;
+    gap: var(--la-2);
+}
+
+/* color swatch, small square */
+.la-chart-legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: var(--la-radius-xs);
+    background: var(--la-chart);
+    flex-shrink: 0;
+}
+
+.la-chart-legend-dot--2       { background: var(--la-chart-2); }
+.la-chart-legend-dot--muted   { background: var(--la-chart-grid); }
+.la-chart-legend-dot--danger  { background: var(--la-danger); }
+.la-chart-legend-dot--warning { background: var(--la-warning); }
+.la-chart-legend-dot--success { background: var(--la-success); }
+
+.la-chart-legend-label {
+    font-size: var(--la-text-xs);
+    color: var(--la-ink-soft);
+}
+
+
+/* =======================================
+   CHART EMPTY STATE
+========================================== */
+
+.la-chart-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--la-3);
+    min-height: 140px;
+    color: var(--la-ink-soft);
+    font-size: var(--la-text-sm);
+    text-align: center;
+}
+
+.la-chart-empty-icon {
+    color: var(--la-border-strong);
+}

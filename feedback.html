@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <script>(function(){var t=localStorage.getItem('la-theme');if(t)document.documentElement.setAttribute('data-theme',t);}());</script>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>LA UI Style Guide — Feedback</title>
+  <link rel="stylesheet" href="app.css" />
+  <link rel="stylesheet" href="showcase-only-new.css" />
+</head>
+<body class="sg-page">
+<div class="la-app">
+  <!-- sidebar and topbar injected by app.js -->
+  <main class="la-main">
+    <div class="la-content la-content--wide">
+
+      <section id="feedback" class="sg-section">
+
+        <div class="sg-section-title">
+          <div>
+            <h2>09. Components: feedback.css</h2>
+            <p>Feedback components explain state clearly without adding noise. Use status colors only when there is a real state. Do not use danger or error styling for routine messages.</p>
+          </div>
+        </div>
+
+        <!-- ── Loading & progress ────────────────────────────────── -->
+
+        <h3>Loading &amp; progress</h3>
+        <p class="sg-soft">Use the spinner for short indeterminate waits. Use a progress bar when completion can be measured or the wait exceeds a few seconds.</p>
+
+        <div class="sg-top-gap la-grid-2">
+          <div>
+            <p class="sg-label"><code>.la-spinner-wrap .la-spinner</code></p>
+            <div class="la-spinner-wrap">
+              <span class="la-spinner"></span>
+              <span>Loading records</span>
+            </div>
+          </div>
+          <div>
+            <p class="sg-label"><code>.la-progress.la-progress-indeterminate</code></p>
+            <div class="la-progress la-progress-indeterminate">
+              <div class="la-progress-row">
+                <span class="la-progress-label">Processing request</span>
+                <span class="la-progress-value">Working</span>
+              </div>
+              <div class="la-progress-track" role="progressbar" aria-label="Processing request">
+                <div class="la-progress-fill"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sg-top-gap-sm">
+          <p class="sg-label"><code>.la-progress</code></p>
+          <div class="la-progress" style="--la-progress-value: 64%;">
+            <div class="la-progress-row">
+              <span class="la-progress-label">Uploading files</span>
+              <span class="la-progress-value">64%</span>
+            </div>
+            <div class="la-progress-track" role="progressbar" aria-label="Uploading files" aria-valuemin="0" aria-valuemax="100" aria-valuenow="64">
+              <div class="la-progress-fill"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Empty state ───────────────────────────────────────── -->
+
+        <h3>Empty state</h3>
+        <p class="sg-soft">Show when a list or data set has no results. Provide a clear heading, a short explanation, and an action if the user can create something.</p>
+
+        <div class="sg-top-gap">
+          <p class="sg-label"><code>.la-empty</code></p>
+          <div class="la-empty">
+            <h3>No records yet</h3>
+            <p>Create the first item or adjust your filters.</p>
+            <button class="la-btn la-btn-secondary la-btn-sm" type="button">Create item</button>
+          </div>
+        </div>
+
+        <!-- ── Notices ───────────────────────────────────────────── -->
+
+        <h3>Notices</h3>
+        <p class="sg-soft">Inline notices for contextual feedback. They are identical, only the variant changes. Dismiss buttons are wired by <code class="sg-inline-code">app.js</code>.</p>
+
+        <div class="sg-top-gap">
+          <p class="sg-label"><code>.la-notice + variant</code></p>
+          <div class="la-stack-sm">
+            <div class="la-notice la-notice-info">
+              <div class="la-notice-content">
+                <span class="la-notice-text">General information or a neutral reminder.</span>
+              </div>
+              <button class="la-notice-dismiss" type="button" aria-label="Dismiss">×</button>
+            </div>
+            <div class="la-notice la-notice-error">
+              <div class="la-notice-content">
+                <span class="la-notice-text">An action failed or is blocked.</span>
+              </div>
+              <button class="la-notice-dismiss" type="button" aria-label="Dismiss">×</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Toast & modal ─────────────────────────────────────── -->
+
+        <h3>Toast and modal</h3>
+        <p class="sg-soft">Toasts stack at the edge of the viewport for temporary feedback. Modals block interaction and require a deliberate response. Both use the notice structure internally.</p>
+
+        <div class="sg-top-gap la-grid-2">
+          <div class="sg-static-toast">
+            <p class="sg-label"><code>.la-toast-stack</code></p>
+            <div class="la-toast-stack">
+              <div class="la-notice la-notice-success">
+                <span>Saved successfully.</span>
+                <button class="la-notice-dismiss" type="button" aria-label="Dismiss">×</button>
+              </div>
+              <div class="la-notice la-notice-info">
+                <span>Background job started.</span>
+                <button class="la-notice-dismiss" type="button" aria-label="Dismiss">×</button>
+              </div>
+            </div>
+                    <div class="sg-top-gap">
+          <p class="sg-label">Demo</p>
+          <p class="sg-soft" style="font-size: var(--la-text-xs); margin-bottom: var(--la-2);">Toasts stack in the bottom-right corner and auto-dismiss after 4 seconds. Click dismiss early to remove.</p>
+          <div class="la-flex-row">
+            <button class="la-btn la-btn-secondary la-btn-sm" type="button" onclick="demoToast('info', 'Background sync started.')">Info toast</button>
+            <button class="la-btn la-btn-secondary la-btn-sm" type="button" onclick="demoToast('success', 'Changes saved successfully.')">Success toast</button>
+            <button class="la-btn la-btn-secondary la-btn-sm" type="button" onclick="demoToast('error', 'Something went wrong. Please try again.')">Error toast</button>
+          </div>
+        </div>
+          </div>
+          <div>
+            <p class="sg-label"><code>.la-modal-backdrop .la-modal</code></p>
+            <div class="sg-static-modal">
+              <div class="la-modal-backdrop">
+                <div class="la-modal">
+                  <div class="la-modal-header">
+                    <h3 class="la-modal-title">Confirm action</h3>
+                  </div>
+                  <div class="la-modal-body">
+                    <p class="la-modal-message">Use a modal when the user must confirm something important before continuing.</p>
+                  </div>
+                  <div class="la-modal-footer">
+                    <button class="la-btn la-btn-secondary la-btn-sm" type="button">Cancel</button>
+                    <button class="la-btn la-btn-primary la-btn-sm" type="button">Confirm</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- ── Alerts ────────────────────────────────────────────── -->
+
+        <h3>Alerts</h3>
+        <p class="sg-soft">Page-level alerts for significant conditions. Warning is for recoverable issues; danger is for destructive or irreversible actions that need a clear signal. They are identical, only the variant changes, use this sparingly.</p>
+
+        <div class="sg-top-gap la-stack-sm">
+          <div>
+            <p class="sg-label"><code>.la-alert.la-alert-warning</code></p>
+            <div class="la-alert la-alert-warning">
+              <h3 class="la-alert-title">Warning alert</h3>
+              <div class="la-alert-body">
+                <p>This change may affect existing records. Review before continuing.</p>
+              </div>
+            </div>
+          </div>
+          <div>
+            <p class="sg-label"><code>.la-alert.la-alert-danger</code></p>
+            <div class="la-alert la-alert-danger">
+              <h3 class="la-alert-title">Danger alert</h3>
+              <div class="la-alert-body">
+                <p>Deleting this record will remove all linked data and cannot be undone.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Status dots ───────────────────────────────────────── -->
+
+        <h3>Status dots</h3>
+        <p class="sg-soft">Small color indicators used alongside text labels. Pair with <code class="sg-inline-code">.la-status</code> to maintain consistent alignment and gap.</p>
+
+        <div class="sg-top-gap">
+          <p class="sg-label"><code>.la-dot + variant</code></p>
+          <div class="la-flex-row">
+            <span class="la-status"><span class="la-dot la-dot-brand"></span>Brand</span>
+            <span class="la-status"><span class="la-dot la-dot-info"></span>Info</span>
+            <span class="la-status"><span class="la-dot la-dot-success"></span>Success</span>
+            <span class="la-status"><span class="la-dot la-dot-warning"></span>Warning</span>
+            <span class="la-status"><span class="la-dot la-dot-error"></span>Error</span>
+            <span class="la-status"><span class="la-dot la-dot-disabled"></span>Disabled</span>
+          </div>
+        </div>
+
+        <!-- ── Badges and scope ───────────────────────────── -->
+
+        <h3>Badges and scope</h3>
+        <p class="sg-soft">Badges label a record's category or standing. Scope labels communicate data visibility boundaries.</p>
+
+        <div class="sg-top-gap">
+          <p class="sg-label"><code>.la-badge + variant</code></p>
+          <div class="la-flex-row">
+            <span class="la-badge">2026</span>
+            <span class="la-badge">Average</span>
+            <span class="la-badge la-badge-brand">Platform</span>
+            <span class="la-badge la-badge-warning">Needs review</span>
+          </div>
+        </div>
+
+        <div class="sg-top-gap-sm">
+          <p class="sg-label"><code>.la-scope-notice</code></p>
+          <div class="la-scope-notice">
+            <span>This content is scoped to a selected department or domain.</span>
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+</div>
+<script>
+window.SHELL_PAGE = { active: 'feedback', breadcrumb: 'Feedback', nav: 'page', base: '' };
+
+</script>
+<script src="app.js"></script>
+</body>
+</html>

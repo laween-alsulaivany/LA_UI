@@ -1,0 +1,343 @@
+/* =============================================================================
+   navigation.css
+   sidebar nav, breadcrumbs, tabs, pagination, and table switchers
+============================================================================= */
+
+/* =======================================
+   SIDEBAR
+========================================== */
+
+/* wrapper for one sidebar nav group */
+.la-nav-section {
+    margin-top: var(--la-5);
+}
+
+/* small heading above nav group */
+.la-nav-title {
+    margin: 0 0 var(--la-2);
+    padding: 0 var(--la-2);
+    color: var(--la-muted);
+    font-size: var(--la-text-xs);
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+}
+
+/* nav link stack */
+.la-nav {
+    display: grid;
+    gap: 2px;
+}
+
+/* sidebar nav link */
+.la-nav-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: var(--la-3);
+    min-height: var(--la-control-height);
+    padding: 0 var(--la-3) 0 var(--la-4);
+    border: 1px solid transparent;
+    border-radius: var(--la-radius-sm);
+    color: var(--la-ink-soft);
+    font-size: var(--la-text-sm);
+    text-decoration: none;
+    transition:
+        background-color var(--la-transition-fast),
+        border-color var(--la-transition-fast),
+        color var(--la-transition-fast);
+}
+
+.la-nav-link:hover {
+    background: var(--la-brand-soft);
+    color: var(--la-ink);
+}
+
+/* active sidebar route */
+.la-nav-link.is-active,
+.la-nav-link[aria-current="page"] {
+    background: var(--la-surface-selected);
+    color: var(--la-ink);
+    border-color: var(--la-border);
+    font-weight: var(--la-weight-light);
+}
+
+.la-nav-link.is-active::before,
+.la-nav-link[aria-current="page"]::before {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 9px;
+    bottom: 9px;
+    width: 3px;
+    border-radius: 3px;
+    background: var(--la-brand);
+}
+
+/* optional nav code marker */
+.la-nav-code {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 30px;
+    flex: none;
+    color: var(--la-muted);
+    font-family: var(--la-mono);
+    font-size: var(--la-text-xs);
+    line-height: 1;
+}
+
+/* optional nav svg marker */
+.la-nav-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    flex: none;
+    color: var(--la-muted);
+}
+
+.la-nav-icon svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* nav label text */
+.la-nav-label {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* plain nav link with no code or svg */
+.la-nav-link--plain {
+    gap: 0;
+}
+
+/* active/hover marker inherits better color */
+.la-nav-link:hover .la-nav-code,
+.la-nav-link:hover .la-nav-icon,
+.la-nav-link.is-active .la-nav-code,
+.la-nav-link.is-active .la-nav-icon,
+.la-nav-link[aria-current="page"] .la-nav-code,
+.la-nav-link[aria-current="page"] .la-nav-icon {
+    color: currentColor;
+}
+
+/* =======================================
+   BREADCRUMBS
+========================================== */
+
+/* topbar breadcrumb trail */
+.la-breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: var(--la-2);
+    min-width: 0;
+    color: var(--la-muted);
+    font-size: var(--la-text-sm);
+}
+
+.la-breadcrumbs strong {
+    color: var(--la-ink-soft);
+    font-weight: 600;
+}
+
+.la-breadcrumbs a {
+    color: var(--la-ink-soft);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.la-breadcrumbs a:hover {
+    color: var(--la-brand);
+    text-decoration: underline;
+}
+
+
+/* page-level breadcrumb trail */
+.la-breadcrumb-trail {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--la-2);
+    margin-bottom: var(--la-3);
+    color: var(--la-muted);
+    font-size: var(--la-text-sm);
+}
+
+.la-breadcrumb-trail a {
+    color: var(--la-brand);
+    text-decoration: none;
+    transition: color var(--la-transition-fast);
+}
+
+.la-breadcrumb-trail a:hover {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+/* current breadcrumb item */
+.la-breadcrumbs [data-breadcrumb],
+.la-breadcrumbs [aria-current="page"],
+.la-breadcrumb-trail [aria-current="page"],
+.la-breadcrumb-trail .is-current {
+    color: var(--la-brand);
+    font-weight: var(--la-weight-light);
+}
+
+/* =======================================
+   TABS
+========================================== */
+
+/* tab list */
+.la-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--la-4);
+    border-bottom: 1px solid var(--la-border);
+}
+
+
+/* tab button */
+.la-tabs .la-tab-btn {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  padding: var(--la-2) var(--la-1);
+  color: var(--la-ink-soft);
+  margin-bottom: -1px;
+  transition: var(--la-transition-fast);
+}
+
+.la-tabs .la-tab-btn:hover {
+  color: var(--la-ink);
+  border-bottom-color: var(--la-border-strong);
+}
+
+/* The Active Tab */
+.la-tabs .la-tab-btn.is-active {
+  color: var(--la-brand-action);
+  border-bottom-color: var(--la-brand-action);
+  font-weight: var(--la-weight-bold);
+}
+
+/* =======================================
+   PAGINATION
+========================================== */
+
+/* pagination row */
+.la-pagination {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--la-2);
+    padding: var(--la-4) 0 0;
+}
+
+/* pagination count label */
+.la-pagination-info {
+    color: var(--la-muted);
+    font-size: var(--la-text-sm);
+}
+
+/* page link */
+.la-page-link {
+    min-width: calc(var(--la-4) * 2 + var(--la-1));
+    padding: var(--la-2) var(--la-3);
+    border: 1px solid var(--la-border);
+    border-radius: var(--la-radius-sm);
+    background: var(--la-surface);
+    color: var(--la-muted);
+    font-size: var(--la-text-sm);
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+        background-color var(--la-transition-fast),
+        border-color var(--la-transition-fast),
+        color var(--la-transition-fast);
+}
+
+.la-page-link:hover:not(.is-current) {
+    border-color: var(--la-muted);
+    color: var(--la-ink);
+}
+
+/* current page */
+.la-page-link.is-current,
+.la-page-link[aria-current="page"] {
+    border-color: var(--la-brand);
+    background: var(--la-brand-soft);
+    color: var(--la-brand-ink);
+}
+
+/* =======================================
+   TABLE SWITCHER
+========================================== */
+
+/* quick switcher between related table views */
+.la-table-switcher {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--la-1);
+    margin-bottom: var(--la-4);
+    padding: var(--la-1);
+    border: 1px solid var(--la-border);
+    border-radius: var(--la-radius-lg);
+    background: var(--la-surface-subtle);
+}
+
+/* switcher separator */
+.la-table-switcher-sep {
+    align-self: center;
+    padding: 0 var(--la-1);
+    color: var(--la-border-strong);
+}
+
+/* switcher link */
+.la-table-switcher-link {
+    padding: var(--la-1) var(--la-3);
+    border-radius: var(--la-radius-md);
+    color: var(--la-muted);
+    font-size: var(--la-text-sm);
+    font-weight: 500;
+    text-decoration: none;
+    transition:
+        background-color var(--la-transition-fast),
+        color var(--la-transition-fast);
+}
+
+.la-table-switcher-link:hover {
+    color: var(--la-ink);
+}
+
+/* selected switcher link */
+.la-table-switcher-link-active,
+.la-table-switcher-link.is-active {
+    background: var(--la-brand-action);
+    color: var(--la-surface);
+    font-weight: 600;
+}
+
+/* make sidebar nav breathe on narrower layouts */
+@media (max-width: 980px) {
+    .la-nav {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* single column nav on phones */
+@media (max-width: 720px) {
+    .la-nav {
+        grid-template-columns: 1fr;
+    }
+}

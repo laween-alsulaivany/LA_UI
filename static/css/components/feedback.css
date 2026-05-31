@@ -1,0 +1,536 @@
+/* =============================================================================
+   feedback.css
+   loading, empty states, notices, toasts, modals, badges, and status UI
+============================================================================= */
+
+
+/* =======================================
+   LOADING SPINNER
+========================================== */
+
+/* loading row with spinner and text */
+.la-spinner-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--la-2);
+    color: var(--la-muted);
+    font-size: var(--la-text-sm);
+}
+
+/* spinner circle */
+.la-spinner {
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--la-border-strong);
+    border-top-color: var(--la-brand);
+    border-radius: var(--la-radius-pill);
+    animation: la-spin 900ms linear infinite;
+}
+
+@keyframes la-spin {
+    to { transform: rotate(360deg); }
+}
+
+/* =======================================
+   PROGRESS BAR
+========================================== */
+
+/* progress bar */
+.la-progress {
+    --la-progress-value: 0%;
+
+    width: 100%;
+    max-width: 360px;
+}
+
+.la-progress-track {
+    overflow: hidden;
+    width: 100%;
+    height: 8px;
+    border: 1px solid var(--la-border);
+    border-radius: var(--la-radius-pill);
+    background: var(--la-surface-subtle);
+}
+
+.la-progress-fill {
+    width: var(--la-progress-value);
+    height: 100%;
+    border-radius: inherit;
+    background: var(--la-brand);
+    transition: width var(--la-transition-base);
+}
+
+/* progress with label */
+.la-progress-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--la-3);
+    margin-bottom: var(--la-2);
+    color: var(--la-muted);
+    font-size: var(--la-text-sm);
+}
+
+.la-progress-label {
+    color: var(--la-ink-soft);
+    font-weight: var(--la-weight-light);
+}
+
+.la-progress-value {
+    color: var(--la-muted);
+    font-size: var(--la-text-xs);
+    font-family: var(--la-mono);
+}
+
+/* indeterminate progress */
+.la-progress-indeterminate .la-progress-fill {
+    width: 42%;
+    animation: la-progress-slide 1.1s ease-in-out infinite;
+}
+
+@keyframes la-progress-slide {
+    0% {
+        transform: translateX(-110%);
+    }
+
+    100% {
+        transform: translateX(260%);
+    }
+}
+
+/* =======================================
+   EMPTY STATE
+========================================== */
+
+/* centered empty placeholder */
+.la-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--la-3);
+    padding: var(--la-8);
+    border: 1px dashed var(--la-border-strong);
+    border-radius: var(--la-radius-md);
+    background: var(--la-surface-subtle);
+    text-align: center;
+}
+
+.la-empty h3 {
+    margin: 0;
+    font-size: var(--la-text-base);
+    font-weight: var(--la-weight-bold);
+}
+
+.la-empty p {
+    max-width: 520px;
+    margin: 0;
+    color: var(--la-muted);
+    font-size: var(--la-text-sm);
+}
+
+/* =======================================
+   MODALS
+========================================== */
+
+/* full page modal backdrop */
+.la-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: var(--la-z-modal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--la-4);
+    background: rgba(17, 24, 39, 0.45);
+    animation: la-backdrop-in var(--la-transition-base) ease;
+}
+
+@keyframes la-backdrop-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* modal box */
+.la-modal {
+    width: 100%;
+    max-width: 420px;
+    background: var(--la-surface);
+    border: 1px solid var(--la-border);
+    border-radius: var(--la-radius-md);
+    box-shadow: var(--la-shadow-popover);
+    animation: la-modal-in var(--la-transition-base) ease;
+}
+
+@keyframes la-modal-in {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* modal heading area */
+.la-modal-header {
+    padding: var(--la-5) var(--la-6) var(--la-3);
+    border-bottom: 1px solid var(--la-border);
+}
+
+/* modal title */
+.la-modal-title {
+    margin: 0;
+    color: var(--la-ink);
+    font-size: var(--la-text-base);
+    font-weight: 700;
+}
+
+/* modal content area */
+.la-modal-body {
+    padding-top: var(--la-3);
+    padding-bottom: var(--la-2);
+    padding-left: var(--la-6);
+    padding-right: var(--la-6);
+}
+
+/* modal message text */
+.la-modal-message {
+    margin: 0;
+    color: var(--la-muted);
+    font-size: var(--la-text-sm);
+    line-height: var(--la-line-base);
+}
+
+/* modal action row */
+.la-modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--la-3);
+    padding: var(--la-1) var(--la-6) var(--la-5);
+}
+
+.la-modal-footer form {
+    display: contents;
+}
+
+/* =======================================
+   NOTICES
+========================================== */
+/* compact inline alert, used for small contextual notices */
+.la-notice {
+    --la-notice-accent: var(--la-border-strong);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--la-4);
+    min-height: 42px;
+    padding: 0 var(--la-3);
+    border: 1px solid var(--la-border);
+    border-radius: 0;
+    background: var(--la-surface);
+    color: var(--la-ink);
+    font-size: var(--la-text-sm);
+    line-height: var(--la-line-base);
+}
+
+/* notice content group */
+.la-notice-content {
+    display: flex;
+    align-items: center;
+    gap: var(--la-3);
+    min-width: 0;
+}
+
+/* generated status label */
+.la-notice-content::before {
+    content: var(--la-notice-label);
+    flex: none;
+    min-width: 4.8rem;
+    padding-right: var(--la-3);
+    border-right: 1px solid var(--la-border-strong);
+    color: var(--la-notice-accent);
+    font-size: var(--la-text-xs);
+    font-weight: var(--la-weight-strong);
+    letter-spacing: 0.12em;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+/* optional notice icon, hidden by default for this style */
+.la-notice svg {
+    display: none;
+}
+
+/* notice text */
+.la-notice-text {
+    min-width: 0;
+}
+
+.la-notice strong {
+    display: block;
+    color: var(--la-ink);
+    font-size: var(--la-text-sm);
+    font-weight: 500;
+    line-height: var(--la-line-title);
+}
+
+.la-notice p {
+    margin: 2px 0 0;
+    color: var(--la-muted);
+    font-size: var(--la-text-sm);
+}
+
+/* notice dismiss button */
+.la-notice-dismiss {
+    flex-shrink: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--la-muted);
+    font-size: var(--la-text-base);
+    line-height: 1;
+    opacity: 0.75;
+    cursor: pointer;
+    transition:
+        color var(--la-transition-fast),
+        opacity var(--la-transition-fast);
+}
+
+.la-notice-dismiss:hover {
+    color: var(--la-ink);
+    opacity: 1;
+}
+
+/* notice variants */
+.la-notice-info {
+    --la-notice-accent: var(--la-brand);
+    --la-notice-label: "INFO";
+}
+
+.la-notice-success {
+    --la-notice-accent: var(--la-success);
+    --la-notice-label: "SUCCESS";
+}
+
+.la-notice-error {
+    --la-notice-accent: var(--la-danger);
+    --la-notice-label: "ERROR";
+}
+
+
+/* =======================================
+   SCOPE NOTICES
+========================================== */
+
+/* small contextual scope note */
+
+.la-scope-notice {
+    display: inline-flex;
+    align-items: baseline;
+    gap: var(--la-2);
+    max-width: 720px;
+    margin-top: var(--la-4);
+    padding: var(--la-2) var(--la-3) var(--la-2) calc(var(--la-3) + 10px);
+    border: 1px  solid var(--la-border) ;
+    border-radius: 0 var(--la-radius-md) var(--la-radius-md) 0;
+    box-shadow: inset 10px 0 0 0 var(--la-brand);
+    background: var(--la-surface);
+    color: var(--la-ink-soft);
+    font-size: var(--la-text-sm);
+    line-height: var(--la-line-base);
+}
+
+
+/* hide old icon in the compact version */
+.la-scope-notice svg {
+    display: none;
+}
+
+/* optional muted continuation text */
+.la-scope-notice span,
+.la-scope-notice p {
+    margin: 0;
+    color: var(--la-ink);
+}
+
+/* =======================================
+   TOASTS
+========================================== */
+
+/* fixed toast stack */
+.la-toast-stack {
+    position: fixed;
+    right: var(--la-6);
+    bottom: calc(var(--la-6) + env(safe-area-inset-bottom));
+    z-index: var(--la-z-toast);
+    display: flex;
+    flex-direction: column;
+    gap: var(--la-2);
+    width: min(360px, calc(100vw - var(--la-6) * 2));
+    pointer-events: none;
+}
+
+/* toast overrides notice to be prominent: white bg, thick top accent, sharp edges */
+.la-toast-stack .la-notice {
+    width: 100%;
+    border: 1px solid var(--la-border);
+    border-top: 3px solid var(--la-notice-accent);
+    border-radius: 0;
+    background: var(--la-surface);
+    pointer-events: auto;
+    box-shadow: var(--la-shadow-popover-sm);
+    animation: la-toast-in var(--la-transition-slow);
+}
+
+/* toast entrance animation */
+@keyframes la-toast-in {
+    from {
+        opacity: 0;
+        transform: translateY(var(--la-4));
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =======================================
+   ALERTS
+========================================== */
+/* compact alert block with status title band */
+.la-alert {
+    --la-alert-accent: var(--la-disabled);
+    --la-alert-title-color: var(--la-surface);
+
+    overflow: hidden;
+    border: 1px solid var(--la-alert-accent);
+    border-radius: var(--la-radius-sm);
+    background: var(--la-surface);
+}
+
+/* alert title band */
+.la-alert-title {
+    margin: 0;
+    padding: var(--la-2) var(--la-3);
+    background: var(--la-alert-accent);
+    color: var(--la-alert-title-color);
+    font-size: var(--la-text-sm);
+    font-weight: var(--la-weight-bold);
+    line-height: var(--la-line-title);
+    text-align: center;
+}
+
+/* alert body area */
+.la-alert-body {
+    padding: var(--la-2) var(--la-3);
+    background: var(--la-surface);
+    color: var(--la-ink);
+    text-align: center;
+}
+
+/* alert body text */
+.la-alert-body p {
+    margin: 0;
+    color: var(--la-ink-soft);
+    font-size: var(--la-text-sm);
+    line-height: var(--la-line-base);
+}
+
+
+.la-alert > p {
+    margin: 0;
+    padding: var(--la-2) var(--la-3);
+    background: var(--la-surface);
+    color: var(--la-ink-soft);
+    font-size: var(--la-text-sm);
+    line-height: var(--la-line-base);
+}
+
+/* alert variants */
+.la-alert-warning {
+    --la-alert-accent: var(--la-warning);
+}
+
+.la-alert-danger,
+.la-alert-error {
+    --la-alert-accent: var(--la-danger);
+}
+
+/* =======================================
+   BADGES
+========================================== */
+
+/* compact badge */
+.la-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--la-1);
+    width: fit-content;
+    max-width: max-content;
+    min-height: 22px;
+    padding: 2px 7px;
+    border: 1px solid var(--la-border-strong);
+    border-radius: var(--la-radius-sm);
+    background: var(--la-surface);
+    color: var(--la-ink-soft);
+    font-size: var(--la-text-xs);
+    font-weight: var(--la-weight-light);
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+/* brand badge */
+.la-badge-brand {
+    border-color: var(--la-brand-border);
+    background: var(--la-surface);
+    color: var(--la-brand-active);
+}
+
+/* warning / needs-attention badge */
+.la-badge-warning {
+    border-color: var(--la-warning);
+    background: var(--la-surface);
+    color: var(--la-warning);
+}
+
+/* optional icon inside badge */
+.la-badge svg {
+    width: 11px;
+    height: 11px;
+    flex: none;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* =======================================
+   STATUS DOTS
+========================================== */
+
+/* small dot used beside status text */
+.la-dot {
+    width: calc(var(--la-4) / 2);
+    height: calc(var(--la-4) / 2);
+    flex: none;
+    border-radius: var(--la-radius-pill);
+    background: var(--la-disabled);
+}
+
+/* dot colors */
+.la-dot-brand { background: var(--la-brand); }
+.la-dot-info { background: var(--la-info); }
+.la-dot-success { background: var(--la-success); }
+.la-dot-warning { background: var(--la-warning); }
+.la-dot-error { background: var(--la-danger); }
+.la-dot-disabled { background: var(--la-disabled); }
+
+/* dot + label text */
+.la-status {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--la-2);
+    color: var(--la-ink-soft);
+    font-size: var(--la-text-sm);
+    white-space: nowrap;
+}

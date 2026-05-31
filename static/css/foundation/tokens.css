@@ -1,0 +1,202 @@
+/* font import, keep this first so the app uses the same type */
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap");
+
+/* default theme tokens, light mode is the official baseline */
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+
+  /* main brand color set, swap these first for a new client */
+  --la-brand: #be4c0a;
+  --la-brand-hover: #a94308;
+  --la-brand-active: #8f3705;
+  --la-brand-soft: #f4ebe5;
+  --la-brand-border: #dfc0ae;
+
+  /* action color set, mostly buttons / links / selected states */
+  --la-brand-action: #be4c0a;
+  --la-brand-action-hover: #a94308;
+  --la-brand-action-active: #8f3705;
+  --la-brand-ink: #8f3705;
+
+  /* text colors, keep these boring and readable */
+  --la-ink: #171412;
+  --la-ink-soft: #6d655f;
+  --la-muted: #746b64;
+  --la-disabled: #a1a7af;
+  --la-ink-inverse: #ffffff;
+
+  /* page and surface colors, these drive most layouts */
+  --la-page: #f7f6f4;
+  --la-surface: #ffffff;
+  --la-surface-subtle: #f2efec;
+  --la-surface-hover: #faf8f6;
+  --la-surface-selected: #f4ebe5;
+
+  /* border colors, use these instead of random grays */
+  --la-border: #e6e1dc;
+  --la-border-strong: #cec6bf;
+
+  /* status colors, only use these for actual states, use them sparingly */
+  --la-info: #2a5c7a;
+  --la-success: #3e6b48;
+
+  /* danger and warning has more states because it needs stronger contrast */
+  --la-warning: #c47b1c;
+  --la-warning-hover: #a66614;
+  --la-warning-active: #87520e;
+  --la-warning-soft: #dd881918;
+
+  --la-danger: #b42318;
+  --la-danger-hover: #991b13;
+  --la-danger-active: #7f1710;
+  --la-danger-soft: #ce251918;
+  --la-danger-border: #b42318;
+
+  /* font stacks, app text and code text */
+  --la-font: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  --la-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+
+  /* type scale, small enough to stay consistent */
+  --la-text-xs: 0.75rem;     /* 12px */
+  --la-text-sm: 0.875rem;    /* 14px */
+  --la-text-md: 0.95rem;     /* 15px */
+  --la-text-base: 1rem;      /* 16px */
+  --la-text-lg: 1.125rem;    /* 18px */
+  --la-text-xl: 1.375rem;    /* 22px */
+  --la-text-2xl: 1.75rem;    /* 28px */
+
+  /* font weight, it maps to the loaded IBM Plex Sans variants: 500 Medium, 600 SemiBold, 700 Bold */
+  --la-weight-light: 500;
+  --la-weight-bold: 600;
+  --la-weight-strong: 700;
+
+  /* spacing scale, do not add random one-off gaps unless needed */
+  --la-1: 0.25rem;
+  --la-2: 0.5rem;
+  --la-3: 0.75rem;
+  --la-4: 1rem;
+  --la-5: 1.25rem;
+  --la-6: 1.5rem;
+  --la-7: 1.75rem;
+  --la-8: 2rem;
+  --la-10: 2.5rem;
+  --la-12: 3rem;
+
+  /* line heights, normal text vs tighter headings */
+  --la-line-base: 1.5;
+  --la-line-title: 1.18;
+
+  /* radius scale, keep the system from getting random */
+  --la-radius-xs: 4px;
+  --la-radius-sm: 6px;
+  --la-radius-md: 8px;
+  --la-radius-lg: 12px;
+  --la-radius-pill: 999px;
+
+  /* shadow scale, only two levels for now */
+  --la-shadow-shell: 0 1px 2px rgba(23, 20, 18, 0.04);
+  --la-shadow-popover: 0 14px 36px rgba(23, 20, 18, 0.16);
+  --la-shadow-popover-sm: 0 5px 10px rgba(23, 20, 18, 0.10);
+
+  --la-chart: var(--la-brand);
+  --la-chart-2: #6a8ea4;     /* secondary series, muted slate */
+  --la-chart-soft: #f4ebe5;
+  --la-chart-grid: #e8e3dd;
+
+  /* layout sizes, shared shell numbers */
+  --la-sidebar: 240px;
+  --la-content-prose: 680px;
+  --la-content-standard: 1180px;
+  --la-content-wide: 1440px;
+
+  /* control sizing, buttons and form fields should line up */
+  --la-control-height: 38px;
+
+  /* control sizing, buttons and form fields should be at a minimum width for consistency */
+  --la-control-width: 58px;
+
+  /* z-index scale, avoids random 99999 numbers */
+  --la-z-topbar: 5;
+  --la-z-tooltip: 50;
+  --la-z-panel: 300;
+  --la-z-modal: 500;
+  --la-z-toast: 1000;
+
+  /* focus ring, shared keyboard focus style */
+  --la-focus: 0 0 0 1.1px var(--la-brand-action);
+  --la-backdrop: rgba(23, 20, 18, 0.4);
+
+  /* motion timings, keep interactions consistent */
+  --la-transition-fast: 120ms ease;
+  --la-transition-base: 180ms ease;
+  --la-transition-slow: 250ms ease;
+
+}
+
+/* dark mode tokens, ready to use but not fully polished yet */
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* main brand color set, keep the same orange identity but soften it for dark UI */
+  --la-brand: #d86a25;
+  --la-brand-hover: #ed7b31;
+  --la-brand-active: #f29a5d;
+  --la-brand-soft: rgba(216, 106, 37, 0.12);
+  --la-brand-border: rgba(216, 106, 37, 0.32);
+
+  /* action color set, mostly buttons / links / selected states */
+  --la-brand-action: #d86a25;
+  --la-brand-action-hover: #ed7b31;
+  --la-brand-action-active: #f29a5d;
+  --la-brand-ink: #f1a66d;
+
+  /* text colors, keep these warm and readable */
+  --la-ink: #f8f7f6;
+  --la-ink-soft: #b8afa8;
+  --la-muted: #938a84;
+  --la-disabled: #6f6760;
+  --la-ink-inverse: #171412;
+
+  /* page and surface colors, warm dark instead of blue-gray dark */
+  --la-page: #12100f;
+  --la-surface: #191715;
+  --la-surface-subtle: #1f1c1a;
+  --la-surface-hover: #211e1b;
+  --la-surface-selected: rgba(216, 106, 37, 0.1);
+
+  /* border colors, use warm borders instead of cold slate borders */
+  --la-border: #302a25;
+  --la-border-strong: #4a4038;
+
+  /* status colors, intentionally neutral in dark mode too */
+  --la-info: #5c94bd;
+  --la-success: #64a377;
+
+  /* danger and warning has more states because it needs stronger contrast */
+  --la-warning: #e8b75c;
+  --la-warning-hover: #f2c779;
+  --la-warning-active: #fad496;
+  --la-warning-soft: rgba(235, 181, 81, 0.09);
+
+  --la-danger: #f26157;
+  --la-danger-hover: #f57468;
+  --la-danger-active: #f99e96;
+  --la-danger-soft: rgba(242, 97, 87, 0.18);
+  --la-danger-border: #f26157;
+
+  /* dark shadows need enough contrast without looking like floating black cards */
+  --la-shadow-shell: 0 1px 2px rgba(0, 0, 0, 0.22);
+  --la-shadow-popover: 0 16px 42px rgba(0, 0, 0, 0.46);
+  --la-shadow-popover-sm: 0 5px 12px rgba(0, 0, 0, 0.36);
+
+  /* charts should stay mostly brand-based, not rainbow-based */
+  --la-chart: var(--la-brand);
+  --la-chart-2: #557a93;     /* secondary series, muted slate */
+  --la-chart-soft: #2c1a10;
+  --la-chart-grid: #2a2420;
+
+  /* focus ring, shared keyboard focus style */
+  --la-focus: 0 0 0 1.1px var(--la-brand-action);
+  --la-backdrop: rgba(0, 0, 0, 0.58);
+}

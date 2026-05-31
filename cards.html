@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <script>(function(){var t=localStorage.getItem('la-theme');if(t)document.documentElement.setAttribute('data-theme',t);}());</script>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>LA UI Style Guide — Cards</title>
+  <link rel="stylesheet" href="app.css" />
+  <link rel="stylesheet" href="showcase-only-new.css" />
+</head>
+<body class="sg-page">
+<div class="la-app">
+  <!-- sidebar and topbar injected by app.js -->
+  <main class="la-main">
+    <div class="la-content la-content--wide">
+
+      <section id="cards" class="sg-section">
+
+        <div class="sg-section-title">
+          <div>
+            <h2>06. Components: cards.css</h2>
+            <p>Cards and panels organize bounded content. Do not wrap every page section in a card. Use headings, spacing, and dividers first.</p>
+          </div>
+        </div>
+
+        <div class="sg-guideline-card la-split-aside">
+          <div>
+            <h3>Use cards for</h3>
+            <ul>
+              <li><code>.la-card</code> for standalone bounded content.</li>
+              <li><code>.la-panel</code> for app sections with a header and body.</li>
+              <li><code>.la-split-card</code> when two related areas belong in one container.</li>
+              <li><code>.la-card-muted</code> only for nested or supporting detail blocks.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Avoid cards for</h3>
+            <ul>
+              <li>Normal page sections that only need a heading and spacing.</li>
+              <li>Repeated card nesting.</li>
+              <li>Fake stat or dashboard cards.</li>
+              <li>Filling empty space.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- ── Base cards ─────────────────────────────────────────── -->
+
+        <h3>Base cards</h3>
+        <p class="sg-soft">Three base surfaces. <code>.la-card</code> for primary containers, <code>.la-card-muted</code> for nested detail blocks, <code>.la-card-table</code> for table wrappers with controlled overflow.</p>
+
+        <div class="sg-top-gap" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--la-4);">
+          <div class="la-card">
+            <h3>Standard card</h3>
+            <p class="sg-soft">Use for standalone content that needs separation from the page.</p>
+          </div>
+          <div class="la-card-muted">
+            <h3 class="la-inner-card-title">Muted detail block</h3>
+            <p>Use inside a larger section for supporting detail, not as a main layout pattern.</p>
+          </div>
+          <div class="la-card-table">
+            <p class="sg-label"><code>.la-card-table</code></p>
+            <p>Use around a table only when the table needs padding and clipped overflow.</p>
+          </div>
+        </div>
+
+
+        <!-- ── Border states ──────────────────────────────────────── -->
+
+        <h3>Border states</h3>
+        <p class="sg-soft">Use border state modifiers to signal status on a card. Use sparingly... not every card needs a border state.</p>
+
+        <div class="sg-top-gap" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--la-4);">
+          <div class="la-card la-card--active-border">
+            <p class="sg-label"><code>.la-card--active-border</code></p>
+            <p>Selected or currently active item.</p>
+          </div>
+          <div class="la-card la-card--warning-border">
+            <p class="sg-label"><code>.la-card--warning-border</code></p>
+            <p>Requires attention or has a warning condition.</p>
+          </div>
+          <div class="la-card la-card--error-border">
+            <p class="sg-label"><code>.la-card--error-border</code></p>
+            <p>Has a validation error or critical issue.</p>
+          </div>
+        </div>
+
+        <!-- ── Split card ─────────────────────────────────────────── -->
+
+        <h3>Split card</h3>
+        <p class="sg-soft">Two columns inside one shared card. The card's border and background wrap both sides together, neither column has its own box. A divider line is added between them automatically. Use a named ratio modifier or set <code>--la-split-cols</code> inline for custom proportions.</p>
+
+        <div class="sg-top-gap">
+          <p class="sg-label"><code>.la-card .la-split-card</code> — default (<code>--la-split-cols: 2fr 1fr</code>)</p>
+          <div class="la-card la-split-card" style="margin-top: var(--la-2);">
+            <div>
+              <h3>Implementation notes</h3>
+              <p class="sg-soft">Main content side. Holds explanations, lists, or instructions.</p>
+            </div>
+            <div>
+              <h3>Reference</h3>
+              <pre class="sg-code-block"><code>&lt;div class="la-card la-split-card"&gt;
+  &lt;div&gt;Main content&lt;/div&gt;
+  &lt;div&gt;Aside / reference&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="sg-top-gap-sm">
+          <p class="sg-label">Named ratio modifiers — left is main, right is aside</p>
+          <div class="la-stack-sm" style="gap: var(--la-2); margin-top: var(--la-2);">
+
+            <div class="la-split-card la-split-card--1-1" style="border: 1px solid var(--la-border); border-radius: var(--la-radius-sm); overflow: hidden;">
+              <div style="padding: var(--la-2) var(--la-3); background: var(--la-surface-subtle);"><code>.la-split-card--1-1</code></div>
+              <div style="padding: var(--la-2) var(--la-3);"><span class="sg-soft">1fr 1fr — equal columns</span></div>
+            </div>
+
+            <div class="la-split-card la-split-card--2-1" style="border: 1px solid var(--la-border); border-radius: var(--la-radius-sm); overflow: hidden;">
+              <div style="padding: var(--la-2) var(--la-3); background: var(--la-surface-subtle);"><code>.la-split-card--2-1</code></div>
+              <div style="padding: var(--la-2) var(--la-3);"><span class="sg-soft">2fr 1fr — default</span></div>
+            </div>
+
+            <div class="la-split-card la-split-card--3-1" style="border: 1px solid var(--la-border); border-radius: var(--la-radius-sm); overflow: hidden;">
+              <div style="padding: var(--la-2) var(--la-3); background: var(--la-surface-subtle);"><code>.la-split-card--3-1</code></div>
+              <div style="padding: var(--la-2) var(--la-3);"><span class="sg-soft">3fr 1fr — narrow aside</span></div>
+            </div>
+
+            <div class="la-split-card la-split-card--3-2" style="border: 1px solid var(--la-border); border-radius: var(--la-radius-sm); overflow: hidden;">
+              <div style="padding: var(--la-2) var(--la-3); background: var(--la-surface-subtle);"><code>.la-split-card--3-2</code></div>
+              <div style="padding: var(--la-2) var(--la-3);"><span class="sg-soft">3fr 2fr — slight lean main</span></div>
+            </div>
+
+            <div class="la-split-card la-split-card--1-2" style="border: 1px solid var(--la-border); border-radius: var(--la-radius-sm); overflow: hidden;">
+              <div style="padding: var(--la-2) var(--la-3); background: var(--la-surface-subtle);"><code>.la-split-card--1-2</code></div>
+              <div style="padding: var(--la-2) var(--la-3);"><span class="sg-soft">1fr 2fr — wide aside</span></div>
+            </div>
+
+            <div class="la-split-card la-split-card--1-3" style="border: 1px solid var(--la-border); border-radius: var(--la-radius-sm); overflow: hidden;">
+              <div style="padding: var(--la-2) var(--la-3); background: var(--la-surface-subtle);"><code>.la-split-card--1-3</code></div>
+              <div style="padding: var(--la-2) var(--la-3);"><span class="sg-soft">1fr 3fr — very wide aside</span></div>
+            </div>
+
+          </div>
+          <p class="sg-soft" style="margin-top: var(--la-2);">For a ratio not in the list: <code style="white-space: nowrap;">&lt;div class="la-split-card" style="--la-split-cols: 5fr 2fr"&gt;</code></p>
+        </div>
+
+        <!-- ── Split aside ────────────────────────────────────────── -->
+
+        <h3>Split aside</h3>
+        <p class="sg-soft">Two independent columns — no shared box, no shared border or background. Each column provides its own surface; place a card, a form, or a plain section inside. The aside (right) clamps to a pixel range; the main (left) fills the rest.</p>
+
+        <div class="sg-top-gap">
+          <p class="sg-label"><code>.la-split-aside</code> — default (aside: 300–420px)</p>
+          <div class="la-split-aside" style="margin-top: var(--la-2);">
+            <div class="la-card">
+              <h3>Main content area</h3>
+              <p class="sg-soft">This column takes all available space after the aside is sized. Use it for primary content: text, tables, forms, or anything that grows freely.</p>
+            </div>
+            <div class="la-card" style="background: var(--la-surface-subtle); margin-left: var(--la-2);">
+              <p class="sg-label">Aside column</p>
+              <p class="sg-soft">Clamped to 300–420px via <code>--la-split-aside-min</code> and <code>--la-split-aside-max</code>. Use for metadata, a details panel, or a code reference.</p>
+              <pre class="sg-code-block"><code>&lt;div class="la-split-aside"&gt;
+  &lt;div&gt;Main content&lt;/div&gt;
+  &lt;div&gt;Aside&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="sg-top-gap-sm">
+          <p class="sg-label">Width modifiers</p>
+          <div class="la-stack-sm" style="gap: var(--la-2); margin-top: var(--la-2);">
+
+            <div class="la-split-aside" style="padding: var(--la-3) var(--la-4); border: 1px solid var(--la-border); border-radius: var(--la-radius-sm); background: var(--la-surface);">
+              <div><code>.la-split-aside</code> <span class="sg-soft">— default</span></div>
+              <div style="color: var(--la-muted); font-size: var(--la-text-sm);">aside: 300–420px</div>
+            </div>
+
+            <div class="la-split-aside la-split-aside--narrow" style="padding: var(--la-3) var(--la-4); border: 1px solid var(--la-border); border-radius: var(--la-radius-sm); background: var(--la-surface);">
+              <div><code>.la-split-aside--narrow</code></div>
+              <div style="color: var(--la-muted); font-size: var(--la-text-sm);">aside: 240–340px — compact details</div>
+            </div>
+
+            <div class="la-split-aside la-split-aside--wide" style="padding: var(--la-3) var(--la-4); border: 1px solid var(--la-border); border-radius: var(--la-radius-sm); background: var(--la-surface);">
+              <div><code>.la-split-aside--wide</code></div>
+              <div style="color: var(--la-muted); font-size: var(--la-text-sm);">aside: 360–520px — richer panels</div>
+            </div>
+
+            <div class="la-split-aside la-split-aside--balanced" style="padding: var(--la-3) var(--la-4); border: 1px solid var(--la-border); border-radius: var(--la-radius-sm); background: var(--la-surface);">
+              <div><code>.la-split-aside--balanced</code></div>
+              <div style="color: var(--la-muted); font-size: var(--la-text-sm);">1fr 1fr — equal columns, use for two-pane comparisons</div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="sg-top-gap-sm">
+          <p class="sg-label">Structural difference</p>
+          <div style="margin-top: var(--la-2); display: grid; grid-template-columns: 1fr 1fr; gap: var(--la-5);">
+            <div>
+              <p style="margin-bottom: var(--la-2); font-size: var(--la-text-sm); color: var(--la-muted);">Split card, one shared box</p>
+              <div style="border: 2px solid var(--la-brand); border-radius: var(--la-radius-sm); overflow: hidden;">
+                <div style="display: grid; grid-template-columns: 2fr 1fr;">
+                  <div style="padding: var(--la-3) var(--la-4); background: var(--la-surface-subtle); text-align: center; font-size: var(--la-text-sm); color: var(--la-muted);">Main (2fr)</div>
+                  <div style="padding: var(--la-3) var(--la-4); border-left: 1px solid var(--la-border); text-align: center; font-size: var(--la-text-sm); color: var(--la-muted);">Aside (1fr)</div>
+                </div>
+              </div>
+              <p style="margin-top: var(--la-1); font-size: var(--la-text-sm); color: var(--la-muted);">One border wraps both columns</p>
+            </div>
+            <div>
+              <p style="margin-bottom: var(--la-2); font-size: var(--la-text-sm); color: var(--la-muted);">Split aside, two separate boxes</p>
+              <div style="display: grid; grid-template-columns: 1fr minmax(90px, 110px); gap: var(--la-2);">
+                <div style="padding: var(--la-3) var(--la-4); border: 2px solid var(--la-brand); border-radius: var(--la-radius-sm); text-align: center; font-size: var(--la-text-sm); color: var(--la-muted);">Main</div>
+                <div style="padding: var(--la-3) var(--la-4); border: 2px solid var(--la-brand); border-radius: var(--la-radius-sm); text-align: center; font-size: var(--la-text-sm); color: var(--la-muted);">Aside (px)</div>
+              </div>
+              <p style="margin-top: var(--la-1); font-size: var(--la-text-sm); color: var(--la-muted);">Each column has its own border</p>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- ── Panels ─────────────────────────────────────────────── -->
+
+        <h3>Panels</h3>
+        <p class="sg-soft">Panels are flatter and more structured than cards. Use for app sections that need a defined title row and optional header actions.</p>
+
+        <div class="sg-top-gap" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--la-4);">
+          <div class="la-panel">
+            <div class="la-panel-header">
+              <h3 class="la-panel-title">Panel title</h3>
+              <button class="la-btn la-btn-secondary la-btn-xs" type="button">Action</button>
+            </div>
+            <div class="la-panel-body">
+              Use panels for structured content sections that need a title row and optional actions.
+            </div>
+          </div>
+          <div class="la-panel la-panel-quiet">
+            <div class="la-panel-header">
+              <h3 class="la-panel-title">Quiet panel</h3>
+            </div>
+            <div class="la-panel-body">
+              Use <code>.la-panel-quiet</code> when the page already has enough visual containers.
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Explanation cards ──────────────────────────────────── -->
+
+        <h3>Explanation cards</h3>
+        <p class="sg-soft">Use for short documented choices, onboarding notes, or public-facing explanation blocks. Use very sparingly! Not every section needs numbered explanation cards.</p>
+
+        <div class="sg-top-gap" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--la-4);">
+          <div class="la-feature-card">
+            <span class="la-feature-num">01</span>
+            <h3 class="la-feature-title">Choose the existing pattern</h3>
+            <p class="sg-soft">Start with the documented component before creating a new local style.</p>
+          </div>
+          <div class="la-feature-card">
+            <span class="la-feature-num">02</span>
+            <h3 class="la-feature-title">Keep the boundary useful</h3>
+            <p class="sg-soft">A card should group content. It should not exist only as decoration.</p>
+          </div>
+          <div class="la-feature-card">
+            <span class="la-feature-num">03</span>
+            <h3 class="la-feature-title">Prefer fewer variants</h3>
+            <p class="sg-soft">Use the smallest set of choices that clearly solves the layout problem.</p>
+          </div>
+        </div>
+
+        <!-- ── Linked cards ───────────────────────────────────────── -->
+
+        <h3>Linked cards</h3>
+        <p class="sg-soft">Navigation shortcuts. Use <code>.la-card-grid</code> for responsive auto-fill layout. <code>.la-hero-card</code> and <code>.la-card-centered</code> are max-width centring helpers for intro or hero sections.</p>
+
+        <div class="sg-top-gap la-flex-row" style="align-items: flex-start; gap: var(--la-8);">
+          <div style="flex: 1; min-width: 0;">
+            <p class="sg-label"><code>.la-card-grid .la-nav-card</code></p>
+            <div class="la-card-grid" style="margin-top: var(--la-2);">
+              <a class="la-nav-card" href="#cards">
+                <span class="la-nav-card-name">Academic workflow</span>
+                <span class="la-nav-card-arrow">&rarr;</span>
+              </a>
+              <a class="la-nav-card" href="#cards">
+                <span class="la-nav-card-name">Equipment checkout</span>
+                <span class="la-nav-card-arrow">&rarr;</span>
+              </a>
+              <a class="la-nav-card" href="#cards">
+                <span class="la-nav-card-name">Reports</span>
+                <span class="la-nav-card-arrow">&rarr;</span>
+              </a>
+            </div>
+          </div>
+
+
+
+
+      </section>
+
+    </div>
+  </main>
+</div>
+<script>
+window.SHELL_PAGE = { active: 'cards', breadcrumb: 'Cards', nav: 'page', base: '' };
+</script>
+<script src="app.js"></script>
+</body>
+</html>

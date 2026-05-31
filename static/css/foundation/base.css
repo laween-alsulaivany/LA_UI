@@ -1,0 +1,176 @@
+/* =============================================================================
+   base.css
+   plain HTML defaults only, keep this boring
+   components belong in their own files, not here
+============================================================================= */
+
+
+/* =======================================
+   DOCUMENT DEFAULTS
+========================================== */
+
+/* box sizing everywhere, including pseudo elements */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* hidden should actually stay hidden */
+[hidden] {
+  display: none !important;
+}
+
+/* page background starts at html to avoid short-page gaps */
+html {
+  min-height: 100%;
+  background: var(--la-page);
+}
+
+/* main app defaults, keep this boring */
+body {
+  min-height: 100%;
+  margin: 0;
+  font-family: var(--la-font);
+  font-size: var(--la-text-md);
+  line-height: var(--la-line-base);
+  color: var(--la-ink);
+  background: var(--la-page);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+
+/* =======================================
+   LINKS AND MEDIA
+========================================== */
+
+/* links inherit app text unless a component styles them */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* media should not overflow by default */
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+
+/* =======================================
+   FORM CONTROLS
+========================================== */
+
+/* form controls should match the app font */
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+/* textareas can grow, but only vertically */
+textarea {
+  resize: vertical;
+}
+
+/* native buttons should feel clickable */
+button {
+  cursor: pointer;
+}
+
+/* disabled controls should not look clickable */
+button:disabled,
+input:disabled,
+select:disabled,
+textarea:disabled {
+  cursor: not-allowed;
+}
+
+
+/* =======================================
+   INTERACTION STATES
+========================================== */
+
+/* one shared keyboard focus style */
+:focus-visible {
+  outline: none;
+  box-shadow: var(--la-focus);
+}
+
+/* selection color follows the brand softly */
+::selection {
+  background: var(--la-brand-soft);
+}
+
+
+/* =======================================
+   MOTION
+========================================== */
+
+/* respect reduced motion, without removing layout behavior */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* =======================================
+   INLINE CODE
+========================================== */
+
+/* inline code, useful in docs and admin helper text */
+code {
+  padding: 1px 5px;
+  border: 1px solid var(--la-border);
+  border-radius: var(--la-radius-sm);
+  background: var(--la-surface-subtle);
+  color: var(--la-ink);
+  font-family: var(--la-mono);
+  font-size: 0.875em;
+}
+
+
+/* =======================================
+   HEADINGS
+========================================== */
+
+/* heading sizes map directly to the token scale — avoids browser default sizing */
+h1 {
+  margin: var(--la-4) 0 var(--la-3);
+  font-size: var(--la-text-2xl);
+  font-weight: var(--la-weight-strong);
+  line-height: var(--la-line-title);
+  letter-spacing: -0.03em;
+}
+
+h2 {
+  margin: var(--la-3) 0 var(--la-2);
+  font-size: var(--la-text-xl);
+  font-weight: var(--la-weight-strong);
+  line-height: var(--la-line-title);
+  letter-spacing: -0.02em;
+}
+
+h3 {
+  margin: var(--la-3) 0 var(--la-1);
+  font-size: var(--la-text-lg);
+  font-weight: var(--la-weight-bold);
+  line-height: var(--la-line-title);
+}
+
+h4 {
+  margin: var(--la-2) 0 var(--la-1);
+  font-size: var(--la-text-md);
+  font-weight: var(--la-weight-bold);
+  line-height: var(--la-line-title);
+}

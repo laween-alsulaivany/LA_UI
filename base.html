@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>LA UI Style Guide</title>
+  <link rel="stylesheet" href="app.css" />
+  <link rel="stylesheet" href="showcase-only-new.css" />
+</head>
+<body class="sg-page">
+<!--
+  base.html — shared shell template
+  ===========================================================================
+  app.js fetches this file and extracts three elements:
+    - .la-sidebar      → injected before <main> in the host page
+    - .la-topbar       → injected before .la-content inside <main>
+    - .la-site-footer  → appended as the last child of <main>
+
+  To create a new guide page:
+  ─────────────────────────────────────────────────────────────────────────
+  1. Start with this structure:
+
+       <!DOCTYPE html>
+       <html lang="en" data-theme="light">
+       <head>
+         <meta charset="utf-8" />
+         <meta name="viewport" content="width=device-width,initial-scale=1" />
+         <title>LA UI Style Guide — [Page Name]</title>
+         <link rel="stylesheet" href="app.css" />
+         <link rel="stylesheet" href="showcase-only-new.css" />
+       </head>
+       <body class="sg-page">
+       <div class="la-app">
+         <main class="la-main">
+           <!-- sidebar and topbar are injected above .la-content by app.js -->
+           <div class="la-content">
+             [your page content here]
+           </div>
+         </main>
+       </div>
+       <script>
+       window.SHELL_PAGE = {
+         active:     '[data-key value from nav below]',
+         breadcrumb: '[Page Name]',
+         nav:        'page',   // 'site' for overview, 'page' for topic pages
+         base:       ''
+       };
+       </script>
+       <script src="app.js"></script>
+       </body>
+       </html>
+
+  2. Set nav: 'site'  → shows the full site navigation (use for overview.html)
+     Set nav: 'page'  → hides site nav, shows #page-categories populated by app.js
+
+  Requires VS Code Live Server or any local HTTP server.
+  fetch() does not work over file:// URLs.
+  ===========================================================================
+-->
+<div class="la-app">
+
+  <!-- ── Sidebar ─────────────────────────────────────────────────────────── -->
+  <aside class="la-sidebar" aria-label="Style guide navigation">
+
+    <div class="la-brandlockup">
+      <svg class="la-brandmark" viewBox="0 0 128 128" aria-hidden="true">
+        <defs>
+          <mask id="la-brandmark-a-notch">
+            <rect width="128" height="128" fill="white" />
+            <path fill="black" d="M73 84 C73 81.8 74.8 80 77 80 H82 C84.2 80 86 81.8 86 84 V96 H73 Z" />
+          </mask>
+        </defs>
+        <g fill="var(--la-brand)">
+          <rect x="23" y="18" width="25" height="77" rx="5" />
+          <rect x="53" y="18" width="56" height="37" rx="5" />
+          <rect x="53" y="60" width="56" height="35" rx="5" mask="url(#la-brandmark-a-notch)" />
+          <rect x="23" y="100" width="86" height="25" rx="3" />
+        </g>
+      </svg>
+      <div class="la-brandtext">
+        <div class="la-brandname">LA UI</div>
+        <div class="la-brandnote">Reusable app style guide</div>
+      </div>
+      <button id="sg-sidebar-toggle" class="la-sidebar-toggle"
+              aria-pressed="false" aria-label="Toggle sidebar" title="Toggle sidebar">
+        <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" fill="currentColor" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Site navigation: all guide pages, grouped by category -->
+    <!-- shell.js hides this when PAGE.nav === 'page' -->
+    <div id="sg-site-nav">
+  <div class="la-nav-section">
+    <p class="la-nav-title">Overview</p>
+    <nav class="la-nav" aria-label="Overview">
+      <a class="la-nav-link" href="overview.html" data-key="overview">
+        <span class="la-nav-code">00</span>
+        <span class="la-nav-label">Overview</span>
+      </a>
+    </nav>
+  </div>
+
+  <div class="la-nav-section">
+    <p class="la-nav-title">Foundation</p>
+    <nav class="la-nav" aria-label="Foundation">
+      <a class="la-nav-link" href="tokens.html" data-key="tokens">
+        <span class="la-nav-code">01</span>
+        <span class="la-nav-label">Tokens</span>
+      </a>
+      <a class="la-nav-link" href="base_.html" data-key="base">
+        <span class="la-nav-code">02</span>
+        <span class="la-nav-label">Base</span>
+      </a>
+    </nav>
+  </div>
+
+  <div class="la-nav-section">
+    <p class="la-nav-title">Layout</p>
+    <nav class="la-nav" aria-label="Layout">
+      <a class="la-nav-link" href="shell.html" data-key="shell">
+        <span class="la-nav-code">03</span>
+        <span class="la-nav-label">Shell</span>
+      </a>
+    </nav>
+  </div>
+
+  <div class="la-nav-section">
+    <p class="la-nav-title">Components</p>
+    <nav class="la-nav" aria-label="Components">
+      <a class="la-nav-link" href="navigation.html" data-key="navigation">
+        <span class="la-nav-code">04</span>
+        <span class="la-nav-label">Navigation</span>
+      </a>
+      <a class="la-nav-link" href="buttons.html" data-key="buttons">
+        <span class="la-nav-code">05</span>
+        <span class="la-nav-label">Buttons</span>
+      </a>
+      <a class="la-nav-link" href="cards.html" data-key="cards">
+        <span class="la-nav-code">06</span>
+        <span class="la-nav-label">Cards</span>
+      </a>
+      <a class="la-nav-link" href="forms.html" data-key="forms">
+        <span class="la-nav-code">07</span>
+        <span class="la-nav-label">Forms</span>
+      </a>
+      <a class="la-nav-link" href="tables.html" data-key="tables">
+        <span class="la-nav-code">08</span>
+        <span class="la-nav-label">Tables</span>
+      </a>
+      <a class="la-nav-link" href="feedback.html" data-key="feedback">
+        <span class="la-nav-code">09</span>
+        <span class="la-nav-label">Feedback</span>
+      </a>
+      <a class="la-nav-link" href="workflow.html" data-key="workflow">
+        <span class="la-nav-code">10</span>
+        <span class="la-nav-label">Workflow</span>
+      </a>
+      <a class="la-nav-link" href="charts.html" data-key="charts">
+        <span class="la-nav-code">11</span>
+        <span class="la-nav-label">Charts</span>
+      </a>
+    </nav>
+  </div>
+
+  <div class="la-nav-section">
+    <p class="la-nav-title">Helpers</p>
+    <nav class="la-nav" aria-label="Helpers">
+      <a class="la-nav-link" href="utilities.html" data-key="utilities">
+        <span class="la-nav-code">12</span>
+        <span class="la-nav-label">Utilities</span>
+      </a>
+    </nav>
+  </div>
+
+  <div class="la-nav-section">
+    <p class="la-nav-title">Preview</p>
+    <nav class="la-nav" aria-label="Preview">
+      <a class="la-nav-link" href="preview_1.html" data-key="preview_1">
+        <span class="la-nav-code">13</span>
+        <span class="la-nav-label">Example 1</span>
+      </a>
+      <a class="la-nav-link" href="preview_2.html" data-key="preview_2">
+        <span class="la-nav-code">14</span>
+        <span class="la-nav-label">Example 2</span>
+      </a>
+    </nav>
+  </div>
+</div><!-- /#sg-site-nav -->
+
+    <!-- Page section nav: hidden by default, populated by app.js on topic pages -->
+    <!-- shell.js shows this when PAGE.nav === 'page' -->
+    <div id="page-categories" hidden></div>
+
+    <div class="la-sidebar-note">
+      If a UI pattern is not documented here, do not invent it in the page. Add it to the system first.
+    </div>
+
+  </aside>
+
+  <!-- ── Main ─────────────────────────────────────────────────────────────── -->
+  <main class="la-main">
+
+    <header class="la-topbar">
+      <div class="la-breadcrumbs">
+        <a href="overview.html" data-breadcrumb-parent>Overview</a><span data-breadcrumb-sep>/</span><span data-breadcrumb>Overview</span>
+      </div>
+      <div class="la-topbar-actions">
+        <button id="sg-theme-toggle" class="la-btn la-btn-ghost la-btn-sm" type="button"
+                aria-label="Switch to dark mode" aria-pressed="false" title="Toggle theme">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+               stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+        <span class="la-separator"></span>
+        <div class="la-user-menu">
+          <span class="la-avatar">LA</span><span>Designer view</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="la-content la-content--wide">
+      <!-- Page content is injected here by shell.js when used from other pages.
+           This placeholder is not rendered when shell.js is active. -->
+    </div>
+    <footer class="la-site-footer">
+      <div class="la-site-footer-inner">
+        <p class="la-site-footer-built">Built by <a href="https://github.com/laween-alsulaivany" target="_blank" rel="noopener noreferrer">Laween Al-Sulaivany</a></p>
+        <div class="la-site-footer-links">
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+          <a href="support.html">Support</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+</div><!-- /.la-app -->
+
+</body>
+</html>

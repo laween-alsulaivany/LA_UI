@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <script>(function(){var t=localStorage.getItem('la-theme');if(t)document.documentElement.setAttribute('data-theme',t);}());</script>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>LA UI Style Guide — Utilities</title>
+  <link rel="stylesheet" href="app.css" />
+  <link rel="stylesheet" href="showcase-only-new.css" />
+</head>
+<body class="sg-page">
+<div class="la-app">
+  <!-- sidebar and topbar injected by app.js -->
+  <main class="la-main">
+    <div class="la-content la-content--wide">
+
+      <section id="utilities" class="sg-section">
+
+        <div class="sg-section-title">
+          <div>
+            <h2>12. Utilities: utilities.css</h2>
+            <p>Small single-purpose helpers that fill gaps between components. Each class does one thing.</p>
+          </div>
+        </div>
+
+        <div class="sg-guideline-card la-split-aside">
+          <div>
+            <h3>Keep utilities small</h3>
+            <p>Each helper should do exactly one thing. If a pattern repeats across three or more components, promote it to a component. Do not use utilities to recreate component behavior.</p>
+          </div>
+          <div>
+            <h3>Do not chain layout utilities</h3>
+            <p>Stacking <code>.la-grid-3</code> inside <code>.la-split</code> inside <code>.la-flex-row</code> is a sign you need a proper component, and not more helpers.</p>
+          </div>
+        </div>
+
+
+        <!-- ── Layout grids ───────────────────────────────────────── -->
+
+        <h3>Layout grids</h3>
+        <p class="sg-soft">CSS grid helpers for common column counts. All collapse to a single column at 720px. Use <code>.la-grid-auto</code> when you do not know the item count, it wraps automatically. Use <code>.la-split</code> for a content area plus a fixed 330px side panel.</p>
+
+        <div class="sg-top-gap la-stack-sm">
+
+          <div>
+            <p class="sg-label"><code>.la-grid-2</code> — two even columns</p>
+            <div class="la-grid-2" style="margin-top: var(--la-2);">
+              <div class="sg-utility-tile">A</div>
+              <div class="sg-utility-tile">B</div>
+            </div>
+          </div>
+
+          <div>
+            <p class="sg-label"><code>.la-grid-3</code> — three even columns</p>
+            <div class="la-grid-3" style="margin-top: var(--la-2);">
+              <div class="sg-utility-tile">A</div>
+              <div class="sg-utility-tile">B</div>
+              <div class="sg-utility-tile">C</div>
+            </div>
+          </div>
+
+          <div>
+            <p class="sg-label"><code>.la-grid-4</code> — four even columns</p>
+            <div class="la-grid-4" style="margin-top: var(--la-2);">
+              <div class="sg-utility-tile">A</div>
+              <div class="sg-utility-tile">B</div>
+              <div class="sg-utility-tile">C</div>
+              <div class="sg-utility-tile">D</div>
+            </div>
+          </div>
+
+          <div>
+            <p class="sg-label"><code>.la-grid-auto</code> — wraps at 220px per column</p>
+            <div class="la-grid-auto" style="margin-top: var(--la-2);">
+              <div class="sg-utility-tile">One</div>
+              <div class="sg-utility-tile">Two</div>
+              <div class="sg-utility-tile">Three</div>
+              <div class="sg-utility-tile">Four</div>
+              <div class="sg-utility-tile">Five</div>
+            </div>
+          </div>
+
+          <div>
+            <p class="sg-label"><code>.la-split</code> — main content + 330px side panel</p>
+            <div class="la-split sg-contained-split" style="margin-top: var(--la-2);">
+              <div class="sg-utility-tile">Main content area</div>
+              <div class="sg-utility-tile">Side panel (160px in preview)</div>
+            </div>
+          </div>
+
+        </div>
+
+
+        <!-- ── Stack and flex ─────────────────────────────────────── -->
+
+        <h3>Stack and flex</h3>
+        <p class="sg-soft">Vertical stacks and flex row helpers. Use <code>.la-stack</code> for a normal gap-4 column of items and <code>.la-stack-sm</code> for tighter gap-2. Flex helpers: <code>.la-flex-row</code> wraps, <code>.la-flex-col</code> stacks. Use <code>.la-flex-1/2/3</code> to assign flex-grow shares.</p>
+
+        <div class="sg-top-gap la-stack-sm">
+
+          <div>
+            <p class="sg-label"><code>.la-stack</code> — vertical stack, gap 4</p>
+            <div class="la-stack" style="margin-top: var(--la-2); max-width: 360px;">
+              <div class="sg-utility-tile">Row one</div>
+              <div class="sg-utility-tile">Row two</div>
+              <div class="sg-utility-tile">Row three</div>
+            </div>
+          </div>
+
+          <div>
+            <p class="sg-label"><code>.la-stack-sm</code> — vertical stack, gap 2</p>
+            <div class="la-stack-sm" style="margin-top: var(--la-2); max-width: 360px;">
+              <div class="sg-utility-tile">Row one</div>
+              <div class="sg-utility-tile">Row two</div>
+              <div class="sg-utility-tile">Row three</div>
+            </div>
+          </div>
+
+          <div>
+            <p class="sg-label"><code>.la-flex-row</code> + <code>.la-flex-1/2/3</code> — flex row with share-based widths</p>
+            <div class="la-flex-row" style="margin-top: var(--la-2);">
+              <div class="sg-utility-tile la-flex-1">flex-1</div>
+              <div class="sg-utility-tile la-flex-2">flex-2 (twice as wide)</div>
+              <div class="sg-utility-tile la-flex-1">flex-1</div>
+            </div>
+          </div>
+
+          <div>
+            <p class="sg-label"><code>.la-flex-col</code> — vertical flex, gap 4</p>
+            <div class="la-flex-col" style="margin-top: var(--la-2); max-width: 360px;">
+              <div class="sg-utility-tile">Item one</div>
+              <div class="sg-utility-tile">Item two</div>
+            </div>
+          </div>
+
+          <div>
+            <p class="sg-label"><code>.la-align-end</code> — push a flex child to the cross-axis end</p>
+            <div class="la-flex-row" style="margin-top: var(--la-2); align-items: flex-start; min-height: 80px;">
+              <div class="sg-utility-tile la-flex-1">Normal item</div>
+              <div class="sg-utility-tile la-flex-1 la-align-end">Aligned end</div>
+            </div>
+          </div>
+
+        </div>
+
+
+        <!-- ── Text helpers ───────────────────────────────────────── -->
+
+        <h3>Text helpers</h3>
+        <p class="sg-soft">Inline modifiers for text treatment. Use these for one-off overrides. Do not use them for styling whole blocks of content.</p>
+
+        <div class="la-panel" style="margin-top: var(--la-4);">
+          <div class="la-table-wrap">
+            <table class="la-table">
+              <thead>
+                <tr>
+                  <th style="width: 180px;">Class</th>
+                  <th>Example</th>
+                  <th>What it does</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>.la-muted</code></td>
+                  <td><span class="la-muted">The quick brown fox</span></td>
+                  <td>Sets color to <code>var(--la-muted)</code></td>
+                </tr>
+                <tr>
+                  <td><code>.la-small</code></td>
+                  <td><span class="la-small">The quick brown fox</span></td>
+                  <td>Sets font-size to <code>var(--la-text-sm)</code></td>
+                </tr>
+                <tr>
+                  <td><code>.la-mono</code></td>
+                  <td><span class="la-mono">const x = records.find(…)</span></td>
+                  <td>Switches to <code>var(--la-mono)</code> font stack</td>
+                </tr>
+                <tr>
+                  <td><code>.la-text-link</code></td>
+                  <td><a href="#" class="la-text-link">An inline text link</a></td>
+                  <td>Brand-colored underlined link with hover state</td>
+                </tr>
+                <tr>
+                  <td><code>.la-dash-title</code></td>
+                  <td><span class="la-dash-title" style="display: inline-block; margin: 0;">Section label</span></td>
+                  <td>Small uppercase label for dashboards and panel headers</td>
+                </tr>
+                <tr>
+                  <td><code>.la-page-subtext</code></td>
+                  <td><span class="la-page-subtext">Short helper text below a page title</span></td>
+                  <td>Muted small type for page-level descriptions</td>
+                </tr>
+                <tr>
+                  <td><code>.la-back-link</code></td>
+                  <td><a href="#" class="la-back-link">← Back to records</a></td>
+                  <td>Lightweight navigation link with brand hover</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+
+        <!-- ── Spacing and dividers ───────────────────────────────── -->
+
+        <h3>Spacing and dividers</h3>
+        <p class="sg-soft">Margin helpers and horizontal rules. Use these for edge-case adjustment. The number suffix maps directly to the spacing token scale.</p>
+
+        <div class="sg-top-gap la-stack-sm">
+
+          <div>
+            <p class="sg-label">Min-width helpers — <code>.la-min-w-120</code> through <code>.la-min-w-220</code></p>
+            <div class="la-flex-row" style="margin-top: var(--la-2); flex-wrap: nowrap; overflow-x: auto;">
+              <div class="sg-utility-tile la-min-w-120" style="flex: none;">120</div>
+              <div class="sg-utility-tile la-min-w-140" style="flex: none;">140</div>
+              <div class="sg-utility-tile la-min-w-160" style="flex: none;">160</div>
+              <div class="sg-utility-tile la-min-w-190" style="flex: none;">190</div>
+              <div class="sg-utility-tile la-min-w-200" style="flex: none;">200</div>
+              <div class="sg-utility-tile la-min-w-220" style="flex: none;">220</div>
+            </div>
+          </div>
+
+          <div>
+            <p class="sg-label">Margin helpers — <code>.la-m-0</code>, <code>.la-mt-2/4/6</code>, <code>.la-mb-3/4/5/6</code></p>
+            <div class="la-grid-2" style="margin-top: var(--la-2); max-width: 480px;">
+              <div>
+                <p class="la-small la-muted" style="margin: 0 0 var(--la-2);">Top margin</p>
+                <div class="sg-utility-tile" style="padding: var(--la-2) var(--la-3); font-size: var(--la-text-xs);">base (no class)</div>
+                <div class="sg-utility-tile la-mt-2" style="padding: var(--la-2) var(--la-3); font-size: var(--la-text-xs);">.la-mt-2</div>
+                <div class="sg-utility-tile la-mt-4" style="padding: var(--la-2) var(--la-3); font-size: var(--la-text-xs);">.la-mt-4</div>
+                <div class="sg-utility-tile la-mt-6" style="padding: var(--la-2) var(--la-3); font-size: var(--la-text-xs);">.la-mt-6</div>
+              </div>
+              <div>
+                <p class="la-small la-muted" style="margin: 0 0 var(--la-2);">Bottom margin</p>
+                <div class="sg-utility-tile la-mb-3" style="padding: var(--la-2) var(--la-3); font-size: var(--la-text-xs);">.la-mb-3</div>
+                <div class="sg-utility-tile la-mb-4" style="padding: var(--la-2) var(--la-3); font-size: var(--la-text-xs);">.la-mb-4</div>
+                <div class="sg-utility-tile la-mb-5" style="padding: var(--la-2) var(--la-3); font-size: var(--la-text-xs);">.la-mb-5</div>
+                <div class="sg-utility-tile la-mb-6" style="padding: var(--la-2) var(--la-3); font-size: var(--la-text-xs);">.la-mb-6</div>
+                <div class="sg-utility-tile" style="padding: var(--la-2) var(--la-3); font-size: var(--la-text-xs); opacity: 0.35;">following element</div>
+              </div>
+            </div>
+            <p class="la-small la-muted" style="margin-top: var(--la-2);">Token scale: 2 = 0.5rem · 3 = 0.75rem · 4 = 1rem · 5 = 1.25rem · 6 = 1.5rem</p>
+          </div>
+
+          <div>
+            <p class="sg-label"><code>.la-divider</code> — standard horizontal rule</p>
+            <div style="margin-top: var(--la-2); padding: var(--la-3); border: 1px dashed var(--la-border); border-radius: var(--la-radius-sm);">
+              <p class="la-small la-muted">Content above</p>
+              <hr class="la-divider" />
+              <p class="la-small la-muted">Content below</p>
+            </div>
+          </div>
+
+          <div>
+            <p class="sg-label"><code>.la-section-divider</code> — brand accent rule</p>
+            <div style="margin-top: var(--la-2); padding: var(--la-3); border: 1px dashed var(--la-border); border-radius: var(--la-radius-sm);">
+              <p class="la-small la-muted">Content above</p>
+              <hr class="la-section-divider" />
+              <p class="la-small la-muted">Content below</p>
+            </div>
+          </div>
+
+        </div>
+
+
+        <!-- ── Code block ─────────────────────────────────────────── -->
+
+        <h3>Code block</h3>
+        <p class="sg-soft">Preformatted code snippet with monospace font and a subtle tinted background. Use for short inline examples and output.</p>
+
+        <div class="sg-top-gap">
+          <p class="sg-label"><code>.la-code-block</code></p>
+          <pre class="la-code-block" style="margin-top: var(--la-2);">const result = records.filter(r =&gt; r.status === 'approved');
+console.log(`${result.length} records ready for export.`);</pre>
+        </div>
+
+
+        <!-- ── Tooltip ────────────────────────────────────────────── -->
+
+        <h3>Tooltip</h3>
+        <p class="sg-soft">Add <code>data-tooltip="…"</code> to any element for a hover and keyboard-focus tooltip. The bubble appears above the element. Works on buttons, tags, and any inline element.</p>
+
+        <div class="sg-top-gap">
+          <p class="sg-label"><code>[data-tooltip]</code> — hover or focus to reveal</p>
+          <div class="la-flex-row" style="margin-top: var(--la-2);">
+            <button class="la-btn" data-tooltip="Submits the current form">Submit</button>
+            <button class="la-btn la-btn-secondary" data-tooltip="Cancels and returns to the list">Cancel</button>
+            <span class="la-tag la-tag-brand" data-tooltip="Approved by the department head on Jan 9">Approved</span>
+          </div>
+        </div>
+
+
+        <!-- ── Visibility and accessibility ──────────────────────── -->
+
+        <h3>Visibility and accessibility</h3>
+        <p class="sg-soft">Helpers for showing, hiding, and controlling how elements participate in layout and assistive technology.</p>
+
+        <div class="sg-top-gap la-stack-sm">
+
+          <div>
+            <p class="sg-label"><code>.la-hidden</code> — full hide</p>
+            <div class="la-flex-row" style="margin-top: var(--la-2);">
+              <div class="sg-utility-tile">First item</div>
+              <div class="sg-utility-tile la-hidden">Hidden item (not rendered)</div>
+              <div class="sg-utility-tile">Third item</div>
+            </div>
+            <p class="la-small la-muted" style="margin-top: var(--la-2);">Applies <code>display: none !important</code>. The middle tile above is completely removed from layout and from assistive tech.</p>
+          </div>
+
+          <div>
+            <p class="sg-label"><code>.la-sr-only</code> — screen reader only</p>
+            <div class="la-flex-row" style="margin-top: var(--la-2); align-items: center;">
+              <button class="la-btn la-btn-secondary" style="display: inline-flex; align-items: center; gap: var(--la-1);">
+                <span class="la-sr-only">Download CSV</span>
+                <svg class="la-lucide" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              </button>
+              <span class="la-small la-muted">Visually icon-only; reads "Download CSV" to screen readers</span>
+            </div>
+          </div>
+
+          <div>
+            <p class="sg-label"><code>.la-d-inline</code> — force inline display</p>
+            <div style="margin-top: var(--la-2); font-size: var(--la-text-sm);">
+              Sentence continues with
+              <div class="la-d-inline" style="background: var(--la-surface-subtle); border: 1px solid var(--la-border); border-radius: var(--la-radius-xs); padding: 0 5px;">a &lt;div&gt; forced inline</div>
+              without breaking to its own line.
+            </div>
+          </div>
+
+          <div>
+            <p class="sg-label"><code>.la-form-contents</code> — display: contents</p>
+            <p class="la-small la-muted" style="margin-top: var(--la-2);">Removes the wrapper box from the layout engine so its children participate directly in the parent grid or flex. Use when a grouping element such as a <code>&lt;fieldset&gt;</code> must be invisible to layout.</p>
+          </div>
+
+        </div>
+
+
+        <!-- ── Component helpers ──────────────────────────────────── -->
+
+        <h3>Component helpers</h3>
+        <p class="sg-soft">Utilities tied to specific component contexts. Apply at the usage site, not inside the component definition.</p>
+
+        <div class="sg-top-gap la-stack-sm">
+
+          <div>
+            <p class="sg-label"><code>.la-filter-bar</code> — wrapping flex row for filters and quick actions</p>
+            <div class="la-filter-bar" style="margin-top: var(--la-2);">
+              <input class="la-input" type="search" placeholder="Search records…" style="flex: 1; min-width: 200px;" />
+              <select class="la-input" style="width: auto;">
+                <option>All statuses</option>
+                <option>Active</option>
+                <option>Archived</option>
+              </select>
+              <button class="la-btn la-btn-secondary">Export</button>
+              <button class="la-btn">Add record</button>
+            </div>
+          </div>
+
+          <div>
+            <p class="sg-label"><code>.la-input-inline</code> — compact input for tight rows or table cells</p>
+            <div class="la-flex-row" style="margin-top: var(--la-2); align-items: center;">
+              <label class="la-small">Quantity</label>
+              <input class="la-input la-input-inline la-min-w-120" type="number" value="12" />
+              <label class="la-small">Unit</label>
+              <select class="la-input la-input-inline" style="width: auto;">
+                <option>kg</option>
+                <option>lbs</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <p class="sg-label"><code>.la-card-table-footer</code> — footer strip beneath a table card</p>
+            <div class="la-panel" style="margin-top: var(--la-2);">
+              <div class="la-table-wrap">
+                <table class="la-table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>Record A</td><td>Active</td></tr>
+                    <tr><td>Record B</td><td>Pending</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="la-card-table-footer">
+                Showing 2 of 148 records
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <p class="sg-label"><code>.la-lucide</code> — Lucide icon baseline</p>
+            <div class="la-flex-row" style="margin-top: var(--la-2); align-items: center;">
+              <svg class="la-lucide" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+              <svg class="la-lucide" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+              <svg class="la-lucide" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+              <span class="la-small la-muted">Size with <code>width</code>/<code>height</code>, tint with <code>color</code>. Sets <code>fill: none</code>, <code>stroke: currentColor</code>, rounded caps.</span>
+            </div>
+          </div>
+
+        </div>
+
+
+        <!-- ── Page header ────────────────────────────────────────── -->
+
+        <h3>Page header</h3>
+        <p class="sg-soft">Standard title block for content pages. Title and optional description sit on the left; action buttons on the right via <code>.la-page-header-actions</code>. The heading removes its default bottom margin inside a page header.</p>
+
+        <div class="sg-top-gap">
+          <p class="sg-label"><code>.la-page-header</code> + <code>.la-page-header-actions</code></p>
+          <div class="la-panel" style="margin-top: var(--la-2);">
+            <div class="la-panel-body">
+              <div class="la-page-header" style="margin-bottom: 0;">
+                <div>
+                  <h2 style="margin-bottom: 0;">Department records</h2>
+                  <p>All active records for the current department.</p>
+                </div>
+                <div class="la-page-header-actions">
+                  <button class="la-btn la-btn-secondary">Export</button>
+                  <button class="la-btn">Add record</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+</div>
+<script>
+window.SHELL_PAGE = { active: 'utilities', breadcrumb: 'Utilities', nav: 'page', base: '' };
+</script>
+<script src="app.js"></script>
+</body>
+</html>

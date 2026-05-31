@@ -1,0 +1,469 @@
+/* =============================================================================
+   forms.css
+   forms, field rows, inputs, auth forms, filters, and form states
+============================================================================= */
+
+
+/* =======================================
+   FORM LAYOUT
+========================================== */
+
+/* top-level form stack */
+.la-form {
+    display: grid;
+    gap: var(--la-5);
+}
+
+/* fixed form widths */
+.la-form-sm {
+    max-width: 540px;
+}
+
+.la-form-md {
+    max-width: 640px;
+}
+
+/* group related fields */
+.la-fieldset {
+    display: grid;
+    gap: var(--la-4);
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+/* fieldset heading */
+.la-fieldset-title {
+    margin: 0;
+    color: var(--la-ink);
+    font-size: var(--la-text-base);
+    font-weight: var(--la-weight-bold);
+    line-height: var(--la-line-title);
+}
+
+/* one field group: label, control, help/error */
+.la-field-row {
+    display: grid;
+    gap: var(--la-2);
+}
+
+/* two-column field layout for wider forms */
+.la-field-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--la-4);
+    align-items: start;
+}
+
+/* compact action row after fields */
+.la-form-actions,
+.la-button-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--la-3);
+}
+
+
+/* =======================================
+   LABELS AND HELP TEXT
+========================================== */
+
+/* field label */
+.la-label {
+    margin-top: var(--la-3);
+    color: var(--la-ink-soft);
+    font-size: var(--la-text-sm);
+    font-weight: var(--la-weight-light);
+}
+
+/* required label helper */
+.la-label-required::after {
+    content: " *";
+    color: var(--la-danger);
+}
+
+/* standalone required marker */
+.la-field-required {
+    color: var(--la-danger);
+}
+
+/* small helper text under fields */
+.la-help {
+    margin: 0;
+    color: var(--la-muted);
+    font-size: var(--la-text-xs);
+    line-height: var(--la-line-base);
+}
+
+
+/* =======================================
+   INPUTS, SELECTS, AND TEXTAREAS
+========================================== */
+
+/* shared text input/select/textarea base */
+.la-input,
+.la-select,
+.la-textarea {
+    width: 100%;
+    min-height: var(--la-control-height);
+    padding: 0 var(--la-3);
+    border: 1px solid var(--la-border-strong);
+    border-radius: var(--la-radius-sm);
+    background: var(--la-surface);
+    color: var(--la-ink);
+    font-size: var(--la-text-sm);
+    line-height: var(--la-line-base);
+    transition:
+        background-color var(--la-transition-fast),
+        border-color var(--la-transition-fast),
+        box-shadow var(--la-transition-fast);
+}
+
+/* placeholder text */
+.la-input::placeholder,
+.la-textarea::placeholder {
+    color: var(--la-muted);
+}
+
+/* focused fields */
+.la-input:focus,
+.la-select:focus,
+.la-textarea:focus {
+    outline: none;
+    box-shadow: var(--la-focus);
+}
+
+/* disabled fields */
+.la-input:disabled,
+.la-select:disabled,
+.la-textarea:disabled {
+    background: var(--la-surface-subtle);
+    color: var(--la-disabled);
+    cursor: not-allowed;
+}
+
+/* textarea gets vertical room */
+.la-textarea {
+    min-height: 112px;
+    padding-block: var(--la-3);
+    resize: vertical;
+}
+
+/* native select with custom arrow */
+.la-select {
+    padding-right: 2.5rem;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364707d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1em;
+}
+
+
+/* =======================================
+   FIELD STATES
+========================================== */
+
+/* error state lives on the field wrapper */
+.la-field-error .la-input,
+.la-field-error .la-select,
+.la-field-error .la-textarea {
+    border-color: var(--la-danger);
+    background: var(--la-surface);
+}
+
+/* error help text */
+.la-field-error .la-help {
+    color: var(--la-danger);
+}
+
+/* success state, use only when confirmation is useful */
+.la-field-success .la-input,
+.la-field-success .la-select,
+.la-field-success .la-textarea {
+    border-color: var(--la-success);
+}
+
+/* warning state, use when input is allowed but needs attention */
+.la-field-warning .la-input,
+.la-field-warning .la-select,
+.la-field-warning .la-textarea {
+    border-color: var(--la-warning);
+}
+
+/* read-only field display */
+.la-field-display {
+    min-height: var(--la-control-height);
+    padding: var(--la-2) var(--la-3);
+    border: 1px solid var(--la-border);
+    border-radius: var(--la-radius-sm);
+    background: var(--la-surface-subtle);
+    color: var(--la-ink);
+    font-size: var(--la-text-sm);
+    line-height: var(--la-line-base);
+}
+
+
+/* =======================================
+   PASSWORD FIELD
+========================================== */
+
+/* wrapper for input + show password button */
+.la-password-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.la-password-wrap input[type="password"],
+.la-password-wrap input[type="text"] {
+    width: 100%;
+    padding-right: 2.75rem;
+}
+
+/* show/hide password button */
+.la-password-toggle {
+    position: absolute;
+    right: var(--la-3);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--la-muted);
+    line-height: 1;
+    cursor: pointer;
+    transition: color var(--la-transition-fast);
+}
+
+.la-password-toggle:hover {
+    color: var(--la-ink);
+}
+
+/* hide old Edge/IE password buttons */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+    display: none;
+}
+
+
+/* =======================================
+   CHECKBOXES AND SIMPLE OPTIONS
+========================================== */
+
+/* inline checkbox/radio label */
+.la-check-label {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--la-2);
+    color: var(--la-ink-soft);
+    font-size: var(--la-text-sm);
+    cursor: pointer;
+}
+
+/* native checkbox/radio sizing */
+.la-check-label input[type="checkbox"],
+.la-check-label input[type="radio"] {
+    flex: none;
+    width: 15px;
+    height: 15px;
+    accent-color: var(--la-brand-action);
+}
+
+/* stacked options */
+.la-option-stack {
+    display: grid;
+    gap: var(--la-2);
+}
+
+
+/* =======================================
+   AUTH FORMS
+========================================== */
+
+/* centered card for auth forms */
+.la-auth-card {
+    max-width: 520px;
+    margin-inline: auto;
+}
+
+/* auth screen subtitle */
+.la-auth-subtitle {
+    margin: 0 0 var(--la-5);
+    color: var(--la-muted);
+    font-size: var(--la-text-sm);
+    line-height: var(--la-line-base);
+}
+
+/* django auth form rows */
+.la-auth-form p {
+    margin: 0 0 var(--la-4);
+}
+
+/* auth labels */
+.la-auth-form label {
+    display: block;
+    margin-bottom: var(--la-2);
+    color: var(--la-ink-soft);
+    font-size: var(--la-text-sm);
+    font-weight: var(--la-weight-light);
+}
+
+/* auth inputs */
+.la-auth-form input {
+    width: 100%;
+    min-height: var(--la-control-height);
+    padding: 0 var(--la-3);
+    border: 1px solid var(--la-border-strong);
+    border-radius: var(--la-radius-sm);
+    background: var(--la-surface);
+    color: var(--la-ink);
+    font-size: var(--la-text-sm);
+}
+
+.la-auth-form input:focus {
+    outline: none;
+    border-color: var(--la-brand-action);
+    box-shadow: var(--la-focus);
+}
+
+/* helper lists inside auth forms */
+.la-auth-form ul:not(.errorlist) {
+    margin: var(--la-2) 0 0;
+    padding-left: var(--la-5);
+    color: var(--la-muted);
+    font-size: var(--la-text-sm);
+}
+
+/* django errorlist, keep this unprefixed because django outputs it */
+.errorlist,
+.la-auth-form .errorlist {
+    display: grid;
+    list-style: none;
+    padding-left: 0;
+    color: var(--la-danger);
+    font-size: var(--la-text-xs);
+}
+
+/* single django error item */
+.errorlist li,
+.la-auth-form .errorlist li {
+    padding: 0 var(--la-1) var(--la-2);
+    color: var(--la-danger);
+    margin-top: -10px; /* This is hardcoded to align with the input */
+}
+
+/* flag the input after an errorlist in django auth markup */
+.la-auth-form p:has(.errorlist) input {
+    border-color: var(--la-danger);
+}
+
+/* simple divider for auth actions */
+.la-auth-divider {
+    display: flex;
+    align-items: center;
+    gap: var(--la-3);
+    margin: var(--la-5) 0;
+    color: var(--la-muted);
+    font-size: var(--la-text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.la-auth-divider::before,
+.la-auth-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--la-border);
+}
+
+/* footer text below auth forms */
+.la-auth-meta {
+    margin: var(--la-5) 0 0;
+    color: var(--la-muted);
+    font-size: var(--la-text-sm);
+}
+
+.la-auth-meta a {
+    color: var(--la-brand-active);
+    font-weight: var(--la-weight-light);
+}
+
+/* older auth icon helper, kept for compatibility but made less decorative */
+.la-email-icon {
+    display: none;
+}
+
+.la-email-icon-warn {
+    display: none;
+}
+
+
+/* =======================================
+   FILTER FORMS
+========================================== */
+
+/* inline filter form above tables/lists */
+.la-filter-form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--la-3);
+    color: var(--la-ink-soft);
+    font-size: var(--la-text-sm);
+}
+
+/* make raw selects inside filter form match regular fields */
+.la-filter-form select {
+    min-height: 32px;
+    padding: 0 var(--la-3);
+    border: 1px solid var(--la-border-strong);
+    border-radius: var(--la-radius-sm);
+    background: var(--la-surface);
+    color: var(--la-ink);
+    font-size: var(--la-text-sm);
+}
+
+/* compact text inputs inside filter form */
+.la-filter-form input[type="search"],
+.la-filter-form input[type="text"] {
+    min-height: 32px;
+    padding: 0 var(--la-3);
+    border: 1px solid var(--la-border-strong);
+    border-radius: var(--la-radius-sm);
+    background: var(--la-surface);
+    color: var(--la-ink);
+    font-size: var(--la-text-sm);
+}
+
+
+/* =======================================
+   FIELD SPACING HELPERS
+========================================== */
+
+/* add space when a field row is followed by an action */
+.la-field-row + .la-btn,
+.la-field-row + .la-button-row,
+.la-field-row + .la-form-actions {
+    margin-top: var(--la-4);
+}
+
+
+/* =======================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 720px) {
+    .la-field-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .la-form-sm,
+    .la-form-md {
+        max-width: none;
+    }
+}

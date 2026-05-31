@@ -1,0 +1,1282 @@
+/*
+==============================================================================
+SHOWCASE-ONLY CSS HELPERS
+------------------------------------------------------------------------------
+Purpose:
+  Styles for guide and showcase pages only. Everything here is scoped to
+  body.sg-page so it can never accidentally affect production app pages.
+
+Usage:
+  1. Keep app.css as your real application CSS.
+  2. Load this file after app.css in all guide/showcase HTML pages.
+  3. Add class="sg-page" to the guide page <body>.
+  4. Never load this file in production.
+
+Load order:
+  <link rel="stylesheet" href="app.css" />
+  <link rel="stylesheet" href="showcase-only-new.css" />
+
+Sections:
+  00. Page Chrome          — sections, example cards, section titles, scroll anchors
+  01. Text and Code        — labels, inline chips, code blocks, color helpers
+  02. Guide Layout         — guideline cards, do/dont grids, example headers, helpers
+  03. Token Guide          — all visual demos for the tokens page
+  04. Shell Wireframe      — mini shell frame, placeholder lines, media boxes
+  05. Contained Demos      — mini app shell, utility tiles, base guide samples
+  06. Component Containment — fixed-position overrides for filter/modal/toast demos
+  07. Selector Inventory   — CSS class inventory viewer
+  08. Overview Page        — landing index (overview.html only)
+  09. Responsive           — all @media overrides
+==============================================================================
+*/
+
+
+/* =============================================================================
+   00. PAGE CHROME
+   Core guide page structure: section spacing, scroll anchors, section titles,
+   and example card wrappers. The content padding-bottom keeps scroll-spy
+   working for sections near the bottom of the page.
+============================================================================= */
+
+/* section block — bottom spacing and scroll anchor offset for the sticky topbar */
+.sg-page .sg-section {
+  scroll-margin-top: calc(var(--la-12) + var(--la-6));
+  margin-bottom: var(--la-12);
+}
+
+/* in-page category headings built by setupPageCategories() */
+.sg-page .sg-section > h3 {
+  scroll-margin-top: calc(var(--la-12) + var(--la-6));
+}
+
+/* keeps sections near the page bottom scrollable to the top */
+.sg-page .la-content {
+  padding-bottom: 60vh;
+}
+
+/* section title block: heading left, optional badge or link right */
+.sg-page .sg-section-title {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--la-4);
+  margin-top: var(--la-5);
+  margin-bottom: var(--la-5);
+  padding-bottom: var(--la-3);
+}
+
+.sg-page .sg-section-title h2 {
+  margin: 0;
+  color: var(--la-ink);
+  font-size: var(--la-text-xl);
+  line-height: var(--la-line-title);
+}
+
+.sg-page .sg-section-title p {
+  max-width: 128ch;
+  margin: var(--la-2) 0 0;
+  color: var(--la-ink-soft);
+}
+
+/* generic example card, note card, and preview-shell card */
+.sg-page .sg-example,
+.sg-page .sg-note,
+.sg-page .sg-preview-shell {
+  position: relative;
+  padding: var(--la-5);
+  border: 1px solid var(--la-border);
+  border-radius: var(--la-radius-lg);
+  background: var(--la-surface);
+}
+
+/* preview-shell can scroll if the diagram is wider than the card */
+.sg-page .sg-preview-shell {
+  overflow: auto;
+}
+
+/* stack consecutive example cards */
+.sg-page .sg-example + .sg-example,
+.sg-page .sg-preview-shell + .sg-example {
+  margin-top: var(--la-4);
+}
+
+/* note cards use the subtle surface */
+.sg-page .sg-note {
+  color: var(--la-ink-soft);
+  background: var(--la-surface-subtle);
+}
+
+
+/* =============================================================================
+   01. TEXT AND CODE HELPERS
+   Labels above examples, inline code chips, guide code snippet blocks, and
+   quick text color helpers. All scoped to .sg-page.
+============================================================================= */
+
+/* small label above an example — "Default", ".la-btn-primary", etc. */
+.sg-page .sg-label {
+  margin-bottom: var(--la-3);
+  color: var(--la-muted);
+  font-size: var(--la-text-xs);
+  font-weight: var(--la-weight-light);
+  letter-spacing: 0.02em;
+}
+
+/* mono font for code inside labels, inline chips, class grids, and token rows */
+.sg-page .sg-label code,
+.sg-page .sg-inline-code,
+.sg-page .sg-class-grid code,
+.sg-page .sg-token code {
+  font-family: var(--la-mono);
+}
+
+/* chip style for inline code and class badge labels */
+.sg-page .sg-inline-code,
+.sg-page .sg-label code,
+.sg-page .sg-class-grid code {
+  border: 1px solid var(--la-border);
+  border-radius: var(--la-radius-sm);
+  background: var(--la-surface-subtle);
+  color: var(--la-ink-soft);
+}
+
+.sg-page .sg-inline-code,
+.sg-page .sg-label code {
+  padding: 0.1rem 0.35rem;
+}
+
+.sg-page .sg-class-grid code {
+  display: inline-flex;
+  padding: 0.35rem 0.5rem;
+}
+
+/* quick text color overrides */
+.sg-page .sg-soft  {
+    margin-top: var(--la-2);
+    color: var(--la-ink-soft); }
+
+/* guide code snippet block — smaller and bordered vs the real .la-code-block */
+.sg-page .sg-code-block {
+  margin: var(--la-3) 0 0;
+  padding: var(--la-3);
+  border: 1px solid var(--la-border);
+  border-radius: var(--la-radius-md);
+  background: var(--la-surface-subtle);
+  color: var(--la-ink);
+  font-family: var(--la-mono);
+  font-size: var(--la-text-xs);
+  line-height: 1.55;
+  overflow: auto;
+}
+
+/* reset base.css <code> element styles inside the guide code block */
+.sg-page .sg-code-block code {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-size: inherit;
+}
+
+/* overflow protection for code blocks inside la-split-aside */
+.la-split-aside .sg-code-block {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+
+/* =============================================================================
+   02. GUIDE LAYOUT
+   Reusable layout primitives used across all component guide pages:
+   guideline cards, do/dont grids, example header blocks, and misc helpers.
+============================================================================= */
+
+/* two-column grid for side-by-side guideline cards */
+.sg-page .sg-guideline-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--la-4);
+  margin-bottom: var(--la-4);
+}
+
+/* 3/4 + 1/4 variant — main content with a narrow side note */
+.sg-page .sg-guideline-grid.sg-grid-3to1 {
+  grid-template-columns: 3fr 1fr;
+}
+
+/* standalone guideline card (e.g. "How to use" or "File import order") */
+.sg-page .sg-guideline-card {
+  padding: var(--la-4);
+  border: 1px solid var(--la-border);
+  border-radius: var(--la-radius-lg);
+  background: var(--la-surface);
+  margin-bottom: var(--la-4);
+}
+
+.sg-page .sg-guideline-card h3 {
+  margin: 0 0 var(--la-2);
+  color: var(--la-ink);
+  font-size: var(--la-text-md);
+}
+
+.sg-page .sg-guideline-card p,
+.sg-page .sg-guideline-card li {
+  color: var(--la-ink-soft);
+}
+
+.sg-page .sg-guideline-card p {
+  margin: 0;
+}
+
+.sg-page .sg-guideline-card ul {
+  margin: var(--la-3) 0 0;
+  padding-left: var(--la-5);
+}
+
+.sg-page .sg-guideline-card li + li {
+  margin-top: var(--la-1);
+}
+
+/* do/dont comparison grid */
+.sg-page .sg-do-dont {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--la-4);
+}
+
+.sg-page .sg-do-dont strong {
+  display: block;
+  margin-bottom: var(--la-2);
+  color: var(--la-ink);
+}
+
+/* example section header: title + description left, optional badge right */
+.sg-page .sg-example-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--la-4);
+  margin-bottom: var(--la-4);
+}
+
+.sg-page .sg-example-header h3 {
+  margin: 0;
+  color: var(--la-ink);
+  font-size: var(--la-text-lg);
+  line-height: var(--la-line-title);
+}
+
+.sg-page .sg-example-header p {
+  margin: var(--la-2) 0 0;
+  max-width: 128ch;
+}
+
+/* smaller inline title inside an example card */
+.sg-page .sg-example-title {
+  margin: 0;
+  color: var(--la-ink);
+  font-size: var(--la-text-lg);
+  line-height: var(--la-line-title);
+}
+
+/* spacing helpers — add a top gap without a full section margin */
+.sg-page .sg-top-gap    { margin-top: var(--la-5); }
+.sg-page .sg-top-gap-sm { margin-top: var(--la-3); }
+
+/* strip top margin when previewing nav groups outside the real sidebar */
+.sg-page .sg-no-top { margin-top: 0; }
+
+/* remove bottom border from shell pieces reused inside tiny previews */
+.sg-page .sg-no-border {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* constrain form controls in narrow demo columns */
+.sg-page .sg-control-demo {
+  max-width: 220px;
+}
+
+
+/* =============================================================================
+   03. TOKEN GUIDE
+   All visual demos specific to the tokens guide page: token card grid, color
+   swatches, type scale, spacing/radius/shadow visualizations, z-index and
+   motion demos, system constant tables, and the dark-theme preview wrapper.
+============================================================================= */
+
+/* --- Token card grid --- */
+
+.sg-page .sg-token-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--la-3);
+}
+
+/* compact variant — smaller min-width for tighter token grids */
+.sg-page .sg-token-grid-compact {
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+}
+
+.sg-page .sg-token {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--la-3);
+  min-height: 42px;
+  padding: var(--la-3);
+  border: 1px solid var(--la-border);
+  border-radius: var(--la-radius-md);
+  background: var(--la-surface);
+}
+
+.sg-page .sg-token-grid-compact .sg-token {
+  min-height: 48px;
+}
+
+.sg-page .sg-token > div {
+  display: flex;
+  align-items: center;
+  gap: var(--la-2);
+  min-width: 0;
+}
+
+.sg-page .sg-token small {
+  color: var(--la-ink-soft);
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+/* --- Token groups --- */
+
+/* card container for a token category (colors, spacing, etc.) */
+.sg-page .sg-token-group {
+  margin-top: var(--la-4);
+  padding: var(--la-4);
+  border: 1px solid var(--la-border);
+  border-radius: var(--la-radius-lg);
+  background: var(--la-surface);
+}
+
+.sg-page .sg-token-group-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--la-4);
+  margin-bottom: var(--la-3);
+}
+
+.sg-page .sg-token-group-head h3 {
+  margin: 0;
+  margin-top: var(--la-3);
+  color: var(--la-ink);
+  font-size: var(--la-text-md);
+}
+
+.sg-page .sg-token-group-head p {
+  max-width: 128ch;
+  margin: var(--la-1) 0 0;
+  color: var(--la-ink-soft);
+  font-size: var(--la-text-sm);
+}
+
+/* small pill badge to flag priority tokens */
+.sg-page .sg-token-priority {
+  flex: none;
+  padding: 0.15rem 0.5rem;
+  border: 1px solid var(--la-brand-border);
+  border-radius: var(--la-radius-pill);
+  background: var(--la-brand-soft);
+  color: var(--la-brand-ink);
+  font-size: var(--la-text-xs);
+  font-weight: var(--la-weight-light);
+}
+
+/* note text below a token group */
+.sg-page .sg-token-note {
+  margin-top: var(--la-3);
+  color: var(--la-ink-soft);
+  font-size: var(--la-text-sm);
+}
+
+/* --- Visual demo elements --- */
+
+/* color swatch tile */
+.sg-page .sg-swatch {
+  display: inline-flex;
+  width: 1rem;
+  height: 1rem;
+  flex: none;
+  border: 1px solid var(--la-border-strong);
+  border-radius: var(--la-radius-xs);
+}
+
+/* horizontal bar sized to the spacing token value */
+.sg-page .sg-space-bar {
+  display: inline-flex;
+  height: 0.6rem;
+  min-width: 2px;
+  border-radius: var(--la-radius-pill);
+  background: var(--la-brand);
+}
+
+/* small box whose border-radius comes from an inline style attribute */
+.sg-page .sg-radius-demo {
+  display: inline-flex;
+  width: 42px;
+  height: 24px;
+  border: 1px solid var(--la-brand-border);
+  background: var(--la-brand-soft);
+}
+
+/* --- Type scale demos --- */
+
+.sg-page .sg-type-xs   { font-size: var(--la-text-xs);   }
+.sg-page .sg-type-sm   { font-size: var(--la-text-sm);   }
+.sg-page .sg-type-md   { font-size: var(--la-text-md);   }
+.sg-page .sg-type-base { font-size: var(--la-text-base); }
+.sg-page .sg-type-lg   { font-size: var(--la-text-lg);   }
+.sg-page .sg-type-xl   { font-size: var(--la-text-xl);   }
+.sg-page .sg-type-2xl  { font-size: var(--la-text-2xl);  }
+
+/* sample text element for inline type demos */
+.sg-page .sg-type-sample {
+  color: var(--la-ink);
+  line-height: 1.25;
+}
+
+/* --- Token tables --- */
+
+.sg-page .sg-token-table-wrap {
+  margin-top: var(--la-4);
+}
+
+.sg-page .sg-token-table {
+  min-width: 760px;
+}
+
+.sg-page .sg-token-table th:nth-child(2),
+.sg-page .sg-token-table td:nth-child(2) {
+  width: 140px;
+}
+
+.sg-page .sg-token-table th:nth-child(3),
+.sg-page .sg-token-table td:nth-child(3) {
+  width: 120px;
+}
+
+.sg-page .sg-token-table code {
+  display: inline-flex;
+  padding: 0.22rem 0.45rem;
+  border: 1px solid var(--la-border);
+  border-radius: var(--la-radius-sm);
+  background: var(--la-surface-subtle);
+  color: var(--la-ink);
+  font-family: var(--la-mono);
+  font-size: var(--la-text-xs);
+}
+
+.sg-page .sg-token-table .sg-swatch {
+  width: 18px;
+  height: 18px;
+  margin-inline: auto;
+}
+
+/* raw value and usage description columns */
+.sg-page .sg-token-table-value {
+  color: var(--la-ink-soft);
+  font-family: var(--la-mono);
+  font-size: var(--la-text-xs);
+  white-space: nowrap;
+}
+
+.sg-page .sg-token-table-usage {
+  max-width: 128ch;
+  color: var(--la-ink-soft);
+}
+
+/* system constants table — narrows the second column */
+.sg-page .sg-system-table th:nth-child(2),
+.sg-page .sg-system-table td:nth-child(2) {
+  width: 140px;
+}
+
+/* --- Spacing preview --- */
+
+.sg-page .sg-space-preview {
+  display: grid;
+  gap: var(--la-2);
+  min-width: 220px;
+}
+
+.sg-page .sg-space-preview-row {
+  display: flex;
+  align-items: center;
+  min-height: 28px;
+}
+
+.sg-page .sg-space-preview-box {
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--la-border-strong);
+  border-radius: var(--la-radius-xs);
+  background: var(--la-surface-subtle);
+}
+
+.sg-page .sg-space-preview-gap {
+  flex: none;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--la-brand);
+}
+
+.sg-page .sg-space-preview-pad {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed var(--la-border-strong);
+  border-radius: var(--la-radius-md);
+  background: var(--la-surface-subtle);
+}
+
+.sg-page .sg-space-preview-inner {
+  width: 20px;
+  height: 20px;
+  border-radius: var(--la-radius-xs);
+  background: var(--la-brand-soft);
+  border: 1px solid var(--la-brand-border);
+}
+
+/* --- Radius preview --- */
+
+.sg-page .sg-radius-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--la-4);
+  margin-top: var(--la-4);
+}
+
+.sg-page .sg-radius-card {
+  padding: var(--la-4);
+  border: 1px solid var(--la-border);
+  border-radius: var(--la-radius-md);
+  background: var(--la-surface);
+}
+
+.sg-page .sg-radius-card code {
+  display: inline-flex;
+  margin-bottom: var(--la-3);
+  padding: 0.2rem 0.45rem;
+  border: 1px solid var(--la-border);
+  border-radius: var(--la-radius-sm);
+  background: var(--la-surface-subtle);
+  font-family: var(--la-mono);
+  font-size: var(--la-text-xs);
+}
+
+/* the shape that demonstrates the border-radius token */
+.sg-page .sg-radius-shape {
+  width: 100%;
+  height: 64px;
+  border: 1px solid var(--la-border-strong);
+  background: var(--la-surface-subtle);
+}
+
+.sg-page .sg-radius-note {
+  margin-top: var(--la-3);
+  color: var(--la-ink-soft);
+  font-size: var(--la-text-sm);
+}
+
+/* --- Shadow preview --- */
+
+.sg-page .sg-shadow-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--la-4);
+  margin-top: var(--la-4);
+}
+
+.sg-page .sg-shadow-card {
+  padding: var(--la-4);
+  border: 1px solid var(--la-border);
+  border-radius: var(--la-radius-md);
+  background: var(--la-surface);
+}
+
+.sg-page .sg-shadow-demo {
+  min-height: 120px;
+  display: grid;
+  place-items: center;
+  margin-top: var(--la-3);
+  border-radius: var(--la-radius-md);
+  background: var(--la-page);
+}
+
+/* shell-shadow demo box */
+.sg-page .sg-shadow-shell-box {
+  width: 180px;
+  height: 84px;
+  border: 1px solid var(--la-border);
+  border-radius: var(--la-radius-lg);
+  background: var(--la-surface);
+  box-shadow: var(--la-shadow-shell);
+}
+
+/* popover-shadow demo box */
+.sg-page .sg-shadow-popover-box {
+  width: 150px;
+  min-height: 92px;
+  border: 1px solid var(--la-border);
+  border-radius: var(--la-radius-md);
+  background: var(--la-surface);
+  box-shadow: var(--la-shadow-popover);
+}
+
+.sg-page .sg-shadow-popover-head {
+  height: 30px;
+  border-bottom: 1px solid var(--la-border);
+  background: var(--la-surface-subtle);
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+}
+
+.sg-page .sg-shadow-popover-body {
+  padding: var(--la-3);
+}
+
+.sg-page .sg-shadow-popover-line {
+  display: block;
+  width: 100%;
+  height: 8px;
+  margin-bottom: var(--la-2);
+  border-radius: 999px;
+  background: var(--la-border);
+}
+
+.sg-page .sg-shadow-popover-line.short {
+  width: 68%;
+}
+
+/* --- Z-index demo --- */
+
+/* two overlapping labeled boxes showing stacking order */
+.sg-page .sg-z-demo {
+  position: relative;
+  width: 88px;
+  height: 48px;
+}
+
+.sg-page .sg-z-demo span {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 28px;
+  border: 1px solid var(--la-border-strong);
+  border-radius: var(--la-radius-sm);
+  background: var(--la-surface);
+  font-size: var(--la-text-xs);
+  color: var(--la-ink-soft);
+}
+
+.sg-page .sg-z-demo span:first-child { left: 0; top: 12px; }
+.sg-page .sg-z-demo span:last-child  { right: 0; top: 0;   }
+
+/* --- Motion demo --- */
+
+/* dot + bar showing transition-speed tokens */
+.sg-page .sg-motion-demo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--la-2);
+}
+
+.sg-page .sg-motion-demo-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--la-brand);
+}
+
+.sg-page .sg-motion-demo-bar {
+  width: 56px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--la-border);
+}
+
+/* --- Inline token demos --- */
+
+/* swatch or demo element + label on one row */
+.sg-page .sg-token-demo-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--la-2);
+  min-height: 28px;
+}
+
+/* control-height demo box */
+.sg-page .sg-control-demo-box {
+  width: 38px;
+  height: var(--la-control-height);
+  border: 1px solid var(--la-border-strong);
+  border-radius: var(--la-radius-sm);
+  background: var(--la-surface);
+}
+
+/* focus ring demo */
+.sg-page .sg-focus-demo-box {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--la-radius-sm);
+  background: var(--la-surface);
+  box-shadow: var(--la-focus);
+}
+
+/* --- Dark-theme preview wrapper --- */
+
+/* wraps a section of the tokens guide to demo data-theme="dark" changes */
+.sg-page .sg-theme-preview {
+  background: var(--la-page);
+  color: var(--la-ink);
+}
+
+/* re-apply surface backgrounds inside the preview so cards stay readable */
+.sg-page .sg-theme-preview .sg-token,
+.sg-page .sg-theme-preview .sg-token-group,
+.sg-page .sg-theme-preview .sg-guideline-card {
+  background: var(--la-surface);
+  color: var(--la-ink);
+}
+
+.sg-page .sg-theme-preview .sg-token small,
+.sg-page .sg-theme-preview .sg-token-group-head p,
+.sg-page .sg-theme-preview .sg-muted {
+  color: var(--la-muted);
+}
+
+/* theme switcher buttons inside the preview */
+.sg-page .sg-theme-toggle .la-btn {
+  min-height: 30px;
+}
+
+.sg-page .sg-theme-toggle .la-btn.is-active {
+  border-color: var(--la-brand-border);
+  background: var(--la-surface);
+  color: var(--la-brand-ink);
+}
+
+
+/* =============================================================================
+   04. SHELL WIREFRAME
+   Simplified mini-shell used in the shell guide to illustrate layout zones.
+   Also includes placeholder lines and media-type boxes from the base.css guide.
+============================================================================= */
+
+/* window chrome top row */
+.sg-page .sg-shell-preview-top {
+  display: flex;
+  gap: var(--la-2);
+  padding-bottom: var(--la-3);
+  border-bottom: 1px solid var(--la-border);
+}
+
+/* window control dots */
+.sg-page .sg-window-dot {
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: var(--la-radius-pill);
+  background: var(--la-border-strong);
+}
+
+/* shell body row */
+.sg-page .sg-shell-preview-body {
+  display: flex;
+  min-height: 160px;
+}
+
+/* sidebar and main columns share base flex styles */
+.sg-page .sg-shell-preview-side,
+.sg-page .sg-shell-preview-main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--la-3);
+  padding: var(--la-4);
+}
+
+.sg-page .sg-shell-preview-side {
+  width: 34%;
+  border-right: 1px solid var(--la-border);
+  background: var(--la-surface-subtle);
+}
+
+.sg-page .sg-shell-preview-main {
+  flex: 1;
+  background: var(--la-surface);
+}
+
+/* placeholder text line — width variants via .medium and .short */
+.sg-page .sg-line {
+  display: block;
+  width: 100%;
+  height: 0.8rem;
+  border-radius: var(--la-radius-pill);
+  background: var(--la-border);
+}
+
+.sg-page .sg-line.brand  { background: var(--la-brand-border); }
+.sg-page .sg-line.medium { width: 68%; }
+.sg-page .sg-line.short  { width: 42%; }
+
+/* media-type boxes used in the base.css guide */
+.sg-page .sg-mini-media-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--la-3);
+  align-items: center;
+}
+
+.sg-page .sg-media-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 88px;
+  height: 48px;
+  border: 1px solid var(--la-border);
+  border-radius: var(--la-radius-md);
+  background: var(--la-surface);
+  color: var(--la-ink-soft);
+  font-size: var(--la-text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+
+/* =============================================================================
+   05. CONTAINED DEMO LAYOUTS
+   Scaled-down app shells used in the shell and navigation guides. Also
+   includes utility demo tiles and base.css guide samples.
+============================================================================= */
+
+/* grid-based mini app shell — preferred demo shell for current guides */
+.sg-page .sg-mini-app-shell {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  min-height: 420px;
+  overflow: hidden;
+  border: 1px solid var(--la-border);
+  border-radius: var(--la-radius-lg);
+  background: var(--la-page);
+}
+
+.sg-page .sg-mini-sidebar {
+  padding: var(--la-5);
+  border-right: 1px solid var(--la-border);
+  background: var(--la-surface-subtle);
+}
+
+.sg-page .sg-mini-main {
+  min-width: 0;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+.sg-page .sg-mini-topbar {
+  position: static;
+  min-height: 54px;
+  padding-inline: var(--la-5);
+}
+
+.sg-page .sg-mini-content {
+  padding: var(--la-5);
+}
+
+/* flex-based legacy demo shell — used in shell.html to document the old layout */
+.sg-page .sg-contained-layout {
+  min-height: 360px;
+  overflow: hidden;
+  border: 1px solid var(--la-border);
+  border-radius: var(--la-radius-lg);
+}
+
+.sg-page .sg-contained-layout .la-sidebar-demo {
+  width: 230px;
+  padding: var(--la-5);
+}
+
+.sg-page .sg-contained-layout .la-page-content {
+  padding: var(--la-5);
+}
+
+/* narrow split demo for utilities guide */
+.sg-page .sg-contained-split {
+  grid-template-columns: minmax(0, 1fr) 160px;
+  gap: var(--la-3);
+}
+
+/* dashed tile used to demonstrate utility classes */
+.sg-page .sg-utility-tile {
+  min-height: 52px;
+  display: grid;
+  place-items: center;
+  padding: var(--la-3);
+  border: 1px dashed var(--la-border-strong);
+  border-radius: var(--la-radius-md);
+  background: var(--la-surface-subtle);
+  color: var(--la-ink-soft);
+  font-size: var(--la-text-sm);
+}
+
+/* base.css guide: demo grid and sample boxes */
+.sg-page .sg-base-demo {
+  display: grid;
+  gap: var(--la-4);
+}
+
+.sg-page .sg-base-sample {
+  padding: var(--la-4);
+  border: 1px solid var(--la-border);
+  border-radius: var(--la-radius-md);
+  background: var(--la-surface-subtle);
+}
+
+.sg-page .sg-base-sample h3 {
+  margin: 0 0 var(--la-2);
+  color: var(--la-ink);
+  font-size: var(--la-text-md);
+}
+
+.sg-page .sg-base-sample p {
+  margin: 0;
+  color: var(--la-ink-soft);
+}
+
+
+/* =============================================================================
+   06. COMPONENT CONTAINMENT
+   Overrides that keep fixed-position production components inside demo cards
+   instead of covering the full browser window.
+============================================================================= */
+
+/* filter panel: static position + max-width to stay inside the demo card */
+.sg-page .sg-filter-panel-wrap {
+  min-height: 270px;
+}
+
+.sg-page .sg-filter-panel-wrap .la-filter-panel {
+  position: static;
+  width: auto;
+  max-width: 360px;
+}
+
+/* reset toast stack to normal flow */
+.sg-page .sg-static-toast .la-toast-stack {
+  position: static;
+  width: auto;
+  max-width: none;
+}
+
+/* modal demo — backdrop fills the rounded container edge-to-edge */
+.sg-page .sg-static-modal {
+  min-height: 260px;
+  overflow: hidden;
+  position: relative;
+  border-radius: var(--la-radius-lg);
+}
+
+.sg-page .sg-static-modal .la-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  min-height: 200px;
+}
+
+.sg-page .sg-static-modal .la-modal {
+  width: min(100%, 420px);
+}
+
+
+/* =============================================================================
+   07. SELECTOR INVENTORY
+   CSS class inventory viewer used in css-style-showcase.html.
+============================================================================= */
+
+.sg-page .sg-inventory-file {
+  margin-bottom: var(--la-5);
+  padding: var(--la-5);
+  border: 1px solid var(--la-border);
+  border-radius: var(--la-radius-lg);
+  background: var(--la-surface);
+}
+
+.sg-page .sg-inventory-file h3 {
+  margin: 0 0 var(--la-3);
+  font-size: var(--la-text-md);
+}
+
+.sg-page .sg-class-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--la-2);
+}
+
+
+/* =============================================================================
+   08. OVERVIEW PAGE (LANDING INDEX)
+   Styles for overview.html only: hero block at the top, then the directory-
+   style section index. The .is-preview modifier applies brand tinting to the
+   full-page example entries at the bottom of the index.
+============================================================================= */
+
+/* hero opening block */
+.sg-page .sg-overview-hero {
+  padding: var(--la-8) 0 var(--la-6);
+  border-bottom: 1px solid var(--la-border);
+  margin-bottom: var(--la-5);
+}
+
+.sg-page .sg-overview-hero h2 {
+  margin: 0;
+  font-size: var(--la-text-2xl);
+  font-weight: var(--la-weight-strong);
+  line-height: var(--la-line-title);
+  letter-spacing: -0.03em;
+  color: var(--la-ink);
+}
+
+.sg-page .sg-overview-subtitle {
+  max-width: 128ch;
+  margin: var(--la-3) 0 var(--la-4);
+  color: var(--la-ink-soft);
+  font-size: var(--la-text-lg);
+  line-height: 1.5;
+}
+
+.sg-page .sg-overview-meta {
+  display: flex;
+  gap: var(--la-2);
+  flex-wrap: wrap;
+}
+
+.sg-page .sg-overview-tag {
+  padding: 0.2rem 0.6rem;
+  border: 1px solid var(--la-border-strong);
+  border-radius: var(--la-radius-pill);
+  color: var(--la-ink-soft);
+  font-size: var(--la-text-xs);
+  font-weight: var(--la-weight-light);
+  letter-spacing: 0.01em;
+}
+
+/* section index container */
+.sg-page .sg-overview-index {
+  margin-top: var(--la-6);
+}
+
+/* category group: label column left, entries column right */
+.sg-page .sg-overview-group {
+  display: grid;
+  grid-template-columns: 100px minmax(0, 1fr);
+  border-top: 1px solid var(--la-border);
+  padding-block: var(--la-2);
+}
+
+.sg-page .sg-overview-group:first-child {
+  border-top: none;
+}
+
+.sg-page .sg-overview-cat {
+  padding: var(--la-4) var(--la-3) 0 0;
+  color: var(--la-ink-soft);
+  font-size: var(--la-text-xs);
+  font-weight: var(--la-weight-light);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.sg-page .sg-overview-entries {
+  display: flex;
+  flex-direction: column;
+}
+
+/* individual entry link row */
+.sg-page .sg-overview-entry {
+  display: grid;
+  grid-template-columns: 26px 108px 1fr auto;
+  align-items: center;
+  gap: var(--la-4);
+  padding: var(--la-3) var(--la-2);
+  border-bottom: 1px solid var(--la-border);
+  border-radius: var(--la-radius-sm);
+  text-decoration: none;
+  color: inherit;
+  transition: background var(--la-transition-fast);
+}
+
+.sg-page .sg-overview-entry:last-child {
+  border-bottom: none;
+}
+
+.sg-page .sg-overview-entry:hover {
+  background: var(--la-surface-hover);
+}
+
+.sg-page .sg-overview-entry:hover .sg-overview-arrow {
+  color: var(--la-brand);
+}
+
+/* numbered index */
+.sg-page .sg-overview-num {
+  color: var(--la-disabled);
+  font-size: var(--la-text-xs);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+/* mini thumbnail card */
+.sg-page .sg-overview-thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 42px;
+  padding: 5px 8px;
+  border: 1px solid var(--la-border);
+  border-radius: var(--la-radius-md);
+  background: var(--la-surface);
+  overflow: hidden;
+}
+
+/* name + description column */
+.sg-page .sg-overview-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--la-1);
+  min-width: 0;
+}
+
+.sg-page .sg-overview-name {
+  color: var(--la-ink);
+  font-size: var(--la-text-sm);
+  font-weight: var(--la-weight-light);
+}
+
+.sg-page .sg-overview-desc {
+  color: var(--la-ink-soft);
+  font-size: var(--la-text-xs);
+  line-height: 1.4;
+}
+
+/* arrow or external-link icon on the right */
+.sg-page .sg-overview-arrow {
+  color: var(--la-disabled);
+  flex: none;
+  transition: color var(--la-transition-fast);
+}
+
+/* preview group modifier — brand-tinted treatment for full-page example entries */
+.sg-page .sg-overview-group.is-preview {
+  margin-top: var(--la-5);
+  padding: var(--la-4) var(--la-5);
+  border: 1px solid var(--la-brand-border);
+  border-radius: var(--la-radius-lg);
+  background: var(--la-brand-soft);
+}
+
+.sg-page .sg-overview-group.is-preview .sg-overview-cat {
+  color: var(--la-brand-ink);
+}
+
+.sg-page .sg-overview-group.is-preview .sg-overview-entry {
+  border: 0px;
+  border-color: var(--la-brand-border);
+}
+
+.sg-page .sg-overview-group.is-preview .sg-overview-entry:hover {
+  background: rgba(190, 76, 10, 0.06);
+}
+
+
+/* =============================================================================
+   09. RESPONSIVE
+   All @media overrides for showcase pages gathered in one place.
+============================================================================= */
+
+/* 1100px: start collapsing 3-col and 4-col grids */
+@media (max-width: 1100px) {
+  .sg-page .la-grid-3,
+  .sg-page .la-grid-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* 900px: collapse guide layout and contained demo shells */
+@media (max-width: 900px) {
+  .sg-page .sg-guideline-grid,
+  .sg-page .sg-do-dont {
+    grid-template-columns: 1fr;
+  }
+
+  .sg-page .sg-example-header,
+  .sg-page .sg-token-group-head {
+    flex-direction: column;
+  }
+
+  .sg-page .sg-mini-app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .sg-page .sg-mini-sidebar {
+    border-right: 0;
+    border-bottom: 1px solid var(--la-border);
+  }
+
+  .sg-page .sg-contained-layout {
+    flex-direction: column;
+  }
+
+  .sg-page .sg-contained-layout .la-sidebar-demo {
+    width: 100%;
+    border-right: 0;
+    border-bottom: 1px solid var(--la-border);
+  }
+
+  .sg-page .sg-contained-split {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 760px: collapse all grids, adjust token cards and overview index layout */
+@media (max-width: 760px) {
+  .sg-page .la-grid-2,
+  .sg-page .la-grid-3,
+  .sg-page .la-grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .sg-page .sg-section-title {
+    align-items: flex-start;
+  }
+
+  .sg-page .sg-token {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .sg-page .sg-token small {
+    text-align: left;
+  }
+
+  .sg-page .sg-overview-group {
+    grid-template-columns: 1fr;
+  }
+
+  .sg-page .sg-overview-cat {
+    padding: var(--la-3) 0 var(--la-1);
+  }
+
+  .sg-page .sg-overview-entry {
+    grid-template-columns: 26px 80px 1fr auto;
+    gap: var(--la-3);
+  }
+}

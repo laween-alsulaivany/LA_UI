@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <script>(function(){var t=localStorage.getItem('la-theme');if(t)document.documentElement.setAttribute('data-theme',t);}());</script>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>LA UI Style Guide — Buttons</title>
+  <link rel="stylesheet" href="app.css" />
+  <link rel="stylesheet" href="showcase-only-new.css" />
+</head>
+<body class="sg-page">
+<div class="la-app">
+  <!-- sidebar and topbar injected by app.js -->
+  <main class="la-main">
+    <div class="la-content la-content--wide">
+
+      <section id="buttons" class="sg-section">
+
+        <div class="sg-section-title">
+          <div>
+            <h2>05. Components: buttons.css</h2>
+            <p>Buttons are intentionally limited. Use the variant that matches the action, not the one that looks nicest on the page.</p>
+          </div>
+        </div>
+
+          <div class="sg-guideline-card la-split-aside">
+          <div>
+            <h3>Variant rule</h3>
+            <ul>
+              <li><span class="sg-inline-code">primary</span> — main action, usually one per action group</li>
+              <li><span class="sg-inline-code">secondary</span> — normal supporting action</li>
+              <li><span class="sg-inline-code">ghost</span> — quiet toolbar or icon action</li>
+              <li><span class="sg-inline-code">danger</span> — destructive action with visible border</li>
+              <li><span class="sg-inline-code">danger-ghost</span> — destructive action with low visual weight</li>
+              <li><span class="sg-inline-code">link</span> — inline text action, not for standalone buttons</li>
+              <li><span class="sg-inline-code">disabled</span> — any button can be disabled to prevent interaction</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3>Button markup</h3>
+            <pre class="sg-code-block"><code>&lt;button class="la-btn la-btn-primary" type="button"&gt;Save changes&lt;/button&gt;
+&lt;a class="la-btn la-btn-secondary" href="/items/"&gt;Cancel&lt;/a&gt;</code></pre>
+            <p class="sg-soft" style="margin-top: var(--la-3)">Always set <code class="sg-inline-code">type="button"</code> on buttons inside forms to prevent accidental submission.</p>
+          </div>
+        </div>
+
+        <!-- ── Variants ──────────────────────────────────────────── -->
+
+        <h3>Variants</h3>
+        <p class="sg-soft">Each variant signals intent. Do not choose a variant based on color preference. The system has exactly the variants it needs.</p>
+
+        <div class="sg-top-gap">
+          <p class="sg-label"><code>.la-btn + variant</code></p>
+          <div class="la-button-row">
+            <button class="la-btn la-btn-primary" type="button">Primary</button>
+            <button class="la-btn la-btn-secondary" type="button">Secondary</button>
+            <button class="la-btn la-btn-ghost" type="button">Ghost</button>
+            <button class="la-btn la-btn-danger" type="button">Danger</button>
+            <button class="la-btn la-btn-danger-ghost" type="button">Danger ghost</button>
+            <a class="la-btn la-btn-link" href="#variants">Link action</a>
+            <button class="la-btn la-btn-primary" type="button" disabled>Disabled</button>
+          </div>
+        </div>
+
+        <!-- ── Sizes ─────────────────────────────────────────────── -->
+
+        <h3>Sizes</h3>
+        <p class="sg-soft">The default size fits most contexts. Use <code class="sg-inline-code">sm</code> in compact panels and <code class="sg-inline-code">xs</code> in tight inline contexts like table rows or filter chips.</p>
+
+        <div class="sg-top-gap la-flex-row" style="align-items: flex-end; gap: var(--la-12);">
+          <div>
+            <p class="sg-label"><code>.la-btn</code> — default</p>
+            <button class="la-btn la-btn-primary" type="button">Default</button>
+          </div>
+          <div>
+            <p class="sg-label"><code>.la-btn-sm</code></p>
+            <button class="la-btn la-btn-primary la-btn-sm" type="button">Small</button>
+          </div>
+          <div>
+            <p class="sg-label"><code>.la-btn-xs</code></p>
+            <button class="la-btn la-btn-secondary la-btn-xs" type="button">Extra small</button>
+          </div>
+        </div>
+
+        <!-- ── Full-width ─────────────────────────────────────────── -->
+
+        <h3>Full-width</h3>
+        <p class="sg-soft">Use <code class="sg-inline-code">.la-btn-full</code> when the button should span the width of its container, typically in auth flows, mobile layouts, or narrow form panels.</p>
+
+        <div class="sg-top-gap">
+          <p class="sg-label"><code>.la-btn-full</code></p>
+          <button class="la-btn la-btn-secondary la-btn-full" type="button">Full-width button</button>
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+</div>
+<script>
+window.SHELL_PAGE = { active: 'buttons', breadcrumb: 'Buttons', nav: 'page', base: '' };
+</script>
+<script src="app.js"></script>
+</body>
+</html>

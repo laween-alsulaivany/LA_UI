@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <script>(function(){var t=localStorage.getItem('la-theme');if(t)document.documentElement.setAttribute('data-theme',t);}());</script>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>LA UI Style Guide — Shell</title>
+  <link rel="stylesheet" href="app.css" />
+  <link rel="stylesheet" href="showcase-only-new.css" />
+</head>
+<body class="sg-page">
+<div class="la-app">
+  <!-- sidebar and topbar injected by app.js -->
+  <main class="la-main">
+    <div class="la-content la-content--wide">
+
+      <section id="shell" class="sg-section">
+
+        <div class="sg-section-title">
+          <div>
+            <h2>03. Layout: shell.css</h2>
+            <p>The shell gives every app page the same frame: sidebar, sticky topbar, content area, page header, and footer. The page you are reading right now is built on this shell.</p>
+          </div>
+        </div>
+
+        <div class="sg-guideline-card la-split-aside">
+          <div>
+            <h3>Use for</h3>
+            <p>Full app pages with a sidebar and topbar — dashboards, portals, and authenticated views. The current page uses <code>.la-app</code>, <code>.la-sidebar</code>, <code>.la-main</code>, <code>.la-topbar</code>, and <code>.la-content</code>.</p>
+          </div>
+          <div>
+            <h3>Avoid for</h3>
+            <p>Embedded widgets, landing pages, or anything that has its own layout. The shell is a full-page commitment.</p>
+          </div>
+        </div>
+
+
+        <!-- ── App shell ──────────────────────────────────────────── -->
+
+        <h3>App shell</h3>
+        <p class="sg-soft">The page you are looking at is the live demo of <code>.la-app</code>. It sets up a two-column CSS grid: a fixed-width sidebar column and a flexible main column. The sidebar is sticky and scrolls independently. The main column stacks the topbar and content area using <code>grid-template-rows: auto 1fr</code>.</p>
+
+        <div class="sg-top-gap">
+          <p class="sg-label">HTML structure</p>
+          <pre class="la-code-block" style="margin-top: var(--la-2);">&lt;div class="la-app"&gt;
+  &lt;aside class="la-sidebar"&gt;
+    &lt;div class="la-brandlockup"&gt;...&lt;/div&gt;
+    &lt;nav&gt;...&lt;/nav&gt;
+    &lt;div class="la-sidebar-note"&gt;...&lt;/div&gt;
+  &lt;/aside&gt;
+  &lt;main class="la-main"&gt;
+    &lt;header class="la-topbar"&gt;...&lt;/header&gt;
+    &lt;div class="la-content"&gt;
+      &lt;!-- page content here --&gt;
+    &lt;/div&gt;
+  &lt;/main&gt;
+&lt;/div&gt;</pre>
+        </div>
+
+        <div class="sg-top-gap">
+          <p class="sg-label">Live mini-preview — same structure, scaled down</p>
+          <div class="sg-mini-app-shell" style="margin-top: var(--la-2);">
+            <aside class="sg-mini-sidebar">
+              <div style="display:flex;align-items:center;gap:var(--la-2);padding-bottom:var(--la-3);border-bottom:1px solid var(--la-border);margin-bottom:var(--la-3);">
+                <svg width="26" height="26" viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="5" width="38" height="38" rx="8" fill="var(--la-brand)" /><path d="M15 17h18l-9 16z" fill="white" opacity="0.92" /></svg>
+                <div>
+                  <div style="font-size:var(--la-text-sm);font-weight:var(--la-weight-strong);color:var(--la-ink);">LA UI</div>
+                  <div style="font-size:var(--la-text-xs);color:var(--la-muted);">Style guide</div>
+                </div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:var(--la-1);">
+                <div style="padding:6px 8px;border-radius:var(--la-radius-xs);background:var(--la-surface-selected);font-size:var(--la-text-xs);color:var(--la-ink);">Shell</div>
+                <div style="padding:6px 8px;border-radius:var(--la-radius-xs);font-size:var(--la-text-xs);color:var(--la-ink-soft);">Tokens</div>
+                <div style="padding:6px 8px;border-radius:var(--la-radius-xs);font-size:var(--la-text-xs);color:var(--la-ink-soft);">Cards</div>
+              </div>
+            </aside>
+            <div class="sg-mini-main">
+              <header class="sg-mini-topbar la-topbar">
+                <div style="font-size:var(--la-text-xs);color:var(--la-muted);">Style guide / Shell</div>
+                <div style="display:flex;align-items:center;gap:var(--la-2);">
+                  <div class="la-avatar" style="width:24px;height:24px;font-size:10px;">LA</div>
+                </div>
+              </header>
+              <div class="sg-mini-content">
+                <div style="margin-bottom:var(--la-3);padding-bottom:var(--la-3);border-bottom:1px solid var(--la-border);display:flex;align-items:center;justify-content:space-between;">
+                  <div style="font-size:var(--la-text-base);font-weight:740;color:var(--la-ink);">Page title</div>
+                  <div style="font-size:var(--la-text-xs);padding:4px 10px;border-radius:var(--la-radius-sm);background:var(--la-brand);color:#fff;">Action</div>
+                </div>
+                <div class="la-grid-2" style="gap:var(--la-2);">
+                  <div style="height:52px;border-radius:var(--la-radius-sm);background:var(--la-surface-subtle);border:1px solid var(--la-border);"></div>
+                  <div style="height:52px;border-radius:var(--la-radius-sm);background:var(--la-surface-subtle);border:1px solid var(--la-border);"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- ── Brand lockup ───────────────────────────────────────── -->
+
+        <h3>Brand lockup</h3>
+        <p class="sg-soft"><code>.la-brandlockup</code> holds the product mark, stacked brand text, and the sidebar toggle button. It lives at the top of <code>.la-sidebar</code>. Use <code>.la-brandmark</code> for the icon, <code>.la-brandtext</code> + <code>.la-brandname</code> + <code>.la-brandnote</code> for the text stack.</p>
+
+        <div class="sg-top-gap">
+          <p class="sg-label"><code>.la-brandlockup</code></p>
+          <div style="margin-top: var(--la-2); display: inline-flex; padding: var(--la-4); border: 1px solid var(--la-border); border-radius: var(--la-radius-md); background: var(--la-surface-subtle);">
+            <div class="la-brandlockup" style="padding-bottom: 0; border-bottom: 0;">
+              <svg class="la-brandmark" viewBox="0 0 48 48" aria-hidden="true">
+                <rect x="5" y="5" width="38" height="38" rx="8" fill="var(--la-brand)" />
+                <path d="M15 17h18l-9 16z" fill="white" opacity="0.92" />
+              </svg>
+              <div class="la-brandtext">
+                <div class="la-brandname">LA UI</div>
+                <div class="la-brandnote">Design system v1</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sg-top-gap">
+          <p class="sg-label"><code>.la-sidebar-note</code> — small note pinned to the sidebar bottom</p>
+          <div style="margin-top: var(--la-2); display: inline-flex; padding: var(--la-4); border: 1px solid var(--la-border); border-radius: var(--la-radius-md); background: var(--la-surface-subtle); min-width: 220px;">
+            <div class="la-sidebar-note" style="margin-top: 0; padding-top: var(--la-3);">
+              Version 1.0.0 · <a href="#" style="color: var(--la-brand); text-decoration: none;">Changelog</a>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- ── Topbar ─────────────────────────────────────────────── -->
+
+        <h3>Topbar</h3>
+        <p class="sg-soft"><code>.la-topbar</code> is sticky, frosted with <code>backdrop-filter: blur</code>, and sits at the top of <code>.la-main</code>. Use <code>.la-topbar-actions</code> for the right side. Use <code>.la-user-menu</code> with <code>.la-avatar</code> for the user identity display.</p>
+
+        <div class="sg-top-gap">
+          <p class="sg-label"><code>.la-topbar</code> — live demo (this is the real topbar above)</p>
+          <p class="la-small la-muted" style="margin-top: var(--la-2);">The topbar at the top of this page is the actual <code>.la-topbar</code>. Its position is <code>sticky top: 0</code>. Scroll this page to see it stick in place.</p>
+        </div>
+
+        <div class="sg-top-gap">
+          <p class="sg-label"><code>.la-topbar</code> — isolated preview</p>
+          <div style="margin-top: var(--la-2); overflow: hidden; border: 1px solid var(--la-border); border-radius: var(--la-radius-md);">
+            <header class="la-topbar" style="position: static;">
+              <div style="font-size: var(--la-text-sm); color: var(--la-muted);">
+                Style guide <span style="margin-inline: var(--la-1);">/</span> <strong style="color: var(--la-ink);">Shell</strong>
+              </div>
+              <div class="la-topbar-actions">
+                <button class="la-btn la-btn-secondary la-btn-sm">Help</button>
+                <div class="la-user-menu">
+                  <div class="la-avatar">LA</div>
+                  <span>Laween</span>
+                </div>
+              </div>
+            </header>
+          </div>
+        </div>
+
+
+        <!-- ── Page header ────────────────────────────────────────── -->
+
+        <h3>Page header</h3>
+        <p class="sg-soft"><code>.la-page-header</code> is a flex row for the page title and an optional action group. Use <code>.la-page-header-left</code> when you need to stack a title and subtitle. Use <code>.la-page-header-actions</code> for the button group on the right.</p>
+
+        <div class="sg-top-gap la-stack-sm">
+
+          <div>
+            <p class="sg-label"><code>.la-page-header</code> — title with actions</p>
+            <div style="margin-top: var(--la-2); padding: var(--la-5); border: 1px solid var(--la-border); border-radius: var(--la-radius-md); background: var(--la-page);">
+              <div class="la-page-header">
+                <h1 style="margin: 0; color: var(--la-ink); font-size: var(--la-text-2xl); font-weight: 740; line-height: var(--la-line-title); letter-spacing: -0.035em;">Import records</h1>
+                <div class="la-page-header-actions">
+                  <button class="la-btn la-btn-secondary">Export</button>
+                  <button class="la-btn">New import</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <p class="sg-label"><code>.la-page-header-left</code> — title with subtitle</p>
+            <div style="margin-top: var(--la-2); padding: var(--la-5); border: 1px solid var(--la-border); border-radius: var(--la-radius-md); background: var(--la-page);">
+              <div class="la-page-header">
+                <div class="la-page-header-left">
+                  <h1 style="margin: 0; color: var(--la-ink); font-size: var(--la-text-2xl); font-weight: 740; line-height: var(--la-line-title); letter-spacing: -0.035em;">Import records</h1>
+                  <p class="la-page-subtext">Review and approve the latest batch before publishing.</p>
+                </div>
+                <div class="la-page-header-actions">
+                  <button class="la-btn la-btn-secondary">Cancel</button>
+                  <button class="la-btn">Approve all</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+
+        <!-- ── Sidebar collapse ───────────────────────────────────── -->
+
+        <h3>Sidebar collapse</h3>
+        <p class="sg-soft">Add <code>sidebar-collapsed</code> to <code>.la-app</code> to collapse the sidebar to a 64px icon strip. The toggle button sits inside <code>.la-brandlockup</code> using <code>position: absolute</code>. It flips to the brand colour when collapsed. Use <code>.is-active</code> on the toggle to rotate the chevron 180°.</p>
+
+        <div class="sg-top-gap la-grid-2" style="gap: var(--la-4);">
+
+          <div>
+            <p class="sg-label">Expanded — default</p>
+            <div style="margin-top: var(--la-2); overflow: hidden; border: 1px solid var(--la-border); border-radius: var(--la-radius-lg);">
+              <div class="sg-mini-app-shell" style="min-height: 280px;">
+                <div class="sg-mini-sidebar" style="position: relative;">
+                  <div style="position: relative; display: flex; align-items: center; gap: var(--la-2); padding-bottom: var(--la-3); border-bottom: 1px solid var(--la-border); margin-bottom: var(--la-3);">
+                    <svg width="26" height="26" viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="5" width="38" height="38" rx="8" fill="var(--la-brand)"/><path d="M15 17h18l-9 16z" fill="white" opacity="0.92"/></svg>
+                    <div>
+                      <div style="font-size: var(--la-text-sm); font-weight: var(--la-weight-strong); color: var(--la-ink);">LA UI</div>
+                      <div style="font-size: var(--la-text-xs); color: var(--la-muted);">Style guide</div>
+                    </div>
+                    <div style="position: absolute; top: 50%; right: 0; transform: translateY(-50%); width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--la-border-strong); border-radius: 8px; background: var(--la-surface); color: var(--la-ink); box-shadow: 0 4px 10px rgba(15,23,42,0.06);">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+                    </div>
+                  </div>
+                  <div style="display: flex; flex-direction: column; gap: var(--la-1);">
+                    <div style="padding: 5px 8px; border-radius: var(--la-radius-xs); background: var(--la-surface-selected); font-size: var(--la-text-xs); color: var(--la-ink);">Shell</div>
+                    <div style="padding: 5px 8px; border-radius: var(--la-radius-xs); font-size: var(--la-text-xs); color: var(--la-ink-soft);">Tokens</div>
+                    <div style="padding: 5px 8px; border-radius: var(--la-radius-xs); font-size: var(--la-text-xs); color: var(--la-ink-soft);">Cards</div>
+                  </div>
+                </div>
+                <div class="sg-mini-main">
+                  <header class="sg-mini-topbar la-topbar">
+                    <div style="font-size: var(--la-text-xs); color: var(--la-muted);">Shell</div>
+                    <div class="la-avatar" style="width: 24px; height: 24px; font-size: 10px;">LA</div>
+                  </header>
+                  <div class="sg-mini-content">
+                    <div style="height: 10px; width: 55%; border-radius: 999px; background: var(--la-border); margin-bottom: var(--la-3);"></div>
+                    <div class="la-grid-2" style="gap: var(--la-2);">
+                      <div style="height: 48px; border-radius: var(--la-radius-sm); background: var(--la-surface-subtle); border: 1px solid var(--la-border);"></div>
+                      <div style="height: 48px; border-radius: var(--la-radius-sm); background: var(--la-surface-subtle); border: 1px solid var(--la-border);"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <p class="sg-label">Collapsed — <code>sidebar-collapsed</code> on <code>.la-app</code></p>
+            <div style="margin-top: var(--la-2); overflow: hidden; border: 1px solid var(--la-border); border-radius: var(--la-radius-lg);">
+              <div class="sg-mini-app-shell" style="min-height: 280px; grid-template-columns: 52px minmax(0, 1fr);">
+                <div style="padding: var(--la-3) var(--la-2); border-right: 1px solid var(--la-border); background: var(--la-surface-subtle); display: flex; flex-direction: column; align-items: center; gap: var(--la-3);">
+                  <div style="position: relative; width: 100%; display: flex; justify-content: center; padding-bottom: var(--la-3); border-bottom: 1px solid var(--la-border); margin-bottom: var(--la-1);">
+                    <svg width="22" height="22" viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="5" width="38" height="38" rx="8" fill="var(--la-brand)"/><path d="M15 17h18l-9 16z" fill="white" opacity="0.92"/></svg>
+                    <div style="position: absolute; bottom: -14px; left: 50%; transform: translateX(-50%); width: 22px; height: 22px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--la-brand); border-radius: 6px; background: var(--la-brand); color: #fff; box-shadow: 0 4px 12px rgba(15,23,42,0.1);">
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+                    </div>
+                  </div>
+                  <div style="display: flex; flex-direction: column; align-items: center; gap: var(--la-2); margin-top: var(--la-3); width: 100%;">
+                    <div style="padding: 5px 0; width: 100%; display: flex; justify-content: center; border-radius: var(--la-radius-xs); background: var(--la-surface-selected);">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--la-ink)" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/></svg>
+                    </div>
+                    <div style="padding: 5px 0; width: 100%; display: flex; justify-content: center; border-radius: var(--la-radius-xs);">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--la-ink-soft)" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"/></svg>
+                    </div>
+                    <div style="padding: 5px 0; width: 100%; display: flex; justify-content: center; border-radius: var(--la-radius-xs);">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--la-ink-soft)" stroke-width="2" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                    </div>
+                  </div>
+                </div>
+                <div class="sg-mini-main">
+                  <header class="sg-mini-topbar la-topbar">
+                    <div style="font-size: var(--la-text-xs); color: var(--la-muted);">Shell</div>
+                    <div class="la-avatar" style="width: 24px; height: 24px; font-size: 10px;">LA</div>
+                  </header>
+                  <div class="sg-mini-content">
+                    <div style="height: 10px; width: 55%; border-radius: 999px; background: var(--la-border); margin-bottom: var(--la-3);"></div>
+                    <div class="la-grid-2" style="gap: var(--la-2);">
+                      <div style="height: 48px; border-radius: var(--la-radius-sm); background: var(--la-surface-subtle); border: 1px solid var(--la-border);"></div>
+                      <div style="height: 48px; border-radius: var(--la-radius-sm); background: var(--la-surface-subtle); border: 1px solid var(--la-border);"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="sg-top-gap">
+          <p class="sg-label">Toggle button states</p>
+          <div class="la-split-aside la-split-aside--narrow" style="margin-top: var(--la-2); padding: var(--la-4) var(--la-5); border: 1px solid var(--la-border); border-radius: var(--la-radius-md); background: var(--la-surface-subtle);">
+            <div>
+              <p style="margin: 0 0 var(--la-3); color: var(--la-muted);">The toggle button floats inside <code>.la-brandlockup</code> using <code>position: absolute; top: 50%; right: 12px</code>. When collapsed it shifts to <code>right: -15px</code> so it protrudes just outside the sidebar's right edge and takes the brand colour. The <code>.is-active</code> class on the button rotates the SVG chevron 180°.</p>
+            </div>
+            <div>
+              <p class="sg-label" style="margin-bottom: var(--la-2);">Expanded</p>
+              <div style="display: flex; align-items: center; gap: var(--la-3); margin-bottom: var(--la-4);">
+                <button type="button" aria-label="Collapse sidebar" style="width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--la-border-strong); border-radius: 10px; background: var(--la-surface); color: var(--la-ink); box-shadow: 0 6px 18px rgba(15,23,42,0.08); cursor: pointer;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+                </button>
+                <span style="color: var(--la-muted); font-size: var(--la-text-sm);">Default surface, <code>right: 12px</code></span>
+              </div>
+              <p class="sg-label" style="margin-bottom: var(--la-2);">Collapsed — <code>.is-active</code></p>
+              <div style="display: flex; align-items: center; gap: var(--la-3);">
+                <button type="button" aria-label="Expand sidebar" style="width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--la-brand); border-radius: 10px; background: var(--la-brand); color: #fff; box-shadow: 0 8px 28px rgba(15,23,42,0.14); cursor: pointer;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="transform: rotate(180deg);"><polyline points="15 18 9 12 15 6"/></svg>
+                </button>
+                <span style="color: var(--la-muted); font-size: var(--la-text-sm);">Brand accent, <code>right: -15px</code>, chevron rotated</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sg-top-gap">
+          <p class="sg-label">Classes applied when collapsed</p>
+          <pre class="sg-code-block" style="margin-top: var(--la-2);">.la-app.sidebar-collapsed                        — 64px sidebar column
+.la-app.sidebar-collapsed .la-sidebar            — reduced padding
+.la-app.sidebar-collapsed .la-brandtext          — hidden
+.la-app.sidebar-collapsed .la-sidebar-note       — hidden
+.la-app.sidebar-collapsed .la-brandmark          — shrinks to 30&times;30px
+.la-app.sidebar-collapsed .la-nav .la-nav-link   — centred, text hidden via font-size: 0
+.la-app.sidebar-collapsed .la-nav-title          — hidden</pre>
+        </div>
+
+
+
+        <!-- ── Site footer ────────────────────────────────────────── -->
+
+        <h3>Site footer</h3>
+        <p class="sg-soft"><code>.la-site-footer</code> is a bar pinned to the bottom of <code>.la-main</code>. Use <code>.la-site-footer-inner</code> for the flex row. <code>.la-site-footer-built</code> holds the left built-by text, <code>.la-site-footer-links</code> holds the right link row.</p>
+
+        <div class="sg-top-gap">
+          <p class="sg-label"><code>.la-site-footer</code></p>
+          <div style="margin-top: var(--la-2); overflow: hidden; border: 1px solid var(--la-border); border-radius: var(--la-radius-md);">
+            <footer class="la-site-footer">
+              <div class="la-site-footer-inner">
+                <p class="la-site-footer-built">Built by <a href="#">Laween Al-Sulaivany</a></p>
+                <div class="la-site-footer-links">
+                  <a href="#">Privacy</a>
+                  <a href="#">Terms</a>
+                  <a href="#">Support</a>
+                </div>
+              </div>
+            </footer>
+          </div>
+        </div>
+
+        <!-- ─────────────────────────────────────────── -->
+
+        <h3>Content width</h3>
+        <p class="sg-soft">Add a modifier to <code>.la-content</code> to set the maximum width of the page content area. The base class defaults to <code>--la-content-standard</code> (1180px). Choose a mode based on what the page needs to do, not how wide your monitor is.</p>
+
+        <div class="sg-top-gap">
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--la-4); margin-top: var(--la-2);">
+
+            <div class="la-panel la-panel-quiet" style="padding: var(--la-5);">
+              <p style="font-size: var(--la-text-xs); font-weight: 600; color: var(--la-text-soft); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: var(--la-2);">Standard — default</p>
+              <p style="font-size: var(--la-text-sm); margin-bottom: var(--la-3);"><strong>1180px</strong> max-width. No modifier needed. Dashboard pages, settings, single-topic component pages.</p>
+              <pre style="font-size: var(--la-text-xs); background: var(--la-surface-subtle); border: 1px solid var(--la-border); border-radius: var(--la-radius-sm); padding: var(--la-3); margin: 0; overflow: auto;">&lt;div class="la-content"&gt;</pre>
+            </div>
+
+            <div class="la-panel la-panel-quiet" style="padding: var(--la-5);">
+              <p style="font-size: var(--la-text-xs); font-weight: 600; color: var(--la-text-soft); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: var(--la-2);">Prose</p>
+              <p style="font-size: var(--la-text-sm); margin-bottom: var(--la-3);"><strong>680px</strong> max-width. Editorial content where line length matters: privacy policy, terms, support, documentation.</p>
+              <pre style="font-size: var(--la-text-xs); background: var(--la-surface-subtle); border: 1px solid var(--la-border); border-radius: var(--la-radius-sm); padding: var(--la-3); margin: 0; overflow: auto;">&lt;div class="la-content la-content--prose"&gt;</pre>
+            </div>
+
+            <div class="la-panel la-panel-quiet" style="padding: var(--la-5);">
+              <p style="font-size: var(--la-text-xs); font-weight: 600; color: var(--la-text-soft); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: var(--la-2);">Wide</p>
+              <p style="font-size: var(--la-text-sm); margin-bottom: var(--la-3);"><strong>1440px</strong> max-width. Component showcase pages and style guides where side-by-side examples need room.</p>
+              <pre style="font-size: var(--la-text-xs); background: var(--la-surface-subtle); border: 1px solid var(--la-border); border-radius: var(--la-radius-sm); padding: var(--la-3); margin: 0; overflow: auto;">&lt;div class="la-content la-content--wide"&gt;</pre>
+            </div>
+
+            <div class="la-panel la-panel-quiet" style="padding: var(--la-5);">
+              <p style="font-size: var(--la-text-xs); font-weight: 600; color: var(--la-text-soft); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: var(--la-2);">App</p>
+              <p style="font-size: var(--la-text-sm); margin-bottom: var(--la-3);"><strong>No constraint.</strong> Full-bleed data apps: complex tables, split-panel layouts, dense multi-column views.</p>
+              <pre style="font-size: var(--la-text-xs); background: var(--la-surface-subtle); border: 1px solid var(--la-border); border-radius: var(--la-radius-sm); padding: var(--la-3); margin: 0; overflow: auto;">&lt;div class="la-content la-content--app"&gt;</pre>
+            </div>
+
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+</div>
+<script>
+window.SHELL_PAGE = { active: 'shell', breadcrumb: 'Shell', nav: 'page', base: '' };
+</script>
+<script src="app.js"></script>
+</body>
+</html>

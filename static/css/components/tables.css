@@ -1,0 +1,460 @@
+/* =============================================================================
+   tables.css
+   data tables, sortable headers, filters, empty states, and table helpers
+============================================================================= */
+
+
+/* =======================================
+   TABLE WRAPPER
+========================================== */
+
+/* scroll wrapper around wide tables */
+.la-table-wrap {
+    overflow: auto;
+    background: var(--la-surface);
+    border: 1px solid var(--la-border);
+    border-radius: var(--la-radius-md);
+}
+
+/* table wrapper with no visible border when inside another panel */
+.la-table-wrap-plain {
+    border: 0;
+    border-radius: 0;
+}
+
+
+/* =======================================
+   BASE TABLE
+========================================== */
+
+/* base data table */
+.la-table {
+    width: 100%;
+    min-width: 100%;
+    border-collapse: collapse;
+    color: var(--la-ink-soft);
+    font-size: var(--la-text-sm);
+}
+
+/* shared table cell spacing — outer border comes from the wrapper */
+.la-table th,
+.la-table td {
+    padding: 0.72rem var(--la-4);
+    border-bottom: 1px solid var(--la-border);
+    border-right: 1px solid var(--la-border);
+    text-align: left;
+    vertical-align: middle;
+}
+
+/* no trailing right border on the last column */
+.la-table th:last-child,
+.la-table td:last-child {
+    border-right: 0;
+}
+
+/* header row */
+.la-table th {
+    background: var(--la-surface-subtle);
+    color: var(--la-muted);
+    font-size: var(--la-text-xs);
+    font-weight: var(--la-weight-strong);
+    letter-spacing: 0.045em;
+    text-transform: uppercase;
+    border-bottom-color: var(--la-border-strong);
+}
+
+/* no bottom border on the last row — wrapper owns that edge */
+.la-table tr:last-child td {
+    border-bottom: 0;
+}
+
+/* subtle row hover */
+.la-table tbody tr:hover {
+    background: var(--la-surface-hover);
+}
+
+
+/* =======================================
+   CELL HELPERS
+========================================== */
+
+/* stronger cell text */
+.la-table .la-cell-strong {
+    color: var(--la-ink);
+    font-weight: var(--la-weight-light);
+}
+
+/* muted cell text */
+.la-table .la-cell-muted {
+    color: var(--la-muted);
+}
+
+/* compact numeric cell */
+.la-td-number {
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+/* small note inside a cell */
+.la-td-note {
+    max-width: 220px;
+    color: var(--la-muted);
+    font-size: var(--la-text-xs);
+    line-height: var(--la-line-base);
+}
+
+/* computed/formula cell */
+.la-td-formula {
+    color: var(--la-brand-active);
+    font-family: var(--la-mono);
+    font-size: var(--la-text-sm);
+}
+
+
+/* =======================================
+   TABLE STATES
+========================================== */
+
+/* empty table state */
+.la-table-empty {
+    padding: var(--la-6) var(--la-4);
+    color: var(--la-muted);
+    font-size: var(--la-text-sm);
+    text-align: center;
+}
+
+/* invalid/error row */
+.la-row-invalid > td {
+    background: var(--la-danger-soft);
+}
+
+.la-table .la-row-invalid:hover > td {
+
+    /* background: var(--la-danger-hover); */
+    /* box-shadow: inset 0 1px 0 var(--la-danger), inset 0 -1px 0 var(--la-danger); */
+}
+
+/* warning/highlight row */
+.la-row-highlight > td {
+    background: var(--la-warning-soft);
+}
+
+.la-table .la-row-highlight:hover > td {
+    /* background:  var(--la-warning-hover); */
+    /* box-shadow: inset 0 1px 0 var(--la-warning), inset 0 -1px 0 var(--la-warning); */
+}
+
+/* muted/disabled row — no hover */
+.la-row-muted > td {
+    color: var(--la-disabled);
+}
+
+.la-table .la-row-muted:hover > td {
+    background: var(--la-surface);
+}
+
+
+/* =======================================
+   ACTION CELLS
+========================================== */
+
+/* actions column should stay compact */
+.la-td-actions {
+    width: 1%;
+    white-space: nowrap;
+    text-align: right;
+}
+
+.la-td-actions form {
+    display: inline;
+}
+
+/* row of table action buttons */
+.la-table-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--la-2);
+}
+
+
+/* =======================================
+   SORTABLE COLUMNS
+========================================== */
+
+/* sortable tables expand to content width */
+.la-table[data-sortable] {
+    min-width: 100%;
+}
+
+/* sortable tables need nowrap headers */
+.la-table[data-sortable] th {
+    position: relative;
+    white-space: nowrap;
+}
+
+/* header inner layout for sort link + filter button */
+.la-th-inner {
+    display: flex;
+    align-items: center;
+    gap: var(--la-1);
+}
+
+/* sort link in header */
+.la-sort-link {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    gap: var(--la-1);
+    color: inherit;
+    text-decoration: none;
+    font-weight: var(--la-weight-strong);
+}
+
+.la-sort-link:hover {
+    color: var(--la-brand-active);
+}
+
+
+
+/* active sorted column — hide the generic hint */
+.la-th--sorted .la-sort-link {
+    color: var(--la-brand-active);
+}
+
+.la-th--sorted .la-sort-link::after {
+    display: none;
+}
+
+/* sort direction arrow in markup */
+.la-sort-arrow {
+    color: currentColor;
+    font-size: var(--la-text-xs);
+    opacity: 0.8;
+}
+
+/* computed/formula header */
+.la-th--formula {
+    background: var(--la-surface-subtle);
+    color: var(--la-brand-active);
+}
+
+.la-th--formula sup {
+    margin-left: 2px;
+    color: var(--la-brand-active);
+    font-size: var(--la-text-xs);
+    font-weight: var(--la-weight-strong);
+    letter-spacing: 0.04em;
+}
+
+
+/* =======================================
+   COLUMN FILTER BUTTON
+========================================== */
+
+/* per-column filter toggle button */
+.la-col-filter {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    border: 1px solid transparent;
+    border-radius: var(--la-radius-sm);
+    background: transparent;
+    color: var(--la-muted);
+    cursor: pointer;
+    transition:
+        background-color var(--la-transition-fast),
+        border-color var(--la-transition-fast),
+        color var(--la-transition-fast);
+}
+
+.la-col-filter:hover {
+    border-color: var(--la-border-strong);
+    background: var(--la-surface);
+    color: var(--la-ink);
+}
+
+/* filter is currently active */
+.la-col-filter--active {
+    border-color: var(--la-brand-border);
+    background: var(--la-surface);
+    color: var(--la-brand-active);
+}
+
+
+/* =======================================
+   FILTER PANEL
+========================================== */
+
+/* floating column filter panel */
+.la-filter-panel {
+    position: absolute;
+    z-index: var(--la-z-panel);
+    min-width: 240px;
+    overflow: hidden;
+    background: var(--la-surface);
+    border: 1px solid var(--la-border);
+    border-radius: var(--la-radius-md);
+    box-shadow: var(--la-shadow-popover);
+    font-size: var(--la-text-sm);
+}
+
+/* search and value list area */
+.la-filter-panel-body {
+    display: grid;
+    gap: var(--la-2);
+    padding: var(--la-3);
+    border-bottom: 1px solid var(--la-border);
+}
+
+/* search input inside filter panel */
+.la-filter-search {
+    width: 100%;
+    min-height: 32px;
+    padding: 0 var(--la-3);
+    border: 1px solid var(--la-border-strong);
+    border-radius: var(--la-radius-sm);
+    background: var(--la-surface);
+    color: var(--la-ink);
+    font-size: var(--la-text-sm);
+    outline: none;
+}
+
+.la-filter-search:focus {
+    border-color: var(--la-brand-action);
+    box-shadow: var(--la-focus);
+}
+
+/* select all checkbox row */
+.la-filter-select-all {
+    display: flex;
+    align-items: center;
+    gap: var(--la-2);
+    padding: 0 0 var(--la-2);
+    border-bottom: 1px solid var(--la-border);
+    color: var(--la-ink-soft);
+    font-size: var(--la-text-sm);
+    font-weight: var(--la-weight-light);
+    cursor: pointer;
+}
+
+/* scrollable value list */
+.la-filter-values {
+    display: grid;
+    max-height: 180px;
+    overflow-y: auto;
+}
+
+/* single filter option */
+.la-filter-values label {
+    display: flex;
+    align-items: center;
+    gap: var(--la-2);
+    padding: var(--la-1) var(--la-2);
+    border-radius: var(--la-radius-sm);
+    color: var(--la-ink-soft);
+    font-size: var(--la-text-sm);
+    cursor: pointer;
+    transition:
+        background-color var(--la-transition-fast),
+        color var(--la-transition-fast);
+}
+
+.la-filter-values label:hover {
+    background: var(--la-surface-hover);
+    color: var(--la-ink);
+}
+
+/* checkboxes inside filter panel */
+.la-filter-values input,
+.la-filter-select-all input {
+    accent-color: var(--la-brand-action);
+}
+
+/* footer buttons */
+.la-filter-panel-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--la-2);
+    padding: var(--la-2) var(--la-3);
+    border-top: 1px solid var(--la-border);
+    background: var(--la-surface-subtle);
+}
+
+
+/* =======================================
+   ACTIVE FILTERS
+========================================== */
+
+/* row of active filter chips above a table */
+.la-active-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--la-2);
+    margin-bottom: var(--la-3);
+}
+
+/* single active filter chip */
+.la-filter-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--la-2);
+    min-height: 24px;
+    padding: 2px 7px;
+    border: 1px solid var(--la-brand-border);
+    border-radius: var(--la-radius-sm);
+    background: var(--la-surface);
+    color: var(--la-brand-active);
+    font-size: var(--la-text-xs);
+    font-weight: var(--la-weight-light);
+    white-space: nowrap;
+}
+
+/* column name inside filter chip */
+.la-filter-badge-col {
+    color: var(--la-brand-active);
+    font-weight: var(--la-weight-strong);
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+/* selected values inside filter chip */
+.la-filter-badge-vals {
+    color: var(--la-ink);
+}
+
+/* remove chip */
+.la-filter-badge-remove {
+    display: inline-flex;
+    align-items: center;
+    margin-left: var(--la-1);
+    color: var(--la-muted);
+    font-size: var(--la-text-sm);
+    line-height: 1;
+    opacity: 0.75;
+    text-decoration: none;
+    transition:
+        color var(--la-transition-fast),
+        opacity var(--la-transition-fast);
+}
+
+.la-filter-badge-remove:hover {
+    color: var(--la-ink);
+    opacity: 1;
+}
+
+
+/* =======================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 720px) {
+    .la-table th,
+    .la-table td {
+        padding-inline: var(--la-3);
+    }
+}

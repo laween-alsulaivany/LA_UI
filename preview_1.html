@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <script>(function(){var t=localStorage.getItem('la-theme');if(t)document.documentElement.setAttribute('data-theme',t);}());</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>preview_1</title>
+  <link rel="stylesheet" href="static/css/foundation/tokens.css">
+  <link rel="stylesheet" href="static/css/foundation/base.css">
+  <link rel="stylesheet" href="static/css/layout/shell.css">
+  <link rel="stylesheet" href="static/css/components/navigation.css">
+  <link rel="stylesheet" href="static/css/components/buttons.css">
+  <link rel="stylesheet" href="static/css/components/cards.css">
+  <link rel="stylesheet" href="static/css/components/forms.css">
+  <link rel="stylesheet" href="static/css/components/tables.css">
+  <link rel="stylesheet" href="static/css/components/feedback.css">
+  <link rel="stylesheet" href="static/css/components/workflow.css">
+  <link rel="stylesheet" href="static/css/utilities/utilities.css">
+</head>
+<body>
+  <div class="la-app">
+    <aside class="la-sidebar" aria-label="Primary navigation">
+      <a class="la-brandlockup" href="#">
+        <svg class="la-brandmark" viewBox="0 0 48 48" aria-hidden="true">
+          <rect x="7" y="7" width="34" height="34" rx="9" fill="currentColor"></rect>
+          <path d="M16 29V19h6.6c3.9 0 6.4 2 6.4 5s-2.5 5-6.4 5H16Zm16 0V19h3v10h-3Z" fill="var(--la-surface)"></path>
+        </svg>
+        <span class="la-brandtext">
+          <span class="la-brandname">Harbor Desk</span>
+          <span class="la-brandnote">Wholesale operations</span>
+        </span>
+      </a>
+      <button id="sg-sidebar-toggle" class="la-sidebar-toggle" type="button" aria-pressed="false" aria-label="Toggle sidebar" title="Toggle sidebar">
+        <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" fill="currentColor" />
+        </svg>
+      </button>
+
+      <div class="la-nav-section">
+        <p class="la-nav-title">Workspace</p>
+        <nav class="la-nav">
+          <a class="la-nav-link is-active" href="#" aria-current="page"><span class="la-nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg></span><span class="la-nav-label">Orders</span></a>
+          <a class="la-nav-link" href="#"><span class="la-nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><span class="la-nav-label">Customers</span></a>
+          <a class="la-nav-link" href="#"><span class="la-nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/></svg></span><span class="la-nav-label">Inventory</span></a>
+          <a class="la-nav-link" href="#"><span class="la-nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></span><span class="la-nav-label">Routes</span></a>
+          <a class="la-nav-link" href="#"><span class="la-nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></span><span class="la-nav-label">Billing</span></a>
+        </nav>
+      </div>
+
+      <div class="la-nav-section">
+        <p class="la-nav-title">Admin</p>
+        <nav class="la-nav">
+          <a class="la-nav-link" href="#"><span class="la-nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><span class="la-nav-label">Reports</span></a>
+          <a class="la-nav-link" href="#"><span class="la-nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span><span class="la-nav-label">Users</span></a>
+          <a class="la-nav-link" href="#"><span class="la-nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg></span><span class="la-nav-label">Settings</span></a>
+        </nav>
+      </div>
+
+      <p class="la-sidebar-note">Last sync: today at 8:42 AM. Order numbers and totals are sample records.</p>
+    </aside>
+
+    <main class="la-main">
+      <header class="la-topbar">
+        <div class="la-breadcrumbs" aria-label="Breadcrumb">
+          <a href="#">Operations</a>
+          <span>/</span>
+          <strong>Orders</strong>
+        </div>
+        <div class="la-topbar-actions" style="flex-wrap: nowrap;">
+          <input class="la-input" type="search" placeholder="Search orders, customers, SKUs" style="width: 250px;">
+          <button class="la-btn la-btn-secondary" type="button">Export</button>
+          <button id="sg-theme-toggle" class="la-btn la-btn-ghost" type="button"
+                  aria-label="Switch to dark mode" aria-pressed="false" title="Toggle theme">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                 stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+          </button>
+          <span class="la-separator"></span>
+          <div class="la-user-menu">
+            <span class="la-avatar">JD</span>
+            <span>Jordan Diaz</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="la-content la-content--app">
+        <section class="la-page-header">
+          <div>
+            <h1>Orders</h1>
+            <p>Track open orders, shipment holds, and invoice readiness from one working screen.</p>
+          </div>
+          <div class="la-page-header-actions">
+            <button class="la-btn la-btn-secondary" type="button">Print pick list</button>
+            <button class="la-btn la-btn-primary" type="button">New order</button>
+          </div>
+        </section>
+
+        <section class="la-panel la-mb-6" aria-label="Order totals">
+          <div style="display: flex;">
+            <div style="flex: 1; padding: var(--la-4) var(--la-5); border-right: 1px solid var(--la-border);">
+              <p class="la-muted la-small la-m-0">Open orders</p>
+              <p style="margin: var(--la-2) 0 var(--la-1); font-size: var(--la-text-xl); font-weight: var(--la-weight-strong); color: var(--la-ink); line-height: 1.1;">124</p>
+            </div>
+            <div style="flex: 1; padding: var(--la-4) var(--la-5); border-right: 1px solid var(--la-border);">
+              <p class="la-muted la-small la-m-0">Ready to invoice</p>
+              <p style="margin: var(--la-2) 0 var(--la-1); font-size: var(--la-text-xl); font-weight: var(--la-weight-strong); color: var(--la-ink); line-height: 1.1;">$38,420</p>
+            </div>
+            <div style="flex: 1; padding: var(--la-4) var(--la-5); border-right: 1px solid var(--la-border);">
+              <p class="la-muted la-small la-m-0">Shipment holds</p>
+              <p style="margin: var(--la-2) 0 var(--la-1); font-size: var(--la-text-xl); font-weight: var(--la-weight-strong); color: var(--la-ink); line-height: 1.1;">9</p>
+            </div>
+            <div style="flex: 1; padding: var(--la-4) var(--la-5);">
+              <p class="la-muted la-small la-m-0">Backorder SKUs</p>
+              <p style="margin: var(--la-2) 0 var(--la-1); font-size: var(--la-text-xl); font-weight: var(--la-weight-strong); color: var(--la-ink); line-height: 1.1;">14</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="la-panel la-mb-6">
+          <div class="la-panel-header">
+            <div>
+              <h2 class="la-panel-title">Order queue</h2>
+              <p class="la-page-subtext">Filtered to commercial customers assigned to the north route.</p>
+            </div>
+            <div class="la-table-switcher" aria-label="Order view">
+              <a class="la-table-switcher-link la-table-switcher-link-active" href="#">All</a>
+              <a class="la-table-switcher-link" href="#">Needs review</a>
+              <a class="la-table-switcher-link" href="#">Scheduled</a>
+              <a class="la-table-switcher-link" href="#">Invoiced</a>
+            </div>
+          </div>
+          <div class="la-panel-body">
+            <form class="la-filter-form la-mb-4">
+              <input class="la-min-w-220" type="search" placeholder="Search customer or order ID">
+              <select aria-label="Route">
+                <option>Route: North</option>
+                <option>Route: South</option>
+                <option>Route: Warehouse pickup</option>
+              </select>
+              <select aria-label="Status">
+                <option>Status: Open</option>
+                <option>Status: Hold</option>
+                <option>Status: Ready</option>
+              </select>
+              <button class="la-btn la-btn-secondary la-btn-sm" type="button">Apply</button>
+              <button class="la-btn la-btn-ghost la-btn-sm" type="button">Reset</button>
+            </form>
+
+            <div class="la-active-filters" aria-label="Active filters">
+              <span class="la-filter-badge"><span class="la-filter-badge-col">Route</span><span class="la-filter-badge-vals">North</span><a class="la-filter-badge-remove" href="#" aria-label="Remove route filter">×</a></span>
+              <span class="la-filter-badge"><span class="la-filter-badge-col">Status</span><span class="la-filter-badge-vals">Open</span><a class="la-filter-badge-remove" href="#" aria-label="Remove status filter">×</a></span>
+            </div>
+
+            <div class="la-table-wrap">
+              <table class="la-table" data-sortable>
+                <thead>
+                  <tr>
+                    <th><div class="la-th-inner"><a class="la-sort-link" href="#">Order</a></div></th>
+                    <th><div class="la-th-inner"><a class="la-sort-link" href="#">Customer</a><button class="la-col-filter la-col-filter--active" type="button" aria-label="Filter customer"><svg viewBox="0 0 16 16" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M2 4h12M5 8h6M7 12h2"/></svg></button></div></th>
+                    <th><div class="la-th-inner"><a class="la-sort-link" href="#">Requested</a></div></th>
+                    <th><div class="la-th-inner"><a class="la-sort-link" href="#">Route</a></div></th>
+                    <th><div class="la-th-inner"><a class="la-sort-link" href="#">Status</a></div></th>
+                    <th><div class="la-th-inner"><a class="la-sort-link" href="#">Total</a></div></th>
+                    <th><div class="la-th-inner"><a class="la-sort-link" href="#">Owner</a></div></th>
+                    <th class="la-td-actions">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="la-cell-strong">#ORD-10432</td>
+                    <td>TechNova Solutions</td>
+                    <td class="la-td-number">May 12</td>
+                    <td>North A</td>
+                    <td>Picking</td>
+                    <td class="la-td-number">$2,540.00</td>
+                    <td>M. Lane</td>
+                    <td class="la-td-actions"><button class="la-btn la-btn-ghost la-btn-xs" type="button">Open</button></td>
+                  </tr>
+                  <tr>
+                    <td class="la-cell-strong">#ORD-10431</td>
+                    <td>BrightCore Ltd.</td>
+                    <td class="la-td-number">May 12</td>
+                    <td>North B</td>
+                    <td>Ready</td>
+                    <td class="la-td-number">$1,230.00</td>
+                    <td>R. Finch</td>
+                    <td class="la-td-actions"><button class="la-btn la-btn-ghost la-btn-xs" type="button">Open</button></td>
+                  </tr>
+                  <tr class="la-row-highlight">
+                    <td class="la-cell-strong">#ORD-10430</td>
+                    <td>Veridian Systems</td>
+                    <td class="la-td-number">May 11</td>
+                    <td>North A</td>
+                    <td>Hold</td>
+                    <td class="la-td-number">$3,120.00</td>
+                    <td>M. Lane</td>
+                    <td class="la-td-actions"><button class="la-btn la-btn-ghost la-btn-xs" type="button">Review</button></td>
+                  </tr>
+                  <tr>
+                    <td class="la-cell-strong">#ORD-10429</td>
+                    <td>Prime Industries</td>
+                    <td class="la-td-number">May 11</td>
+                    <td>North C</td>
+                    <td>Packing</td>
+                    <td class="la-td-number">$4,860.00</td>
+                    <td>S. Patel</td>
+                    <td class="la-td-actions"><button class="la-btn la-btn-ghost la-btn-xs" type="button">Open</button></td>
+                  </tr>
+                  <tr>
+                    <td class="la-cell-strong">#ORD-10428</td>
+                    <td>Northwave Corp.</td>
+                    <td class="la-td-number">May 10</td>
+                    <td>North B</td>
+                    <td>Ready</td>
+                    <td class="la-td-number">$980.00</td>
+                    <td>R. Finch</td>
+                    <td class="la-td-actions"><button class="la-btn la-btn-ghost la-btn-xs" type="button">Open</button></td>
+                  </tr>
+                  <tr>
+                    <td class="la-cell-strong">#ORD-10427</td>
+                    <td>Apex Global</td>
+                    <td class="la-td-number">May 10</td>
+                    <td>North C</td>
+                    <td>Waiting</td>
+                    <td class="la-td-number">$2,200.00</td>
+                    <td>S. Patel</td>
+                    <td class="la-td-actions"><button class="la-btn la-btn-ghost la-btn-xs" type="button">Open</button></td>
+                  </tr>
+                  <tr>
+                    <td class="la-cell-strong">#ORD-10426</td>
+                    <td>BluePeak LLC</td>
+                    <td class="la-td-number">May 9</td>
+                    <td>North A</td>
+                    <td>Scheduled</td>
+                    <td class="la-td-number">$1,450.00</td>
+                    <td>M. Lane</td>
+                    <td class="la-td-actions"><button class="la-btn la-btn-ghost la-btn-xs" type="button">Open</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="la-pagination">
+              <span class="la-pagination-info">Showing 1 to 7 of 124 orders</span>
+              <a class="la-page-link is-current" href="#" aria-current="page">1</a>
+              <a class="la-page-link" href="#">2</a>
+              <a class="la-page-link" href="#">3</a>
+              <a class="la-page-link" href="#">…</a>
+              <a class="la-page-link" href="#">18</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="la-split-aside la-split-aside--wide la-mb-6">
+          <div class="la-stack">
+            <section class="la-panel">
+              <div class="la-panel-header">
+                <h2 class="la-panel-title">Line items for #ORD-10430</h2>
+                <span class="la-badge la-badge-warning">Stock review</span>
+              </div>
+              <div class="la-panel-body">
+                <div class="la-table-wrap">
+                  <table class="la-table">
+                    <thead>
+                      <tr>
+                        <th>SKU</th>
+                        <th>Description</th>
+                        <th>Qty</th>
+                        <th>Available</th>
+                        <th>Warehouse</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="la-cell-strong">BX-1408</td>
+                        <td>Bulk insulated shipping box</td>
+                        <td class="la-td-number">36</td>
+                        <td class="la-td-number">42</td>
+                        <td>Fargo</td>
+                      </tr>
+                      <tr class="la-row-invalid">
+                        <td class="la-cell-strong">LN-2204</td>
+                        <td>Cold pack liner, medium</td>
+                        <td class="la-td-number">80</td>
+                        <td class="la-td-number">54</td>
+                        <td>Fargo</td>
+                      </tr>
+                      <tr>
+                        <td class="la-cell-strong">LB-7710</td>
+                        <td>Printed return labels</td>
+                        <td class="la-td-number">120</td>
+                        <td class="la-td-number">400</td>
+                        <td>Moorhead</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </section>
+
+            <section class="la-panel">
+              <div class="la-panel-header">
+                <h2 class="la-panel-title">Fulfillment workflow</h2>
+              </div>
+              <div class="la-panel-body">
+                <div class="la-workflow">
+                  <div class="la-workflow-step is-complete">
+                    <span class="la-step-marker">1</span>
+                    <div><h3 class="la-step-title">Order verified</h3><p class="la-step-note">Customer terms, tax code, and ship-to address confirmed.</p></div>
+                    <span class="la-step-state">8:12 AM</span>
+                  </div>
+                  <div class="la-workflow-step is-current">
+                    <span class="la-step-marker">2</span>
+                    <div><h3 class="la-step-title">Inventory exception</h3><p class="la-step-note">One liner SKU needs a substitute or split shipment approval.</p></div>
+                    <button class="la-btn la-btn-secondary la-btn-sm" type="button">Resolve</button>
+                  </div>
+                  <div class="la-workflow-step roadmap">
+                    <span class="la-step-marker">3</span>
+                    <div><h3 class="la-step-title">Carrier booking</h3><p class="la-step-note">Held until the pick list clears.</p></div>
+                    <span class="la-step-state">Pending</span>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <aside class="la-stack">
+            <section class="la-panel">
+              <div class="la-panel-header">
+                <h2 class="la-panel-title">Create order</h2>
+              </div>
+              <div class="la-panel-body">
+                <form class="la-form">
+                  <fieldset class="la-fieldset">
+                    <div class="la-field-row">
+                      <label class="la-label la-label-required" for="customer">Customer</label>
+                      <select class="la-select" id="customer">
+                        <option>Veridian Systems</option>
+                        <option>TechNova Solutions</option>
+                        <option>Northwave Corp.</option>
+                      </select>
+                    </div>
+                    <div class="la-field-grid">
+                      <div class="la-field-row">
+                        <label class="la-label" for="requested">Requested date</label>
+                        <input class="la-input" id="requested" type="text" value="May 14, 2025">
+                      </div>
+                      <div class="la-field-row">
+                        <label class="la-label" for="route">Route</label>
+                        <select class="la-select" id="route">
+                          <option>North A</option>
+                          <option>North B</option>
+                          <option>Pickup</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="la-field-row la-field-warning">
+                      <label class="la-label" for="sku">Primary SKU</label>
+                      <input class="la-input" id="sku" type="text" value="LN-2204">
+                      <p class="la-help">Available quantity is below requested quantity.</p>
+                    </div>
+                    <div class="la-field-row">
+                      <label class="la-label" for="notes">Internal note</label>
+                      <textarea class="la-textarea" id="notes">Customer will accept split shipment if the first parcel leaves this week.</textarea>
+                    </div>
+                  </fieldset>
+                  <div class="la-form-actions">
+                    <button class="la-btn la-btn-primary" type="button">Save order</button>
+                    <button class="la-btn la-btn-secondary" type="button">Save draft</button>
+                  </div>
+                </form>
+              </div>
+            </section>
+
+            <section class="la-panel">
+              <div class="la-panel-header">
+                <h2 class="la-panel-title">Audit trail</h2>
+              </div>
+              <div class="la-panel-body">
+                <div class="la-audit-list">
+                  <div class="la-audit-item"><span class="la-audit-time">8:42</span><p class="la-audit-text"><strong>M. Lane</strong> marked liner quantity short.</p></div>
+                  <div class="la-audit-item"><span class="la-audit-time">8:17</span><p class="la-audit-text"><strong>System</strong> refreshed warehouse availability.</p></div>
+                  <div class="la-audit-item"><span class="la-audit-time">8:12</span><p class="la-audit-text"><strong>R. Finch</strong> verified account terms.</p></div>
+                </div>
+              </div>
+            </section>
+          </aside>
+        </section>
+      </div>
+    </main>
+  </div>
+<script src="app.js"></script>
+</body>
+</html>

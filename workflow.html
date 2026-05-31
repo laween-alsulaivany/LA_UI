@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <script>(function(){var t=localStorage.getItem('la-theme');if(t)document.documentElement.setAttribute('data-theme',t);}());</script>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>LA UI Style Guide — Workflow</title>
+  <link rel="stylesheet" href="app.css" />
+  <link rel="stylesheet" href="showcase-only-new.css" />
+</head>
+<body class="sg-page">
+<div class="la-app">
+  <!-- sidebar and topbar injected by app.js -->
+  <main class="la-main">
+    <div class="la-content la-content--wide">
+
+      <section id="workflow" class="sg-section">
+
+        <div class="sg-section-title">
+          <div>
+            <h2>10. Components: workflow.css</h2>
+            <p>Workflow components represent process state, where a request has been and what happens next. They are NOT for navigation.</p>
+          </div>
+        </div>
+
+        <div class="sg-guideline-card">
+          <h3>Use for</h3>
+          <p>Approval flows, review queues, import pipelines, request status, and audit events. Any time you need to show a user exactly where they are in a defined process.</p>
+        </div>
+
+        <!-- ── Vertical workflow ──────────────────────────────────── -->
+
+        <h3>Vertical workflow</h3>
+        <p class="sg-soft"><code>.la-workflow</code> wraps a stacked list of <code>.la-workflow-step</code> rows. Three row states: <code>.is-complete</code> (filled brand marker with checkmark), <code>.is-current</code> (brand tint + left accent bar), and <code>.roadmap</code> (brand tint, no accent). A default step with no modifier is pending. Use <code>.without-title</code> on the marker when the step has no headline.</p>
+
+        <div class="sg-top-gap">
+          <p class="sg-label"><code>.la-workflow .la-workflow-step — step states</code></p>
+          <div class="la-workflow" style="margin-top: var(--la-2); max-width: 560px;">
+            <div class="la-workflow-step is-complete">
+              <span class="la-step-marker">1</span>
+              <div>
+                <p class="la-step-title">Request submitted</p>
+                <p class="la-step-note">Created and sent to the review queue.</p>
+              </div>
+              <span class="la-tag">9:00 AM</span>
+            </div>
+            <div class="la-workflow-step is-complete">
+              <span class="la-step-marker">2</span>
+              <div>
+                <p class="la-step-title">Initial review</p>
+                <p class="la-step-note">Checked for completeness by the coordinator.</p>
+              </div>
+              <span class="la-tag">9:22 AM</span>
+            </div>
+            <div class="la-workflow-step is-current">
+              <span class="la-step-marker">3</span>
+              <div>
+                <p class="la-step-title">Department approval</p>
+                <p class="la-step-note">Awaiting sign-off from the department head.</p>
+              </div>
+              <span class="la-tag la-tag-brand">Now</span>
+            </div>
+            <div class="la-workflow-step">
+              <span class="la-step-marker">4</span>
+              <div>
+                <p class="la-step-title">Notify stakeholders</p>
+                <p class="la-step-note">Email confirmation sent to all parties.</p>
+              </div>
+              <span class="la-tag">Next</span>
+            </div>
+            <div class="la-workflow-step roadmap">
+              <span class="la-step-marker">5</span>
+              <div>
+                <p class="la-step-title">Archive</p>
+                <p class="la-step-note">Record closed and moved to archive.</p>
+              </div>
+              <span class="la-tag">Planned</span>
+            </div>
+            <div class="la-workflow-step">
+              <span class="la-step-marker without-title">6</span>
+              <div>
+                <p class="la-step-note">Use <code>.without-title</code> on the marker when there is no step headline, it nudges the marker down to align with the note text.</p>
+              </div>
+              <span class="la-tag">Note</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Audit log ──────────────────────────────────────────── -->
+
+        <h3>Audit log</h3>
+        <p class="sg-soft"><code>.la-audit-list</code> is a simple two-column log: a fixed-width timestamp column (<code>.la-audit-time</code>) and a description column (<code>.la-audit-text</code>). Use <code>&lt;strong&gt;</code> inside the text to highlight the actor. Wrap in a panel to give it context.</p>
+
+        <div class="sg-top-gap">
+          <p class="sg-label"><code>.la-audit-list .la-audit-item .la-audit-time .la-audit-text</code></p>
+          <div class="la-panel" style="margin-top: var(--la-2); max-width: 520px;">
+            <div class="la-panel-header">
+              <h3 class="la-panel-title">Activity</h3>
+            </div>
+            <div class="la-panel-body">
+              <div class="la-audit-list">
+                <div class="la-audit-item">
+                  <span class="la-audit-time">09:00</span>
+                  <p class="la-audit-text"><strong>Laween</strong> submitted the import request.</p>
+                </div>
+                <div class="la-audit-item">
+                  <span class="la-audit-time">09:15</span>
+                  <p class="la-audit-text"><strong>Reviewer</strong> opened the record for review.</p>
+                </div>
+                <div class="la-audit-item">
+                  <span class="la-audit-time">09:28</span>
+                  <p class="la-audit-text"><strong>Reviewer</strong> added a note to the request.</p>
+                </div>
+                <div class="la-audit-item">
+                  <span class="la-audit-time">09:41</span>
+                  <p class="la-audit-text"><strong>System</strong> routed the request to department approval.</p>
+                </div>
+                <div class="la-audit-item">
+                  <span class="la-audit-time">10:05</span>
+                  <p class="la-audit-text"><strong>Dept. Head</strong> approved the request.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Activity timeline ──────────────────────────────────── -->
+
+        <h3>Activity timeline</h3>
+        <p class="sg-soft"><code>.la-timeline</code> is an ordered list of events with a dot-and-connector structure. Three dot states: <code>.la-timeline-dot--done</code> (filled brand), no modifier (active — brand ring with white fill), and <code>.la-timeline-dot--pending</code> (gray ring). The vertical connector renders via <code>::before</code> on each <code>li</code> except the last.</p>
+
+        <div class="sg-top-gap">
+          <p class="sg-label"><code>.la-timeline — dot states</code></p>
+          <div style="margin-top: var(--la-2); max-width: 400px;">
+            <ul class="la-timeline">
+              <li>
+                <span class="la-timeline-dot la-timeline-dot--done"></span>
+                <div class="la-timeline-body">
+                  <p class="la-timeline-title">Import started</p>
+                  <p class="la-timeline-meta">Today at 9:00 AM · Laween</p>
+                </div>
+              </li>
+              <li>
+                <span class="la-timeline-dot la-timeline-dot--done"></span>
+                <div class="la-timeline-body">
+                  <p class="la-timeline-title">File validated</p>
+                  <p class="la-timeline-meta">Today at 9:02 AM · System</p>
+                </div>
+              </li>
+              <li>
+                <span class="la-timeline-dot la-timeline-dot--done"></span>
+                <div class="la-timeline-body">
+                  <p class="la-timeline-title">1,204 rows processed</p>
+                  <p class="la-timeline-meta">Today at 9:04 AM · System</p>
+                </div>
+              </li>
+              <li>
+                <span class="la-timeline-dot"></span>
+                <div class="la-timeline-body">
+                  <p class="la-timeline-title">Review in progress</p>
+                  <p class="la-timeline-meta">Active — waiting for sign-off</p>
+                </div>
+              </li>
+              <li>
+                <span class="la-timeline-dot la-timeline-dot--pending"></span>
+                <div class="la-timeline-body">
+                  <p class="la-timeline-title">Report generation</p>
+                  <p class="la-timeline-meta">Pending approval</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- ── Compact stepper ────────────────────────────────────── -->
+
+        <h3>Compact stepper</h3>
+        <p class="sg-soft"><code>.la-steps</code> is a horizontal step indicator for multi-step forms or wizards. Each <code>.la-step</code> has a number bubble (<code>.la-step-num</code>) and a label (<code>.la-step-label</code>). Use <code>.la-step--done</code> for completed steps and <code>.la-step--current</code> for the active step. Separate steps with <code>.la-step-arrow</code>. The row wraps on narrow viewports.</p>
+
+        <div class="sg-top-gap la-stack-sm">
+          <div>
+            <p class="sg-label"><code>.la-steps .la-step — 3 steps</code></p>
+            <div class="la-steps" style="margin-top: var(--la-2);">
+              <div class="la-step la-step--done">
+                <span class="la-step-num">1</span>
+                <span class="la-step-label">Upload file</span>
+              </div>
+              <span class="la-step-arrow">›</span>
+              <div class="la-step la-step--current">
+                <span class="la-step-num">2</span>
+                <span class="la-step-label">Map columns</span>
+              </div>
+              <span class="la-step-arrow">›</span>
+              <div class="la-step">
+                <span class="la-step-num">3</span>
+                <span class="la-step-label">Review &amp; import</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <p class="sg-label"><code>.la-steps — 5 steps, two done</code></p>
+            <div class="la-steps" style="margin-top: var(--la-2);">
+              <div class="la-step la-step--done">
+                <span class="la-step-num">1</span>
+                <span class="la-step-label">Details</span>
+              </div>
+              <span class="la-step-arrow">›</span>
+              <div class="la-step la-step--done">
+                <span class="la-step-num">2</span>
+                <span class="la-step-label">Scope</span>
+              </div>
+              <span class="la-step-arrow">›</span>
+              <div class="la-step la-step--current">
+                <span class="la-step-num">3</span>
+                <span class="la-step-label">Criteria</span>
+              </div>
+              <span class="la-step-arrow">›</span>
+              <div class="la-step">
+                <span class="la-step-num">4</span>
+                <span class="la-step-label">Review</span>
+              </div>
+              <span class="la-step-arrow">›</span>
+              <div class="la-step">
+                <span class="la-step-num">5</span>
+                <span class="la-step-label">Publish</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+</div>
+<script>
+window.SHELL_PAGE = { active: 'workflow', breadcrumb: 'Workflow', nav: 'page', base: '' };
+</script>
+<script src="app.js"></script>
+</body>
+</html>

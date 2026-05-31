@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <script>(function(){var t=localStorage.getItem('la-theme');if(t)document.documentElement.setAttribute('data-theme',t);}());</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Relay — Deployments</title>
+  <link rel="stylesheet" href="static/css/foundation/tokens.css">
+  <link rel="stylesheet" href="static/css/foundation/base.css">
+  <link rel="stylesheet" href="static/css/layout/shell.css">
+  <link rel="stylesheet" href="static/css/components/navigation.css">
+  <link rel="stylesheet" href="static/css/components/buttons.css">
+  <link rel="stylesheet" href="static/css/components/cards.css">
+  <link rel="stylesheet" href="static/css/components/forms.css">
+  <link rel="stylesheet" href="static/css/components/tables.css">
+  <link rel="stylesheet" href="static/css/components/feedback.css">
+  <link rel="stylesheet" href="static/css/components/workflow.css">
+  <link rel="stylesheet" href="static/css/utilities/utilities.css">
+</head>
+<body>
+  <div class="la-app">
+
+    <aside class="la-sidebar" aria-label="Primary navigation">
+      <a class="la-brandlockup" href="#">
+        <svg class="la-brandmark" viewBox="0 0 48 48" aria-hidden="true">
+          <rect x="6" y="6" width="36" height="36" rx="8" fill="currentColor"/>
+          <path d="M14 24h12M14 18l8 6-8 6" stroke="var(--la-surface)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="la-brandtext">
+          <span class="la-brandname">Relay</span>
+          <span class="la-brandnote">Deployment operations</span>
+        </span>
+      </a>
+      <button id="sg-sidebar-toggle" class="la-sidebar-toggle" type="button" aria-pressed="false" aria-label="Toggle sidebar" title="Toggle sidebar">
+        <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" fill="currentColor"/>
+        </svg>
+      </button>
+
+      <div class="la-nav-section">
+        <p class="la-nav-title">Pipeline</p>
+        <nav class="la-nav">
+          <a class="la-nav-link is-active" href="#" aria-current="page"><span class="la-nav-code">DEP</span><span class="la-nav-label">Deployments</span></a>
+          <a class="la-nav-link" href="#"><span class="la-nav-code">BLD</span><span class="la-nav-label">Builds</span></a>
+          <a class="la-nav-link" href="#"><span class="la-nav-code">SVC</span><span class="la-nav-label">Services</span></a>
+        </nav>
+      </div>
+
+      <div class="la-nav-section">
+        <p class="la-nav-title">Incident</p>
+        <nav class="la-nav">
+          <a class="la-nav-link" href="#"><span class="la-nav-code">INC</span><span class="la-nav-label">Incidents</span></a>
+          <a class="la-nav-link" href="#"><span class="la-nav-code">CHG</span><span class="la-nav-label">Changes</span></a>
+        </nav>
+      </div>
+
+      <div class="la-nav-section">
+        <p class="la-nav-title">Admin</p>
+        <nav class="la-nav">
+          <a class="la-nav-link" href="#"><span class="la-nav-code">CFG</span><span class="la-nav-label">Config</span></a>
+          <a class="la-nav-link" href="#"><span class="la-nav-code">SET</span><span class="la-nav-label">Settings</span></a>
+        </nav>
+      </div>
+
+      <p class="la-sidebar-note">Environment: production. Last deploy 8 minutes ago. All sample data.</p>
+    </aside>
+
+    <main class="la-main">
+      <header class="la-topbar">
+        <div class="la-breadcrumbs" aria-label="Breadcrumb">
+          <a href="#">Platform</a>
+          <span>/</span>
+          <strong>Deployments</strong>
+        </div>
+        <div class="la-topbar-actions" style="flex-wrap: nowrap;">
+          <input class="la-input" type="search" placeholder="Search deployments, services, commits" style="width: 280px;">
+          <button id="sg-theme-toggle" class="la-btn la-btn-ghost" type="button"
+                  aria-label="Switch to dark mode" aria-pressed="false" title="Toggle theme">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                 stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+          </button>
+          <span class="la-separator"></span>
+          <div class="la-user-menu">
+            <span class="la-avatar">KT</span>
+            <span>K. Torres</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="la-content la-content--app">
+
+        <div class="la-alert la-alert-danger la-mb-4">
+          <h3 class="la-alert-title">Production incident active</h3>
+          <div class="la-alert-body">
+            <p>Deploy <strong>#D-487</strong> to <strong>payments-api</strong> rolled back a database migration. Three services are degraded. Automated rollback is in progress.</p>
+          </div>
+        </div>
+
+        <section class="la-page-header">
+          <div>
+            <h1>Deployments</h1>
+            <p>Monitor pipeline activity across all environments and services.</p>
+          </div>
+          <div class="la-page-header-actions">
+            <button class="la-btn la-btn-secondary" type="button">Environment</button>
+            <button class="la-btn la-btn-primary" type="button">Trigger deploy</button>
+          </div>
+        </section>
+
+        <section class="la-panel la-mb-6" aria-label="Pipeline summary">
+          <div style="display: flex;">
+            <div style="flex: 1; padding: var(--la-3) var(--la-5); border-right: 1px solid var(--la-border);">
+              <p class="la-muted la-small la-m-0">Builds today</p>
+              <p style="margin: var(--la-1) 0 0; font-size: var(--la-text-xl); font-weight: var(--la-weight-strong); color: var(--la-ink); line-height: 1.2;">14</p>
+            </div>
+            <div style="flex: 1; padding: var(--la-3) var(--la-5); border-right: 1px solid var(--la-border);">
+              <p class="la-muted la-small la-m-0">Success rate</p>
+              <p style="margin: var(--la-1) 0 0; font-size: var(--la-text-xl); font-weight: var(--la-weight-strong); color: var(--la-ink); line-height: 1.2;">94.2%</p>
+            </div>
+            <div style="flex: 1; padding: var(--la-3) var(--la-5); border-right: 1px solid var(--la-border);">
+              <p class="la-muted la-small la-m-0">Active incidents</p>
+              <p style="margin: var(--la-1) 0 0; font-size: var(--la-text-xl); font-weight: var(--la-weight-strong); color: var(--la-error); line-height: 1.2;">2 <span style="font-size: var(--la-text-sm); font-weight: var(--la-weight-normal); color: var(--la-muted);">SEV-2, SEV-3</span></p>
+            </div>
+            <div style="flex: 1; padding: var(--la-3) var(--la-5);">
+              <p class="la-muted la-small la-m-0">Mean deploy time</p>
+              <p style="margin: var(--la-1) 0 0; font-size: var(--la-text-xl); font-weight: var(--la-weight-strong); color: var(--la-ink); line-height: 1.2;">4m 22s</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="la-split-aside la-split-aside--wide la-mb-6">
+          <div class="la-stack">
+
+            <section class="la-panel">
+              <div class="la-panel-header">
+                <div>
+                  <h2 class="la-panel-title">Deployment queue</h2>
+                  <p class="la-page-subtext">Production — main branch. 14 deploys today.</p>
+                </div>
+                <div class="la-tabs" role="tablist">
+                  <button class="la-tab-btn is-active" role="tab" aria-selected="true">All</button>
+                  <button class="la-tab-btn" role="tab">In progress</button>
+                  <button class="la-tab-btn" role="tab">Failed</button>
+                  <button class="la-tab-btn" role="tab">Deployed</button>
+                </div>
+              </div>
+              <div class="la-panel-body">
+                <div class="la-table-wrap">
+                  <table class="la-table" data-sortable>
+                    <thead>
+                      <tr>
+                        <th><div class="la-th-inner"><a class="la-sort-link" href="#">Deploy</a></div></th>
+                        <th>
+                          <div class="la-th-inner">
+                            <a class="la-sort-link" href="#">Service</a>
+                            <button class="la-col-filter la-col-filter--active" type="button" aria-label="Filter service">
+                              <svg viewBox="0 0 16 16" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M2 4h12M5 8h6M7 12h2"/></svg>
+                            </button>
+                          </div>
+                        </th>
+                        <th><div class="la-th-inner"><a class="la-sort-link" href="#">Triggered by</a></div></th>
+                        <th class="la-th--sorted"><div class="la-th-inner"><a class="la-sort-link" href="#">Duration <span class="la-sort-arrow">↑</span></a></div></th>
+                        <th><div class="la-th-inner"><a class="la-sort-link" href="#">Status</a></div></th>
+                        <th class="la-td-actions">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="la-row-highlight">
+                        <td class="la-cell-strong">#D-487</td>
+                        <td>payments-api<span class="la-td-note">Migration rollback — hot fix</span></td>
+                        <td>K. Torres</td>
+                        <td class="la-td-number">3m 41s</td>
+                        <td><span class="la-dot la-dot-error"></span> Failed</td>
+                        <td class="la-td-actions"><button class="la-btn la-btn-ghost la-btn-xs" type="button">Retry</button></td>
+                      </tr>
+                      <tr>
+                        <td class="la-cell-strong">#D-486</td>
+                        <td>auth-service</td>
+                        <td>R. Obi</td>
+                        <td class="la-td-number"><span class="la-spinner-wrap"><span class="la-spinner"></span></span></td>
+                        <td><span class="la-dot la-dot-brand"></span> Running</td>
+                        <td class="la-td-actions"><button class="la-btn la-btn-ghost la-btn-xs" type="button">Watch</button></td>
+                      </tr>
+                      <tr>
+                        <td class="la-cell-strong">#D-485</td>
+                        <td>storefront</td>
+                        <td>M. Chen</td>
+                        <td class="la-td-number">5m 09s</td>
+                        <td><span class="la-dot la-dot-success"></span> Deployed</td>
+                        <td class="la-td-actions"><button class="la-btn la-btn-ghost la-btn-xs" type="button">Open</button></td>
+                      </tr>
+                      <tr>
+                        <td class="la-cell-strong">#D-484</td>
+                        <td>storefront<span class="la-td-note">Queued behind #D-485</span></td>
+                        <td>M. Chen</td>
+                        <td class="la-td-number">—</td>
+                        <td><span class="la-dot la-dot-info"></span> Queued</td>
+                        <td class="la-td-actions"><button class="la-btn la-btn-ghost la-btn-xs" type="button">View</button></td>
+                      </tr>
+                      <tr class="la-row-muted">
+                        <td class="la-cell-strong">#D-483</td>
+                        <td>search-service</td>
+                        <td>K. Torres</td>
+                        <td class="la-td-number">—</td>
+                        <td><span class="la-dot la-dot-disabled"></span> Cancelled</td>
+                        <td class="la-td-actions"><button class="la-btn la-btn-ghost la-btn-xs" type="button">View</button></td>
+                      </tr>
+                      <tr>
+                        <td class="la-cell-strong">#D-482</td>
+                        <td>notifications</td>
+                        <td>J. Park</td>
+                        <td class="la-td-number">4m 18s</td>
+                        <td><span class="la-dot la-dot-success"></span> Deployed</td>
+                        <td class="la-td-actions"><button class="la-btn la-btn-ghost la-btn-xs" type="button">Open</button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="la-pagination">
+                  <span class="la-pagination-info">Showing 1 to 6 of 14 deployments today</span>
+                  <a class="la-page-link is-current" href="#" aria-current="page">1</a>
+                  <a class="la-page-link" href="#">2</a>
+                  <a class="la-page-link" href="#">3</a>
+                </div>
+              </div>
+            </section>
+
+            <section class="la-panel">
+              <div class="la-panel-header">
+                <h2 class="la-panel-title">Scheduled builds</h2>
+              </div>
+              <div class="la-panel-body">
+                <div class="la-table-wrap-plain">
+                  <table class="la-table">
+                    <thead>
+                      <tr>
+                        <th>Build</th>
+                        <th>Service</th>
+                        <th>Scheduled at</th>
+                        <th>Triggered by</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td colspan="4" class="la-table-empty">No builds scheduled for the next 24 hours.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </section>
+
+            <section class="la-panel la-panel-quiet">
+              <div class="la-panel-header">
+                <h2 class="la-panel-title">Webhook integration</h2>
+                <span class="la-badge la-badge-brand">Connected</span>
+              </div>
+              <div class="la-panel-body">
+                <form class="la-form la-form-sm">
+                  <fieldset class="la-fieldset">
+                    <p class="la-fieldset-title">Endpoint</p>
+                    <div class="la-field-row la-field-success">
+                      <label class="la-label" for="wh-url">Webhook URL</label>
+                      <input class="la-input" id="wh-url" type="url" value="https://hooks.example.com/relay/prod">
+                    </div>
+                    <div class="la-field-row la-field-error">
+                      <label class="la-label" for="wh-timeout">Timeout (ms)</label>
+                      <input class="la-input" id="wh-timeout" type="number" value="0">
+                      <p class="la-help">Must be between 1000 and 30000.</p>
+                    </div>
+                    <div class="la-field-row">
+                      <label class="la-label" for="wh-secret">Signing secret</label>
+                      <div class="la-password-wrap">
+                        <input class="la-input" id="wh-secret" type="password" value="wh_sec_kR9mXv24qPst">
+                        <button class="la-password-toggle la-btn la-btn-ghost la-btn-sm" type="button" aria-pressed="false" aria-label="Show secret">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                        </button>
+                      </div>
+                    </div>
+                  </fieldset>
+                  <fieldset class="la-fieldset">
+                    <p class="la-fieldset-title">Notify on</p>
+                    <div class="la-option-stack">
+                      <label class="la-check-label"><input type="checkbox" checked> Deploy started</label>
+                      <label class="la-check-label"><input type="checkbox" checked> Deploy completed</label>
+                      <label class="la-check-label"><input type="checkbox"> Deploy failed</label>
+                      <label class="la-check-label"><input type="checkbox"> Rollback triggered</label>
+                    </div>
+                  </fieldset>
+                  <div class="la-button-row">
+                    <button class="la-btn la-btn-primary la-btn-sm" type="button">Save</button>
+                    <button class="la-btn la-btn-ghost la-btn-sm" type="button">Send test event</button>
+                  </div>
+                </form>
+              </div>
+            </section>
+
+          </div>
+
+          <aside class="la-stack">
+
+            <section class="la-panel">
+              <div class="la-panel-header">
+                <h2 class="la-panel-title">Deploy #D-486</h2>
+              </div>
+              <div class="la-panel-body">
+                <div class="la-steps">
+                  <span class="la-step la-step--done"><span class="la-step-num">1</span><span class="la-step-label">Build</span></span>
+                  <span class="la-step-arrow">›</span>
+                  <span class="la-step la-step--done"><span class="la-step-num">2</span><span class="la-step-label">Test</span></span>
+                  <span class="la-step-arrow">›</span>
+                  <span class="la-step la-step--current"><span class="la-step-num">3</span><span class="la-step-label">Deploy</span></span>
+                  <span class="la-step-arrow">›</span>
+                  <span class="la-step"><span class="la-step-num">4</span><span class="la-step-label">Health</span></span>
+                </div>
+
+                <div class="la-progress-row" style="margin-top: var(--la-4);">
+                  <span class="la-progress-label">Deploying containers</span>
+                  <span class="la-progress-value">6 of 8</span>
+                </div>
+                <div class="la-progress">
+                  <div class="la-progress-track">
+                    <div class="la-progress-fill" style="width: 75%;"></div>
+                  </div>
+                </div>
+
+                <div class="la-field-row" style="margin-top: var(--la-4);">
+                  <label class="la-label">Commit</label>
+                  <div class="la-field-display">feat: refresh token rotation (#421)</div>
+                </div>
+                <div class="la-field-row">
+                  <label class="la-label">Triggered by</label>
+                  <div class="la-field-display">R. Obi — merged PR #421</div>
+                </div>
+                <div class="la-field-row">
+                  <label class="la-label">Environment</label>
+                  <div class="la-field-display">Production</div>
+                </div>
+
+                <div class="la-field-row">
+                  <label class="la-label">Build time</label>
+                  <div class="la-field-display">1m 12s</div>
+                </div>
+                <div class="la-field-row">
+                  <label class="la-label">Test time</label>
+                  <div class="la-field-display">2m 04s</div>
+                </div>
+              </div>
+            </section>
+
+            <section class="la-panel">
+              <div class="la-panel-header">
+                <h2 class="la-panel-title">Activity</h2>
+              </div>
+              <div class="la-panel-body">
+                <ul class="la-timeline">
+                  <li>
+                    <span class="la-timeline-dot la-timeline-dot--done"></span>
+                    <div class="la-timeline-body">
+                      <p class="la-timeline-title">Containers 1–6 healthy</p>
+                      <p class="la-timeline-meta">Today, 11:34 AM</p>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="la-timeline-dot la-timeline-dot--done"></span>
+                    <div class="la-timeline-body">
+                      <p class="la-timeline-title">Test suite passed — 214 specs</p>
+                      <p class="la-timeline-meta">Today, 11:29 AM</p>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="la-timeline-dot la-timeline-dot--done"></span>
+                    <div class="la-timeline-body">
+                      <p class="la-timeline-title">Docker image built and pushed</p>
+                      <p class="la-timeline-meta">Today, 11:22 AM</p>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="la-timeline-dot la-timeline-dot--pending"></span>
+                    <div class="la-timeline-body">
+                      <p class="la-timeline-title">Containers 7–8 starting</p>
+                      <p class="la-timeline-meta">In progress</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </section>
+
+          </aside>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <div class="la-toast-stack" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>

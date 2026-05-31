@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <script>(function(){var t=localStorage.getItem('la-theme');if(t)document.documentElement.setAttribute('data-theme',t);}());</script>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>LA UI Style Guide — Tables</title>
+  <link rel="stylesheet" href="app.css" />
+  <link rel="stylesheet" href="showcase-only-new.css" />
+</head>
+<body class="sg-page">
+<div class="la-app">
+  <!-- sidebar and topbar injected by app.js -->
+  <main class="la-main">
+    <div class="la-content la-content--wide">
+
+      <section id="tables" class="sg-section">
+
+        <div class="sg-section-title">
+          <div>
+            <h2>08. Components: tables.css</h2>
+            <p>Tables are for scan-heavy structured data. Keep columns readable, actions compact, and filters visible.</p>
+          </div>
+        </div>
+          <div class="sg-guideline-card">
+            <h3>Use tables for</h3>
+            <ul>
+              <li>Admin lists, imports, reports, review queues, and data-heavy pages.</li>
+              <li>Wrap all tables in <code>.la-table-wrap</code> to handle overflow and border.</li>
+            </ul>
+          </div>
+
+        <!-- ── Base table ─────────────────────────────────────────── -->
+
+        <h3>Base table</h3>
+        <p class="sg-soft">Always wrap in <code>.la-table-wrap</code> for scroll and border handling. Use <code>.la-table-wrap-plain</code> when the table sits inside a panel or card that already provides the border. Cell helpers control text weight, color, and number formatting.</p>
+
+        <div class="sg-top-gap">
+          <p class="sg-label"><code>.la-table-wrap .la-table</code> — cell helpers</p>
+          <div class="la-table-wrap" style="margin-top: var(--la-2);">
+            <table class="la-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Note</th>
+                  <th>Count</th>
+                  <th>Score</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="la-cell-strong">Academic workflow</td>
+                  <td class="la-td-note">Submitted for review on 12 Jan</td>
+                  <td class="la-td-number">1,204</td>
+                  <td class="la-td-formula">94.25</td>
+                  <td>Active</td>
+                </tr>
+                <tr>
+                  <td class="la-cell-strong">Equipment checkout</td>
+                  <td class="la-td-note">Pending approval from department head</td>
+                  <td class="la-td-number">88</td>
+                  <td class="la-td-formula">81.00</td>
+                  <td class="la-cell-muted">Pending</td>
+                </tr>
+                <tr>
+                  <td class="la-cell-strong">Import batch 47</td>
+                  <td class="la-td-note">Archived after end of term</td>
+                  <td class="la-td-number">3,571</td>
+                  <td class="la-td-formula">72.10</td>
+                  <td class="la-cell-muted">Archived</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="sg-top-gap-sm la-flex-row" style="align-items: flex-start; gap: var(--la-4);">
+          <div style="flex: 1; min-width: 0;">
+            <p class="sg-label"><code>.la-table-empty</code> — inline empty state</p>
+            <p class="sg-soft" style="font-size: var(--la-text-xs); margin-bottom: var(--la-2);">Renders inside <code>.la-table-wrap</code> in place of the table. Use this for table-scoped empty results (e.g. no matching filter). For page-level empty states with an icon and action, use <code>.la-empty</code> from feedback.css instead.</p>
+            <div class="la-table-wrap">
+              <div class="la-table-empty">No records found.</div>
+            </div>
+          </div>
+          <div style="flex: 1; min-width: 0;">
+            <p class="sg-label"><code>.la-table-wrap-plain</code> — borderless inside a panel</p>
+            <div class="la-panel" style="margin-top: var(--la-2);">
+              <div class="la-panel-header">
+                <h3 class="la-panel-title">Inside a panel</h3>
+              </div>
+              <div class="la-table-wrap la-table-wrap-plain">
+                <table class="la-table">
+                  <thead><tr><th>Name</th><th>Score</th></tr></thead>
+                  <tbody>
+                    <tr><td>Row one</td><td class="la-td-formula">91.00</td></tr>
+                    <tr><td>Row two</td><td class="la-td-formula">74.50</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Row states ─────────────────────────────────────────── -->
+
+        <h3>Row states</h3>
+        <p class="sg-soft"><code>.la-row-highlight</code> tints the row amber for items needing attention. <code>.la-row-invalid</code> tints the row red for error rows. Both intensify on hover. <code>.la-row-muted</code> dims the row and suppresses hover, for disabled or archived rows. <code>.la-td-actions</code> keeps the action column compact and right-aligned. <code>.la-table-actions</code> is the bulk-action row below the table.</p>
+
+        <div class="sg-top-gap">
+          <p class="sg-label"><code>.la-row-highlight .la-row-invalid .la-row-muted .la-td-actions</code></p>
+          <div class="la-table-wrap" style="margin-top: var(--la-2);">
+            <table class="la-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Status</th>
+                  <th class="la-td-actions">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="la-cell-strong">Normal row</td>
+                  <td>Active</td>
+                  <td class="la-td-actions"><button class="la-btn la-btn-secondary la-btn-xs" type="button">Edit</button></td>
+                </tr>
+                <tr class="la-row-highlight">
+                  <td class="la-cell-strong">Highlighted row</td>
+                  <td>Needs review</td>
+                  <td class="la-td-actions"><button class="la-btn la-btn-secondary la-btn-xs" type="button">View</button></td>
+                </tr>
+                <tr class="la-row-invalid">
+                  <td class="la-cell-strong">Invalid import row</td>
+                  <td>Error</td>
+                  <td class="la-td-actions"><button class="la-btn la-btn-danger la-btn-xs" type="button">Fix</button></td>
+                </tr>
+                <tr class="la-row-muted">
+                  <td>Archived row</td>
+                  <td>Archived</td>
+                  <td class="la-td-actions"><a class="la-btn la-btn-link" href="#tables">View</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="la-table-actions sg-top-gap-sm">
+            <button class="la-btn la-btn-secondary la-btn-sm" type="button">Export</button>
+            <button class="la-btn la-btn-primary la-btn-sm" type="button">Add row</button>
+          </div>
+        </div>
+
+        <!-- ── Sortable columns ───────────────────────────────────── -->
+
+        <h3>Sortable columns</h3>
+        <p class="sg-soft">Add <code>data-sortable</code> to <code>.la-table</code> — the table expands to content width and headers stay on one line. Wrap each header's content in <code>.la-th-inner</code> to lay out the sort link and column filter button side by side. Sort links get a subtle <code>⇕</code> hint via CSS so users know the column is clickable. <code>.la-th--sorted</code> marks the active column in brand color and hides the hint arrow. <code>.la-th--formula</code> styles computed columns.</p>
+
+        <div class="sg-top-gap">
+          <p class="sg-label"><code>.la-table[data-sortable] .la-th-inner .la-sort-link .la-col-filter</code></p>
+          <div class="la-table-wrap" style="margin-top: var(--la-2);">
+            <table class="la-table" data-sortable>
+              <thead>
+                <tr>
+                  <th class="la-th--sorted">
+                    <div class="la-th-inner">
+                      <a class="la-sort-link" href="#tables">Name <span class="la-sort-arrow">↑</span></a>
+                      <button class="la-col-filter la-col-filter--active" type="button" aria-label="Filter name"><svg viewBox="0 0 16 16" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M2 4h12M5 8h6M7 12h2"/></svg></button>
+                    </div>
+                  </th>
+                  <th>
+                    <div class="la-th-inner">
+                      <a class="la-sort-link" href="#tables">Status</a>
+                      <button class="la-col-filter" type="button" aria-label="Filter status"><svg viewBox="0 0 16 16" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M2 4h12M5 8h6M7 12h2"/></svg></button>
+                    </div>
+                  </th>
+                  <th>
+                    <div class="la-th-inner">
+                      <a class="la-sort-link" href="#tables">Department</a>
+                      <button class="la-col-filter" type="button" aria-label="Filter department"><svg viewBox="0 0 16 16" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M2 4h12M5 8h6M7 12h2"/></svg></button>
+                    </div>
+                  </th>
+                  <th class="la-th--formula">Score<sup>fx</sup></th>
+                  <th class="la-td-actions">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="la-cell-strong">Academic workflow</td>
+                  <td><span class="la-status-pill la-status-pill-yes">Active</span></td>
+                  <td>Student Affairs</td>
+                  <td class="la-td-formula">94.25</td>
+                  <td class="la-td-actions"><button class="la-btn la-btn-secondary la-btn-xs" type="button">Edit</button></td>
+                </tr>
+                <tr>
+                  <td class="la-cell-strong">Equipment checkout</td>
+                  <td><span class="la-status-pill la-status-pill-warning">Review</span></td>
+                  <td>Facilities</td>
+                  <td class="la-td-formula">81.00</td>
+                  <td class="la-td-actions"><button class="la-btn la-btn-secondary la-btn-xs" type="button">Edit</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ── Active filters ─────────────────────────────────────── -->
+
+        <h3>Active filters</h3>
+        <p class="sg-soft">Place <code>.la-active-filters</code> directly above the table. Each <code>.la-filter-badge</code> chip shows a column name (<code>.la-filter-badge-col</code>), its selected values (<code>.la-filter-badge-vals</code>), and a remove link (<code>.la-filter-badge-remove</code>).</p>
+
+        <div class="sg-top-gap">
+          <p class="sg-label"><code>.la-active-filters .la-filter-badge</code></p>
+          <div class="la-active-filters" style="margin-top: var(--la-2);">
+            <span class="la-filter-badge">
+              <span class="la-filter-badge-col">Status</span>
+              <span class="la-filter-badge-vals">Active, Pending</span>
+              <a class="la-filter-badge-remove" href="#tables" aria-label="Remove status filter">×</a>
+            </span>
+            <span class="la-filter-badge">
+              <span class="la-filter-badge-col">Owner</span>
+              <span class="la-filter-badge-vals">Student Affairs</span>
+              <a class="la-filter-badge-remove" href="#tables" aria-label="Remove owner filter">×</a>
+            </span>
+            <span class="la-filter-badge">
+              <span class="la-filter-badge-col">Year</span>
+              <span class="la-filter-badge-vals">2025</span>
+              <a class="la-filter-badge-remove" href="#tables" aria-label="Remove year filter">×</a>
+            </span>
+          </div>
+        </div>
+
+        <!-- ── Filter panel ───────────────────────────────────────── -->
+
+        <h3>Filter panel</h3>
+        <p class="sg-soft">The filter panel is normally <code>position: absolute</code> and opened by a column filter button. In production it is toggled by JS. The demo shows it static so the internals are visible. <code>.la-filter-panel-body</code> holds the search input, select-all, and value list. <code>.la-filter-panel-footer</code> holds the clear and apply actions.</p>
+
+        <div class="sg-top-gap sg-filter-panel-wrap">
+          <p class="sg-label"><code>.la-filter-panel .la-filter-panel-body .la-filter-search .la-filter-values .la-filter-panel-footer</code></p>
+          <div class="la-filter-panel" style="margin-top: var(--la-2);">
+            <div class="la-filter-panel-body">
+              <input class="la-filter-search" placeholder="Search values" />
+              <label class="la-filter-select-all"><input type="checkbox" checked /> Select all</label>
+              <div class="la-filter-values">
+                <label><input type="checkbox" checked /> Active</label>
+                <label><input type="checkbox" /> Pending</label>
+                <label><input type="checkbox" /> Archived</label>
+                <label><input type="checkbox" checked /> Review</label>
+              </div>
+            </div>
+            <div class="la-filter-panel-footer">
+              <button class="la-btn la-btn-link" type="button">Clear</button>
+              <button class="la-btn la-btn-primary la-btn-xs" type="button">Apply</button>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+</div>
+<script>
+window.SHELL_PAGE = { active: 'tables', breadcrumb: 'Tables', nav: 'page', base: '' };
+</script>
+<script src="app.js"></script>
+</body>
+</html>

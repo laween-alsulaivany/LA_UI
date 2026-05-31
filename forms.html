@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <script>(function(){var t=localStorage.getItem('la-theme');if(t)document.documentElement.setAttribute('data-theme',t);}());</script>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>LA UI Style Guide — Forms</title>
+  <link rel="stylesheet" href="app.css" />
+  <link rel="stylesheet" href="showcase-only-new.css" />
+</head>
+<body class="sg-page">
+<div class="la-app">
+  <!-- sidebar and topbar injected by app.js -->
+  <main class="la-main">
+    <div class="la-content la-content--wide">
+
+      <section id="forms" class="sg-section">
+
+        <div class="sg-section-title">
+          <div>
+            <h2>07. Components: forms.css</h2>
+            <p>Forms should stay predictable: label, control, help text, and errors in the same order every time.</p>
+          </div>
+        </div>
+
+          <div class="sg-guideline-card">
+            <h3>Use forms for</h3>
+            <ul>
+              <li>Django forms, admin forms, filters, search rows, auth screens, and basic field display.</li>
+              <li>All interactive inputs should use <code>.la-input</code>, <code>.la-select</code>, or <code>.la-textarea</code>. Never raw unstyled controls.</li>
+            </ul>
+          </div>
+
+        <!-- ── Form layout ────────────────────────────────────────── -->
+
+        <h3>Form layout</h3>
+        <p class="sg-soft"><code>.la-form</code> is a grid stack for field rows. Wrap related fields in a <code>.la-fieldset</code>. Use <code>.la-field-grid</code> for side-by-side fields on wider forms. <code>.la-form-sm</code> and <code>.la-form-md</code> limit width.</p>
+
+        <div class="sg-top-gap la-flex-row" style="align-items: flex-start; gap: var(--la-8);">
+
+          <form class="la-form la-form-md" style="flex: 1; min-width: 0;">
+            <p class="sg-label"><code>.la-form .la-fieldset .la-field-row</code></p>
+            <fieldset class="la-fieldset">
+              <h3 class="la-fieldset-title">Profile details</h3>
+              <div class="la-field-row">
+                <label class="la-label la-label-required" for="demo-name">Name</label>
+                <input class="la-input" id="demo-name" placeholder="Jane Smith" />
+                <p class="la-help">Short help text belongs under the field.</p>
+              </div>
+              <div class="la-field-row">
+                <label class="la-label" for="demo-role">Role <span class="la-field-required">*</span></label>
+                <select class="la-select" id="demo-role">
+                  <option>Reviewer</option>
+                  <option>Approver</option>
+                </select>
+              </div>
+              <div class="la-field-row">
+                <label class="la-label" for="demo-notes">Notes</label>
+                <textarea class="la-textarea" id="demo-notes" placeholder="Internal note"></textarea>
+              </div>
+              <div class="la-form-actions">
+                <button class="la-btn la-btn-primary" type="button">Save</button>
+                <button class="la-btn la-btn-secondary" type="button">Cancel</button>
+              </div>
+            </fieldset>
+          </form>
+
+          <form class="la-form la-form-md" style="flex: 1; min-width: 0;">
+            <p class="sg-label"><code>.la-field-grid</code> — two columns</p>
+            <fieldset class="la-fieldset">
+              <h3 class="la-fieldset-title">Contact info</h3>
+              <div class="la-field-grid">
+                <div class="la-field-row">
+                  <label class="la-label la-label-required" for="demo-first">First name</label>
+                  <input class="la-input" id="demo-first" placeholder="Jane" />
+                </div>
+                <div class="la-field-row">
+                  <label class="la-label la-label-required" for="demo-last">Last name</label>
+                  <input class="la-input" id="demo-last" placeholder="Smith" />
+                </div>
+              </div>
+              <div class="la-field-row">
+                <label class="la-label" for="demo-email">Email</label>
+                <input class="la-input" id="demo-email" type="email" placeholder="jane@example.com" />
+              </div>
+              <div class="la-field-row">
+                <label class="la-label">Read-only value</label>
+                <div class="la-field-display">Department: Student Affairs</div>
+              </div>
+            </fieldset>
+          </form>
+
+        </div>
+
+        <!-- ── Field states ───────────────────────────────────────── -->
+
+        <h3>Field states</h3>
+        <p class="sg-soft">Apply state classes to the <code>.la-field-row</code> wrapper, not the input. The input border and help text color update together. Use success and warning states only when the feedback is genuinely useful.</p>
+
+        <div class="sg-top-gap" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--la-4);">
+          <div class="la-field-row la-field-error">
+            <label class="la-label" for="demo-s-error">Error</label>
+            <input class="la-input" id="demo-s-error" value="Invalid value" />
+            <p class="la-help">This field has a validation error.</p>
+          </div>
+          <div class="la-field-row la-field-warning">
+            <label class="la-label" for="demo-s-warn">Warning</label>
+            <input class="la-input" id="demo-s-warn" value="Needs review" />
+            <p class="la-help">Input is allowed but needs attention.</p>
+          </div>
+          <div class="la-field-row la-field-success">
+            <label class="la-label" for="demo-s-ok">Success</label>
+            <input class="la-input" id="demo-s-ok" value="Confirmed" />
+            <p class="la-help">Use only when confirmation is useful.</p>
+          </div>
+        </div>
+
+        <!-- ── Password and checkboxes ────────────────────────────── -->
+
+        <h3>Password and checkboxes</h3>
+        <p class="sg-soft"><code>.la-password-wrap</code> positions the toggle button inside the input. <code>.la-check-label</code> wraps a checkbox or radio with its label inline. Use <code>.la-option-stack</code> for vertically stacked option lists.</p>
+
+        <div class="sg-top-gap la-flex-row" style="align-items: flex-start; gap: var(--la-8);">
+
+          <div class="la-form la-form-sm">
+            <p class="sg-label"><code>.la-password-wrap .la-password-toggle</code></p>
+            <div class="la-field-row" style="margin-top: var(--la-2);">
+              <label class="la-label" for="demo-pw">Password</label>
+              <div class="la-password-wrap">
+                <input class="la-input" id="demo-pw" type="password" value="password123" />
+                <button class="la-password-toggle" type="button" aria-label="Show password" aria-pressed="false">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <p class="sg-label"><code>.la-check-label</code> — inline</p>
+            <div style="margin-top: var(--la-2); display: grid; gap: var(--la-2);">
+              <label class="la-check-label"><input type="checkbox" checked /> Email me updates</label>
+              <label class="la-check-label"><input type="checkbox" /> Subscribe to digest</label>
+              <label class="la-check-label"><input type="radio" name="demo-r" checked /> Option A</label>
+              <label class="la-check-label"><input type="radio" name="demo-r" /> Option B</label>
+            </div>
+          </div>
+
+          <div>
+            <p class="sg-label"><code>.la-option-stack</code> — stacked group</p>
+            <div class="la-option-stack" style="margin-top: var(--la-2);">
+              <label class="la-check-label"><input type="checkbox" checked /> Reviewer</label>
+              <label class="la-check-label"><input type="checkbox" /> Approver</label>
+              <label class="la-check-label"><input type="checkbox" /> Administrator</label>
+              <label class="la-check-label"><input type="checkbox" /> Read only</label>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ── Auth form ──────────────────────────────────────────── -->
+
+        <h3>Auth form</h3>
+        <p class="sg-soft"><code>.la-auth-card</code> centres the form and constrains width. <code>.la-auth-form</code> styles Django's raw auth markup. <code>.errorlist</code> is unprefixed because Django outputs it directly.</p>
+
+        <div class="sg-top-gap" style="max-width: 540px;">
+          <div class="la-card la-auth-card" style="max-width: 100%;">
+            <p class="sg-label"><code>.la-auth-card .la-auth-form .errorlist</code></p>
+            <p class="la-auth-subtitle">Sign in to your account to continue.</p>
+            <form class="la-auth-form">
+              <p>
+                <label>Email</label>
+                <input value="name@example.com" />
+              </p>
+              <ul class="errorlist">
+                <li>Django-style validation error.</li>
+              </ul>
+              <p>
+                <label>Password</label>
+                <input type="password" value="password" />
+              </p>
+              <ul>
+                <li>Password helper list item</li>
+                <li>Another helper</li>
+              </ul>
+            </form>
+            <div class="la-auth-divider">or</div>
+            <p class="la-auth-meta">No account? <a href="#forms">Register</a></p>
+          </div>
+        </div>
+
+        <!-- ── Filter form ────────────────────────────────────────── -->
+
+        <h3>Filter form</h3>
+        <p class="sg-soft">Inline filter row above tables and lists. Uses raw <code>&lt;select&gt;</code> and <code>&lt;input&gt;</code> elements — <code>.la-filter-form</code> styles them to match the control height without needing <code>.la-select</code> wrappers.</p>
+
+        <div class="sg-top-gap">
+          <p class="sg-label"><code>.la-filter-form</code></p>
+          <form class="la-filter-form" style="margin-top: var(--la-2);">
+            <label for="filter-status">Filter</label>
+            <select id="filter-status"><option>Status: all</option><option>Active</option><option>Pending</option></select>
+            <select><option>Owner: all</option><option>Student Affairs</option></select>
+            <input type="search" placeholder="Search…" style="width: 180px;" />
+            <button class="la-btn la-btn-secondary la-btn-sm" type="button">Apply</button>
+            <button class="la-btn la-btn-ghost la-btn-sm" type="button">Clear</button>
+          </form>
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+</div>
+<script>
+window.SHELL_PAGE = { active: 'forms', breadcrumb: 'Forms', nav: 'page', base: '' };
+</script>
+<script src="app.js"></script>
+</body>
+</html>

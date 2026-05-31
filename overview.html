@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <script>(function(){var t=localStorage.getItem('la-theme');if(t)document.documentElement.setAttribute('data-theme',t);}());</script>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>LA UI Style Guide — Overview</title>
+  <link rel="stylesheet" href="app.css" />
+  <link rel="stylesheet" href="showcase-only-new.css" />
+</head>
+<body class="sg-page">
+<div class="la-app">
+  <!-- sidebar and topbar are injected here by shell.js -->
+  <main class="la-main">
+    <div class="la-content la-content--wide">
+
+      <section id="overview" class="sg-section">
+
+        <!-- landing hero -->
+        <div class="sg-overview-hero">
+          <h2>LA UI Design System</h2>
+          <p class="sg-overview-subtitle">This is a working CSS style guide for any app, mostly Django app UI. It shows the approved pieces, the rules for using them and the blocks developers should copy.</p>
+          <p class="sg-overview-subtitle">Use this as the shared UI library for apps. Change client branding through tokens. Keep component markup and class names stable unless the system needs a new component or style class.</p>
+        </div>
+
+        <!-- usage guidelines -->
+        <div class="sg-guideline-card la-split-aside sg-top-gap">
+          <div>
+            <h3>How to use this</h3>
+            <ul>
+              <li>For a new client, change token values and product text first.</li>
+              <li>Pick the component that already exists here.</li>
+              <li>Do not create page-only variants unless the pattern belongs in the system.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>File import order</h3>
+<pre class="sg-code-block"><code>@import url("./foundation/tokens.css");
+@import url("./foundation/base.css");
+@import url("./layout/shell.css");
+@import url("./components/navigation.css");
+@import url("./components/buttons.css");
+@import url("./components/cards.css");
+@import url("./components/forms.css");
+@import url("./components/tables.css");
+@import url("./components/feedback.css");
+@import url("./components/workflow.css");
+@import url("./components/charts.css");
+@import url("./utilities/utilities.css");</code></pre>
+          </div>
+        </div>
+
+        <!-- section directory -->
+        <div class="sg-overview-index">
+
+          <!-- Foundation -->
+          <div class="sg-overview-group">
+            <div class="sg-overview-cat">Foundation</div>
+            <div class="sg-overview-entries">
+
+              <a href="tokens.html" class="sg-overview-entry">
+                <span class="sg-overview-num">01</span>
+                <div class="sg-overview-thumb">
+                  <div style="display:flex;gap:3px;align-items:center">
+                    <span style="display:inline-block;width:13px;height:13px;border-radius:3px;background:var(--la-brand);flex:none"></span>
+                    <span style="display:inline-block;width:13px;height:13px;border-radius:3px;background:var(--la-ink);flex:none"></span>
+                    <span style="display:inline-block;width:13px;height:13px;border-radius:3px;background:var(--la-surface-subtle);border:1px solid var(--la-border);flex:none"></span>
+                    <span style="display:inline-block;width:13px;height:13px;border-radius:3px;background:var(--la-success);flex:none;opacity:0.8"></span>
+                    <span style="display:inline-block;width:13px;height:13px;border-radius:3px;background:var(--la-danger);flex:none;opacity:0.8"></span>
+                  </div>
+                </div>
+                <div class="sg-overview-info">
+                  <span class="sg-overview-name">Tokens</span>
+                  <span class="sg-overview-desc">Color, type, spacing, radius, and motion design tokens</span>
+                </div>
+                <svg class="sg-overview-arrow" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </a>
+
+              <a href="base_.html" class="sg-overview-entry">
+                <span class="sg-overview-num">02</span>
+                <div class="sg-overview-thumb">
+                  <div style="display:flex;flex-direction:column;gap:3px;width:76px">
+                    <div style="height:7px;width:55%;background:var(--la-ink);border-radius:2px;opacity:0.75"></div>
+                    <div style="height:4px;width:100%;background:var(--la-border-strong);border-radius:2px"></div>
+                    <div style="height:4px;width:78%;background:var(--la-border);border-radius:2px"></div>
+                  </div>
+                </div>
+                <div class="sg-overview-info">
+                  <span class="sg-overview-name">Base</span>
+                  <span class="sg-overview-desc">Global HTML resets, typography, links, and element defaults</span>
+                </div>
+                <svg class="sg-overview-arrow" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </a>
+
+            </div>
+          </div>
+
+          <!-- Layout -->
+          <div class="sg-overview-group">
+            <div class="sg-overview-cat">Layout</div>
+            <div class="sg-overview-entries">
+
+              <a href="shell.html" class="sg-overview-entry">
+                <span class="sg-overview-num">03</span>
+                <div class="sg-overview-thumb">
+                  <div style="display:flex;width:76px;height:28px;gap:2px">
+                    <div style="width:26%;background:var(--la-surface-subtle);border:1px solid var(--la-border);border-radius:3px"></div>
+                    <div style="flex:1;display:flex;flex-direction:column;gap:2px">
+                      <div style="height:35%;background:var(--la-surface);border:1px solid var(--la-border);border-radius:2px"></div>
+                      <div style="flex:1;background:var(--la-page);border:1px solid var(--la-border);border-radius:2px"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="sg-overview-info">
+                  <span class="sg-overview-name">Shell</span>
+                  <span class="sg-overview-desc">App grid, sidebar, topbar, page content, and footer</span>
+                </div>
+                <svg class="sg-overview-arrow" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </a>
+
+            </div>
+          </div>
+
+          <!-- Components -->
+          <div class="sg-overview-group">
+            <div class="sg-overview-cat">Components</div>
+            <div class="sg-overview-entries">
+
+              <a href="navigation.html" class="sg-overview-entry">
+                <span class="sg-overview-num">04</span>
+                <div class="sg-overview-thumb">
+                  <div style="display:flex;flex-direction:column;gap:4px;width:76px">
+                    <div style="display:flex;align-items:center;gap:4px">
+                      <div style="width:5px;height:5px;border-radius:50%;background:var(--la-brand);flex:none"></div>
+                      <div style="height:4px;width:52%;background:var(--la-brand-border);border-radius:2px"></div>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:4px">
+                      <div style="width:5px;height:5px;border-radius:50%;background:var(--la-border-strong);flex:none"></div>
+                      <div style="height:4px;width:40%;background:var(--la-border-strong);border-radius:2px"></div>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:4px">
+                      <div style="width:5px;height:5px;border-radius:50%;background:var(--la-border-strong);flex:none"></div>
+                      <div style="height:4px;width:62%;background:var(--la-border-strong);border-radius:2px"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="sg-overview-info">
+                  <span class="sg-overview-name">Navigation</span>
+                  <span class="sg-overview-desc">Sidebar nav, section groups, and active link states</span>
+                </div>
+                <svg class="sg-overview-arrow" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </a>
+
+              <a href="buttons.html" class="sg-overview-entry">
+                <span class="sg-overview-num">05</span>
+                <div class="sg-overview-thumb">
+                  <div style="display:flex;gap:5px;align-items:center">
+                    <div style="height:22px;padding:0 10px;background:var(--la-brand);border-radius:5px;color:#fff;font-size:9px;font-family:var(--la-font);display:flex;align-items:center;white-space:nowrap;font-weight:600">Save</div>
+                    <div style="height:22px;padding:0 10px;border:1px solid var(--la-border-strong);border-radius:5px;color:var(--la-ink);font-size:9px;font-family:var(--la-font);display:flex;align-items:center;white-space:nowrap">Cancel</div>
+                  </div>
+                </div>
+                <div class="sg-overview-info">
+                  <span class="sg-overview-name">Buttons</span>
+                  <span class="sg-overview-desc">Primary, ghost, danger, icon, and button row variants</span>
+                </div>
+                <svg class="sg-overview-arrow" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </a>
+
+              <a href="cards.html" class="sg-overview-entry">
+                <span class="sg-overview-num">06</span>
+                <div class="sg-overview-thumb">
+                  <div style="width:76px;height:30px;border:1px solid var(--la-border);border-radius:5px;padding:5px 6px;background:var(--la-surface);display:flex;flex-direction:column;gap:3px">
+                    <div style="height:5px;width:42%;background:var(--la-ink);border-radius:2px;opacity:0.7"></div>
+                    <div style="height:4px;width:88%;background:var(--la-border-strong);border-radius:2px"></div>
+                    <div style="height:4px;width:68%;background:var(--la-border);border-radius:2px"></div>
+                  </div>
+                </div>
+                <div class="sg-overview-info">
+                  <span class="sg-overview-name">Cards</span>
+                  <span class="sg-overview-desc">Info cards, panels, split layouts, and linked card variants</span>
+                </div>
+                <svg class="sg-overview-arrow" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </a>
+
+              <a href="forms.html" class="sg-overview-entry">
+                <span class="sg-overview-num">07</span>
+                <div class="sg-overview-thumb">
+                  <div style="display:flex;flex-direction:column;gap:4px;width:76px">
+                    <div style="height:4px;width:32%;background:var(--la-ink-soft);border-radius:2px;opacity:0.7"></div>
+                    <div style="height:18px;border:1px solid var(--la-border-strong);border-radius:5px;background:var(--la-surface);padding:0 6px;display:flex;align-items:center">
+                      <div style="height:3px;width:48%;background:var(--la-border);border-radius:1px"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="sg-overview-info">
+                  <span class="sg-overview-name">Forms</span>
+                  <span class="sg-overview-desc">Inputs, selects, checkboxes, radio groups, and form layout</span>
+                </div>
+                <svg class="sg-overview-arrow" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </a>
+
+              <a href="tables.html" class="sg-overview-entry">
+                <span class="sg-overview-num">08</span>
+                <div class="sg-overview-thumb">
+                  <div style="display:flex;flex-direction:column;width:76px;border:1px solid var(--la-border);border-radius:4px;overflow:hidden">
+                    <div style="display:flex;background:var(--la-surface-subtle);border-bottom:1px solid var(--la-border)">
+                      <div style="flex:1;height:9px;border-right:1px solid var(--la-border);margin:3px 4px"></div>
+                      <div style="flex:1;height:9px;margin:3px 4px"></div>
+                    </div>
+                    <div style="display:flex;border-bottom:1px solid var(--la-border)">
+                      <div style="flex:1;height:7px;border-right:1px solid var(--la-border);margin:3px 4px"></div>
+                      <div style="flex:1;height:7px;margin:3px 4px"></div>
+                    </div>
+                    <div style="display:flex">
+                      <div style="flex:1;height:7px;border-right:1px solid var(--la-border);margin:3px 4px"></div>
+                      <div style="flex:1;height:7px;margin:3px 4px"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="sg-overview-info">
+                  <span class="sg-overview-name">Tables</span>
+                  <span class="sg-overview-desc">Data tables, sortable headers, filters, and empty states</span>
+                </div>
+                <svg class="sg-overview-arrow" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </a>
+
+              <a href="feedback.html" class="sg-overview-entry">
+                <span class="sg-overview-num">09</span>
+                <div class="sg-overview-thumb">
+                  <div style="display:flex;flex-direction:column;gap:4px;width:76px">
+                    <div style="display:flex;gap:4px">
+                      <div style="height:15px;padding:0 6px;background:var(--la-brand-soft);border:1px solid var(--la-brand-border);border-radius:99px;color:var(--la-brand-ink);font-size:8px;font-family:var(--la-font);display:flex;align-items:center">Active</div>
+                      <div style="height:15px;padding:0 6px;background:rgba(62,107,72,0.1);border:1px solid rgba(62,107,72,0.35);border-radius:99px;color:var(--la-success);font-size:8px;font-family:var(--la-font);display:flex;align-items:center">Done</div>
+                    </div>
+                    <div style="height:11px;width:100%;background:var(--la-surface-subtle);border-left:2px solid var(--la-info);border-radius:3px"></div>
+                  </div>
+                </div>
+                <div class="sg-overview-info">
+                  <span class="sg-overview-name">Feedback</span>
+                  <span class="sg-overview-desc">Badges, alerts, toasts, empty states, and progress</span>
+                </div>
+                <svg class="sg-overview-arrow" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </a>
+
+              <a href="workflow.html" class="sg-overview-entry">
+                <span class="sg-overview-num">10</span>
+                <div class="sg-overview-thumb">
+                  <div style="display:flex;align-items:center;gap:3px;width:76px">
+                    <div style="width:16px;height:16px;border-radius:50%;background:var(--la-brand);flex:none;display:grid;place-items:center">
+                      <div style="width:5px;height:5px;background:#fff;border-radius:50%"></div>
+                    </div>
+                    <div style="flex:1;height:1.5px;background:var(--la-border-strong)"></div>
+                    <div style="width:16px;height:16px;border-radius:50%;border:2px solid var(--la-border-strong);flex:none;background:var(--la-surface)"></div>
+                    <div style="flex:1;height:1.5px;background:var(--la-border)"></div>
+                    <div style="width:16px;height:16px;border-radius:50%;border:2px solid var(--la-border);flex:none;background:var(--la-surface)"></div>
+                  </div>
+                </div>
+                <div class="sg-overview-info">
+                  <span class="sg-overview-name">Workflow</span>
+                  <span class="sg-overview-desc">Step indicators, progress trackers, and status flows</span>
+                </div>
+                <svg class="sg-overview-arrow" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </a>
+
+              <a href="charts.html" class="sg-overview-entry">
+                <span class="sg-overview-num">11</span>
+                <div class="sg-overview-thumb">
+                  <div style="display:flex;align-items:flex-end;gap:3px;width:76px;height:28px">
+                    <div style="flex:1;height:35%;background:var(--la-chart-grid);border-radius:2px 2px 0 0"></div>
+                    <div style="flex:1;height:57%;background:var(--la-brand);border-radius:2px 2px 0 0;opacity:0.9"></div>
+                    <div style="flex:1;height:86%;background:var(--la-brand);border-radius:2px 2px 0 0"></div>
+                    <div style="flex:1;height:50%;background:var(--la-brand);border-radius:2px 2px 0 0;opacity:0.9"></div>
+                    <div style="flex:1;height:64%;background:var(--la-brand);border-radius:2px 2px 0 0"></div>
+                    <div style="flex:1;height:21%;background:var(--la-chart-grid);border-radius:2px 2px 0 0"></div>
+                    <div style="flex:1;height:14%;background:var(--la-chart-grid);border-radius:2px 2px 0 0"></div>
+                  </div>
+                </div>
+                <div class="sg-overview-info">
+                  <span class="sg-overview-name">Charts</span>
+                  <span class="sg-overview-desc">Bar charts, horizontal bars, donut rings, sparklines, and legends</span>
+                </div>
+                <svg class="sg-overview-arrow" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </a>
+
+            </div>
+          </div>
+
+          <!-- Helpers -->
+          <div class="sg-overview-group">
+            <div class="sg-overview-cat">Helpers</div>
+            <div class="sg-overview-entries">
+
+              <a href="utilities.html" class="sg-overview-entry">
+                <span class="sg-overview-num">12</span>
+                <div class="sg-overview-thumb">
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;width:50px;height:26px">
+                    <div style="background:var(--la-brand-soft);border:1px solid var(--la-brand-border);border-radius:3px"></div>
+                    <div style="background:var(--la-surface-subtle);border:1px solid var(--la-border);border-radius:3px"></div>
+                    <div style="background:var(--la-surface-subtle);border:1px solid var(--la-border);border-radius:3px"></div>
+                    <div style="background:var(--la-surface-subtle);border:1px solid var(--la-border);border-radius:3px"></div>
+                  </div>
+                </div>
+                <div class="sg-overview-info">
+                  <span class="sg-overview-name">Utilities</span>
+                  <span class="sg-overview-desc">Grid helpers, flex row, stack spacing, and layout utilities</span>
+                </div>
+                <svg class="sg-overview-arrow" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </a>
+
+            </div>
+          </div>
+
+          <!-- Preview examples -->
+          <div class="sg-overview-group is-preview">
+            <div class="sg-overview-cat">Preview</div>
+            <div class="sg-overview-entries">
+
+              <a href="preview_1.html" target="_blank" rel="noopener noreferrer" class="sg-overview-entry">
+                <span class="sg-overview-num">13</span>
+                <div class="sg-overview-thumb">
+                  <div style="width:76px;height:36px;border:1px solid var(--la-border);border-radius:4px;overflow:hidden;display:flex;flex-direction:column">
+                    <div style="height:8px;background:var(--la-surface);border-bottom:1px solid var(--la-border);display:flex;align-items:center;padding:0 4px;gap:2px">
+                      <div style="width:3px;height:3px;border-radius:50%;background:var(--la-border-strong)"></div>
+                      <div style="width:3px;height:3px;border-radius:50%;background:var(--la-border-strong)"></div>
+                      <div style="width:3px;height:3px;border-radius:50%;background:var(--la-border-strong)"></div>
+                    </div>
+                    <div style="flex:1;display:flex">
+                      <div style="width:24%;background:var(--la-surface-subtle);border-right:1px solid var(--la-border)"></div>
+                      <div style="flex:1;background:var(--la-page);display:flex;flex-direction:column;gap:2px;padding:3px">
+                        <div style="height:2.5px;width:42%;background:var(--la-ink);border-radius:1px;opacity:0.45"></div>
+                        <div style="height:2px;width:75%;background:var(--la-border-strong);border-radius:1px"></div>
+                        <div style="height:2px;width:58%;background:var(--la-border);border-radius:1px"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="sg-overview-info">
+                  <span class="sg-overview-name">Example 1</span>
+                  <span class="sg-overview-desc">A full-page UI built with the design system components</span>
+                </div>
+                <svg class="sg-overview-arrow" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              </a>
+
+              <a href="preview_2.html" target="_blank" rel="noopener noreferrer" class="sg-overview-entry">
+                <span class="sg-overview-num">14</span>
+                <div class="sg-overview-thumb">
+                  <div style="width:76px;height:36px;border:1px solid var(--la-border);border-radius:4px;overflow:hidden;display:flex;flex-direction:column">
+                    <div style="height:8px;background:var(--la-surface);border-bottom:1px solid var(--la-border);display:flex;align-items:center;padding:0 4px;gap:2px">
+                      <div style="width:3px;height:3px;border-radius:50%;background:var(--la-border-strong)"></div>
+                      <div style="width:3px;height:3px;border-radius:50%;background:var(--la-border-strong)"></div>
+                      <div style="width:3px;height:3px;border-radius:50%;background:var(--la-border-strong)"></div>
+                    </div>
+                    <div style="flex:1;display:flex">
+                      <div style="width:24%;background:var(--la-surface-subtle);border-right:1px solid var(--la-border)"></div>
+                      <div style="flex:1;background:var(--la-page);display:flex;flex-direction:column;gap:2px;padding:3px">
+                        <div style="height:2.5px;width:38%;background:var(--la-brand);border-radius:1px;opacity:0.55"></div>
+                        <div style="height:2px;width:70%;background:var(--la-border-strong);border-radius:1px"></div>
+                        <div style="height:2px;width:54%;background:var(--la-border);border-radius:1px"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="sg-overview-info">
+                  <span class="sg-overview-name">Example 2</span>
+                  <span class="sg-overview-desc">A full-page UI built with the design system components</span>
+                </div>
+                <svg class="sg-overview-arrow" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              </a>
+
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div><!-- /.la-app -->
+
+<script>
+window.SHELL_PAGE = { active: 'overview', breadcrumb: 'Overview', nav: 'site', base: '' };
+</script>
+<script src="app.js"></script>
+</body>
+</html>

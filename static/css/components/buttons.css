@@ -1,0 +1,180 @@
+/* =============================================================================
+   buttons.css
+   button base, variants, sizes, and button rows
+============================================================================= */
+
+/* base button setup */
+.la-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: var(--la-control-width);
+    gap: var(--la-2);
+    min-height: var(--la-control-height);
+    padding: 0 var(--la-4);
+    border: 1px solid transparent;
+    border-radius: var(--la-radius-sm);
+    background: transparent;
+    color: inherit;
+    font-family: var(--la-font);
+    font-size: var(--la-text-sm);
+    font-weight: var(--la-weight-light);
+    line-height: 1;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition:
+        background-color var(--la-transition-fast),
+        border-color var(--la-transition-fast),
+        color var(--la-transition-fast),
+        box-shadow var(--la-transition-fast);
+}
+
+/* keep button icons from doing weird stuff */
+.la-btn svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* disabled wins over every button variant */
+.la-btn:disabled,
+.la-btn[aria-disabled="true"] {
+    border-color: var(--la-border) !important;
+    background: var(--la-surface-subtle) !important;
+    color: var(--la-disabled) !important;
+    cursor: not-allowed;
+}
+
+/* main action button, use this carefully */
+.la-btn-primary {
+    border-color: var(--la-brand-action);
+    background: var(--la-brand-action);
+    color: var(--la-ink-inverse);
+}
+
+.la-btn-primary:hover:not(:disabled),
+.la-btn-primary:focus-visible:not(:disabled) {
+    border-color: var(--la-brand-action-hover);
+    background: var(--la-brand-action-hover);
+}
+
+.la-btn-primary:active:not(:disabled) {
+    border-color: var(--la-brand-action-active);
+    background: var(--la-brand-action-active);
+}
+
+/* normal secondary action */
+.la-btn-secondary {
+    border-color: var(--la-border-strong);
+    background: var(--la-surface);
+    color: var(--la-ink-soft);
+}
+
+.la-btn-secondary:hover:not(:disabled),
+.la-btn-secondary:focus-visible:not(:disabled) {
+    background: var(--la-surface-subtle);
+    color: var(--la-ink);
+}
+
+/* quiet action, no border until hover */
+.la-btn-ghost {
+    border-color: transparent;
+    background: transparent;
+    color: var(--la-ink-soft);
+}
+
+.la-btn-ghost:hover:not(:disabled),
+.la-btn-ghost:focus-visible:not(:disabled) {
+    border-color: var(--la-border-strong);
+    background: var(--la-surface-subtle);
+    color: var(--la-ink);
+}
+
+/* destructive action with visible border */
+.la-btn-danger {
+    border-color: var(--la-danger-border);
+    background: transparent;
+    color: var(--la-danger);
+}
+
+.la-btn-danger:hover:not(:disabled),
+.la-btn-danger:focus-visible:not(:disabled) {
+    background: var(--la-danger-hover);
+    color: var(--la-ink-inverse);
+}
+
+.la-btn-danger:active:not(:disabled) {
+    background: var(--la-danger-active);
+    color: var(--la-ink-inverse);
+}
+
+/* destructive action with low visual weight */
+.la-btn-danger-ghost {
+    border-color: transparent;
+    background: transparent;
+    color: var(--la-danger);
+}
+
+.la-btn-danger-ghost:hover:not(:disabled),
+.la-btn-danger-ghost:focus-visible:not(:disabled) {
+    background: var(--la-danger-hover);
+    color: var(--la-ink-inverse);
+}
+
+.la-btn-danger-ghost:active:not(:disabled) {
+    background: var(--la-danger-active);
+    color: var(--la-ink-inverse);
+}
+
+/* inline text button, not for main actions */
+.la-btn-link {
+    min-height: unset;
+    padding: 0;
+    border-color: transparent;
+    background: transparent;
+    color: var(--la-brand-active);
+    line-height: inherit;
+    white-space: normal;
+}
+
+.la-btn-link:hover:not(:disabled),
+.la-btn-link:focus-visible:not(:disabled) {
+    background: transparent;
+    color: var(--la-brand);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+/* smaller button sizes */
+.la-btn-sm {
+    min-height: 32px;
+    padding: 0 var(--la-3);
+    font-size: var(--la-text-xs);
+}
+
+.la-btn-xs {
+    min-height: 24px;
+    padding: 0 var(--la-2);
+    font-size: var(--la-text-xs);
+}
+
+/* button should fill its parent */
+.la-btn-full {
+    display: flex;
+    width: 100%;
+}
+
+/* simple row for grouped actions */
+.la-button-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--la-2);
+}

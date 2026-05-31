@@ -1,0 +1,398 @@
+/* =============================================================================
+   shell.css
+   app frame, sidebars, top bars, page content, and footer
+============================================================================= */
+
+
+/* =======================================
+   APP GRID
+========================================== */
+
+/* main app grid, fixed sidebar plus flexible content */
+.la-app {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: var(--la-sidebar) minmax(0, 1fr);
+    background: var(--la-page);
+}
+
+/* =======================================
+   SIDEBAR
+========================================== */
+
+/* left sidebar, sticky and self scrolling */
+.la-sidebar {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    padding: var(--la-5) var(--la-4);
+    border-right: 1px solid var(--la-border);
+    background: var(--la-surface-subtle);
+}
+
+/* =======================================
+   BRAND LOCKUP
+========================================== */
+
+/* logo plus product name row */
+.la-brandlockup {
+    display: flex;
+    align-items: center;
+    gap: var(--la-3);
+    padding: 0 var(--la-2) var(--la-5);
+    border-bottom: 1px solid var(--la-border);
+}
+
+/* brand icon size */
+.la-brandmark {
+    width: 38px;
+    height: 38px;
+    flex: none;
+}
+
+/* stacked brand text */
+.la-brandtext {
+    display: grid;
+    gap: 0;
+    min-width: 0;
+}
+
+/* main app or product name */
+.la-brandname {
+    color: var(--la-ink);
+    font-size: var(--la-text-lg);
+    font-weight: var(--la-weight-strong);
+    line-height: var(--la-line-title);
+    letter-spacing: -0.02em;
+}
+
+/* small note under the brand name */
+.la-brandnote {
+    color: var(--la-muted);
+    font-size: var(--la-text-xs);
+    line-height: var(--la-line-base);
+}
+
+/* small note pinned near the bottom of the sidebar */
+.la-sidebar-note {
+    margin-top: auto;
+    padding-top: var(--la-4);
+    border-top: 1px solid var(--la-border);
+    color: var(--la-muted);
+    font-size: var(--la-text-xs);
+    line-height: var(--la-line-base);
+}
+
+/* =======================================
+   MAIN COLUMN AND TOPBAR
+========================================== */
+
+/* main column, topbar then page content then optional footer */
+.la-main {
+    min-width: 0;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    background: var(--la-page);
+}
+
+/* sticky topbar for the main app shell */
+.la-topbar {
+    position: sticky;
+    top: 0;
+    z-index: var(--la-z-topbar);
+    min-height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--la-4);
+    padding: 0 var(--la-6);
+    border-bottom: 1px solid var(--la-border);
+    background: var(--la-page);
+    background: color-mix(in srgb, var(--la-page) 60%, transparent);
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+}
+
+/* action group on the right side of the topbar */
+.la-topbar-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: var(--la-3);
+}
+
+/* compact user display in the topbar */
+.la-user-menu {
+    display: flex;
+    align-items: center;
+    gap: var(--la-2);
+    color: var(--la-ink-soft);
+    font-size: var(--la-text-sm);
+    white-space: nowrap;
+}
+
+/* initials avatar tile */
+.la-avatar {
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    flex: none;
+    border: 1px solid var(--la-border);
+    border-radius: var(--la-radius-sm);
+    background: var(--la-surface);
+    color: var(--la-ink-soft);
+    font-size: var(--la-text-xs);
+    font-weight: var(--la-weight-bold);
+}
+
+/* =======================================
+   CONTENT AREA
+========================================== */
+
+/* content area — width controlled by modifier class, standard default */
+.la-content {
+    width: 100%;
+    max-width: var(--la-content-standard);
+    margin-inline: auto;
+    padding: var(--la-8) var(--la-6) var(--la-12);
+}
+
+.la-content--prose { max-width: var(--la-content-prose); }
+.la-content--wide  { max-width: var(--la-content-wide); }
+.la-content--app   { max-width: none; }
+
+/* =======================================
+   RESPONSIVE CORE SHELL
+========================================== */
+
+/* stack the main grid shell on tablets */
+@media (max-width: 980px) {
+    .la-app {
+        grid-template-columns: 1fr;
+    }
+
+    .la-sidebar {
+        position: static;
+        height: auto;
+        border-right: 0;
+        border-bottom: 1px solid var(--la-border);
+    }
+
+    .la-content {
+        padding-inline: var(--la-4);
+    }
+}
+
+/* make the real topbar work on narrow screens */
+@media (max-width: 720px) {
+    .la-topbar {
+        position: static;
+        min-height: 0;
+        align-items: flex-start;
+        flex-direction: column;
+        padding: var(--la-4);
+    }
+
+    .la-topbar-actions {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .la-content {
+        padding-top: var(--la-5);
+        padding-bottom: var(--la-8);
+    }
+}
+
+/* =======================================
+   SIDEBAR COLLAPSE
+========================================== */
+
+/* collapsed sidebar: narrow icon strip */
+.la-app.sidebar-collapsed {
+    grid-template-columns: 64px minmax(0, 1fr);
+}
+
+.la-app.sidebar-collapsed .la-sidebar {
+    overflow: visible;
+    padding: var(--la-3) var(--la-2);
+}
+
+.la-app.sidebar-collapsed .la-brandtext,
+.la-app.sidebar-collapsed .la-sidebar-note {
+    display: none;
+}
+
+.la-app.sidebar-collapsed .la-brandmark {
+    width: 30px;
+    height: 30px;
+}
+
+/* center nav icons and hide link text */
+.la-app.sidebar-collapsed .la-nav .la-nav-link {
+    justify-content: center;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+    font-size: 0;
+}
+
+.la-app.sidebar-collapsed .la-nav-section .la-nav-title {
+    display: none;
+}
+
+/* keep the code marker visible at normal size */
+.la-app.sidebar-collapsed .la-nav .la-nav-link .la-nav-code {
+    display: inline-block;
+    padding-left: var(--la-2);
+
+}
+
+/* floating toggle button anchored inside the brand lockup */
+#sg-sidebar-toggle {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--la-border-strong);
+    border-radius: var(--la-radius-sm);
+    background: var(--la-surface);
+    color: var(--la-ink);
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+    cursor: pointer;
+    transition:
+        background-color var(--la-transition-fast) ease,
+        box-shadow var(--la-transition-fast) ease,
+        right var(--la-transition-fast) ease;
+    z-index: var(--la-z-topbar);
+}
+
+#sg-sidebar-toggle svg {
+    width: 18px;
+    height: 18px;
+    transition: transform var(--la-transition-fast) ease;
+}
+
+#sg-sidebar-toggle.is-active svg {
+    transform: rotate(180deg);
+}
+
+/* collapsed state: toggle protrudes just outside the sidebar's right border */
+.la-app.sidebar-collapsed #sg-sidebar-toggle {
+    position: absolute;
+    top: 50%;
+    right: -15px;
+    left: auto;
+    transform: translateY(-50%);
+    background: var(--la-brand);
+    border-color: var(--la-brand);
+    color: #fff;
+    box-shadow: 0 8px 28px rgba(15, 23, 42, 0.14);
+    z-index: calc(var(--la-z-topbar) + 1);
+}
+
+@media (max-width: 980px) {
+    .la-app.sidebar-collapsed {
+        grid-template-columns: 1fr;
+    }
+
+    .la-app.sidebar-collapsed .la-sidebar {
+        position: static;
+        height: auto;
+        overflow: auto;
+        padding: var(--la-5);
+        border-right: 0;
+        border-bottom: 1px solid var(--la-border);
+    }
+
+    /* reset toggle to original position on mobile */
+    .la-app.sidebar-collapsed #sg-sidebar-toggle {
+        position: absolute;
+        top: 50%;
+        right: 12px;
+        left: auto;
+        transform: translateY(-50%);
+    }
+}
+
+
+/* =======================================
+   SITE FOOTER
+========================================== */
+
+/* page footer bar */
+.la-site-footer {
+    margin-top: auto;
+    padding: var(--la-4) var(--la-6);
+    border-top: 1px solid var(--la-border);
+    background: var(--la-surface);
+}
+
+/* footer inner row */
+.la-site-footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--la-4);
+}
+
+/* footer built-by text */
+.la-site-footer-built {
+    margin: 0;
+    color: var(--la-muted);
+    font-size: var(--la-text-xs);
+    line-height: var(--la-line-base);
+}
+
+/* footer brand link */
+.la-site-footer-built a {
+    color: var(--la-brand);
+    font-weight: var(--la-weight-label);
+    text-decoration: none;
+    transition: color var(--la-transition-fast);
+}
+
+/* footer brand link hover */
+.la-site-footer-built a:hover {
+    color: var(--la-brand-active);
+}
+
+/* footer links row */
+.la-site-footer-links {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--la-4);
+    font-size: var(--la-text-xs);
+}
+
+/* footer link */
+.la-site-footer-links a {
+    display: inline-flex;
+    align-items: center;
+    color: var(--la-muted);
+    text-decoration: none;
+    transition: color var(--la-transition-fast);
+}
+
+/* footer link hover */
+.la-site-footer-links a:hover {
+    color: var(--la-brand);
+}
+
+/* footer padding on phones */
+@media (max-width: 720px) {
+    .la-site-footer {
+        padding: var(--la-4);
+    }
+}

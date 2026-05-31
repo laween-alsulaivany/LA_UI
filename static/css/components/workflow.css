@@ -1,0 +1,298 @@
+/* =============================================================================
+   workflow.css
+   vertical workflow steps, audit log, activity timeline, and compact stepper
+============================================================================= */
+
+
+/* =======================================
+   VERTICAL WORKFLOW
+========================================== */
+
+/* container — stacked rows with outer border */
+.la-workflow {
+    display: grid;
+    gap: 0;
+    overflow: hidden;
+    background: var(--la-surface);
+    border: 1px solid var(--la-border);
+    border-radius: var(--la-radius-md);
+}
+
+/* single workflow row */
+.la-workflow-step {
+    display: grid;
+    grid-template-columns: 28px minmax(0, 1fr) auto;
+    align-items: start;
+    gap: var(--la-3);
+    padding: var(--la-4) var(--la-5);
+    border-bottom: 1px solid var(--la-border);
+}
+
+.la-workflow-step:last-child {
+    border-bottom: 0;
+}
+
+/* current step gets brand tint */
+.la-workflow-step.is-current {
+    background: var(--la-brand-soft);
+}
+
+/* active row left accent bar */
+/* .la-workflow-step.is-current {
+    box-shadow: inset 2.5px 0 0 var(--la-brand);
+} */
+
+/* step marker circle */
+.la-step-marker {
+    display: grid;
+    place-items: center;
+    width: 26px;
+    height: 26px;
+    border: 2px solid var(--la-border-strong);
+    border-radius: var(--la-radius-pill);
+    background: var(--la-surface);
+    color: var(--la-muted);
+    font-size: var(--la-text-xs);
+    font-weight: var(--la-weight-bold);
+}
+
+/* lower the marker when the step has no title */
+.la-step-marker.without-title {
+    margin-top: 10px;
+}
+
+/* marker for the current/active step */
+.la-workflow-step.is-current .la-step-marker {
+    border-color: var(--la-brand);
+    background: var(--la-surface);
+    color: var(--la-brand-ink);
+}
+
+/* roadmap/planned marker — dashed border signals not-yet-scheduled */
+.la-workflow-step.roadmap .la-step-marker {
+    border-color: var(--la-border-strong);
+    border-style: dashed;
+    color: var(--la-muted);
+}
+
+/* completed marker — filled brand circle with checkmark */
+.la-workflow-step.is-complete .la-step-marker {
+    position: relative;
+    border-color: var(--la-brand);
+    background: var(--la-brand);
+    color: transparent;
+}
+
+.la-workflow-step.is-complete .la-step-marker::after {
+    content: "\2713";
+    position: absolute;
+    color: var(--la-surface);
+    font-size: var(--la-text-xs);
+    font-weight: var(--la-weight-strong);
+    line-height: 1;
+}
+
+/* step headline */
+.la-step-title {
+    margin: 0;
+    color: var(--la-ink);
+    font-size: var(--la-text-sm);
+    font-weight: var(--la-weight-bold);
+}
+
+/* step supporting note */
+.la-step-note {
+    margin: var(--la-1) 0 0;
+    color: var(--la-muted);
+    font-size: var(--la-text-sm);
+}
+
+/* =======================================
+   AUDIT LOG
+========================================== */
+
+/* audit log container */
+.la-audit-list {
+    display: grid;
+}
+
+/* single audit row — timestamp + description */
+.la-audit-item {
+    display: grid;
+    grid-template-columns: 48px minmax(0, 1fr);
+    align-items: baseline;
+    gap: var(--la-3);
+    padding: var(--la-3) 0;
+    border-bottom: 1px solid var(--la-border);
+}
+
+.la-audit-item:last-child {
+    border-bottom: 0;
+}
+
+/* audit timestamp */
+.la-audit-time {
+    color: var(--la-muted);
+    font-size: var(--la-text-xs);
+}
+
+/* audit description text */
+.la-audit-text {
+    margin: 0;
+    color: var(--la-ink-soft);
+    font-size: var(--la-text-sm);
+}
+
+.la-audit-text strong {
+    color: var(--la-ink);
+    font-weight: var(--la-weight-light);
+}
+
+
+/* =======================================
+   ACTIVITY TIMELINE
+========================================== */
+
+/* timeline list */
+.la-timeline {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* timeline row — dot + content, with connecting line */
+.la-timeline li {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: var(--la-4);
+    padding-bottom: var(--la-5);
+}
+
+/* vertical connector between items */
+.la-timeline li:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    left: 10px;
+    top: 22px;
+    bottom: 0;
+    width: 2px;
+    background: var(--la-border);
+}
+
+/* timeline dot */
+.la-timeline-dot {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    border: 2px solid var(--la-brand);
+    border-radius: var(--la-radius-pill);
+    background: var(--la-surface);
+}
+
+/* completed event */
+.la-timeline-dot--done {
+    background: var(--la-brand);
+}
+
+/* future/waiting event */
+.la-timeline-dot--pending {
+    background: var(--la-surface);
+    border-color: var(--la-border-strong);
+}
+
+/* timeline content area */
+.la-timeline-body {
+    flex: 1;
+}
+
+/* timeline event title */
+.la-timeline-title {
+    margin: 0;
+    font-size: var(--la-text-sm);
+    font-weight: var(--la-weight-light);
+    line-height: 1.35;
+}
+
+/* timeline metadata — date, author, etc. */
+.la-timeline-meta {
+    margin: var(--la-1) 0 0;
+    color: var(--la-muted);
+    font-size: var(--la-text-xs);
+    line-height: 1.35;
+}
+
+
+/* =======================================
+   COMPACT HORIZONTAL STEPPER
+========================================== */
+
+/* stepper row */
+.la-steps {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: var(--la-5);
+}
+
+/* single step — number bubble + label */
+.la-step {
+    display: flex;
+    align-items: center;
+    gap: var(--la-2);
+}
+
+/* number bubble */
+.la-step-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
+    border: 2px solid var(--la-border);
+    border-radius: var(--la-radius-pill);
+    background: var(--la-surface);
+    color: var(--la-muted);
+    font-size: var(--la-text-xs);
+    font-weight: var(--la-weight-bold);
+}
+
+/* step label */
+.la-step-label {
+    color: var(--la-muted);
+    font-size: var(--la-text-sm);
+    font-weight: var(--la-weight-light);
+}
+
+/* completed step */
+.la-step--done .la-step-num {
+    border-color: var(--la-brand);
+    background: var(--la-brand);
+    color: var(--la-surface);
+
+}
+
+.la-step--done .la-step-label {
+    color: var(--la-muted);
+}
+
+/* current/active step */
+.la-step--current .la-step-num {
+    border-color: var(--la-brand);
+    background: var(--la-surface);
+    color: var(--la-brand);
+}
+
+.la-step--current .la-step-label {
+    color: var(--la-brand);
+    font-weight: var(--la-weight-bold);
+}
+
+/* arrow separator between steps */
+.la-step-arrow {
+    margin: 0 var(--la-2);
+    color: var(--la-border-strong);
+    font-size: 1rem;
+}

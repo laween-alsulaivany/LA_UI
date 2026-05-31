@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <script>(function(){var t=localStorage.getItem('la-theme');if(t)document.documentElement.setAttribute('data-theme',t);}());</script>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>LA UI Style Guide — Tokens</title>
+  <link rel="stylesheet" href="app.css" />
+  <link rel="stylesheet" href="showcase-only-new.css" />
+</head>
+<body class="sg-page">
+<div class="la-app">
+  <!-- sidebar and topbar injected by app.js -->
+  <main class="la-main">
+    <div class="la-content la-content--wide">
+
+      <section id="tokens" class="sg-section">
+
+        <div class="sg-section-title">
+          <div>
+            <h2>01. Foundation: tokens.css</h2>
+            <p>Tokens are the values the UI system is allowed to use. For a new client, change token values first, that is probably all you need to do. Do not rewrite component CSS just to change a brand.</p>
+          </div>
+        </div>
+
+        <div class="sg-guideline-card la-split-aside">
+          <div>
+            <h3>Rule</h3>
+            <p>Components should use variables like <span class="sg-inline-code">var(--la-surface)</span>, <span class="sg-inline-code">var(--la-ink)</span>, and <span class="sg-inline-code">var(--la-brand-action)</span>. Hard-coded colors should be extremely rare.</p>
+          </div>
+          <div>
+            <h3>Dark mode</h3>
+            <p>Dark mode is token-ready and completely optional. If the app does not need it, you can ignore it entirely. Switch token values, not component CSS.</p>
+          </div>
+        </div>
+
+        <!-- ── Color tokens ──────────────────────────────────────── -->
+
+        <h3>Color tokens</h3>
+        <p class="sg-soft">Token names stay the same across apps. Only the values change for a client theme. Use the toggle to preview how tokens resolve in dark mode.</p>
+
+        <div class="sg-top-gap">
+          <div id="sg-token-color-preview" class="sg-example sg-theme-preview" data-theme="light">
+            <div class="sg-example-header">
+              <div class="sg-theme-toggle" aria-label="Preview color theme">
+                <button class="la-btn la-btn-secondary la-btn-sm is-active" type="button" data-sg-theme-btn="light">Light</button>
+                <button class="la-btn la-btn-secondary la-btn-sm" type="button" data-sg-theme-btn="dark">Dark</button>
+              </div>
+            </div>
+
+            <!-- client brand colors -->
+              <div class="sg-token-group-head">
+                <div>
+                  <h3>Client brand colors</h3>
+                  <p>The primary brand set. Swap these first for a new client.</p>
+                </div>
+              </div>
+              <div class="la-table-wrap sg-token-table-wrap">
+                <table class="la-table sg-token-table">
+                  <thead>
+                    <tr><th>Token</th><th>Swatch</th><th>Value</th><th>Usage</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="la-cell-strong"><code>--la-brand</code></td>
+                      <td><span class="sg-swatch" style="background: var(--la-brand)"></span></td>
+                      <td class="sg-token-table-value" data-sg-token-value="--la-brand">var(--la-brand)</td>
+                      <td class="sg-token-table-usage">Primary brand color. Use for identity marks, selected accents, and recognizable branded UI moments.</td>
+                    </tr>
+                    <tr>
+                      <td class="la-cell-strong"><code>--la-brand-hover</code></td>
+                      <td><span class="sg-swatch" style="background: var(--la-brand-hover)"></span></td>
+                      <td class="sg-token-table-value" data-sg-token-value="--la-brand-hover">var(--la-brand-hover)</td>
+                      <td class="sg-token-table-usage">Hover state for brand-colored controls, links, and small interactive accents.</td>
+                    </tr>
+                    <tr>
+                      <td class="la-cell-strong"><code>--la-brand-active</code></td>
+                      <td><span class="sg-swatch" style="background: var(--la-brand-active)"></span></td>
+                      <td class="sg-token-table-value" data-sg-token-value="--la-brand-active">var(--la-brand-active)</td>
+                      <td class="sg-token-table-usage">Pressed or active brand state. Use when the brand color needs stronger contrast.</td>
+                    </tr>
+                    <tr>
+                      <td class="la-cell-strong"><code>--la-brand-soft</code></td>
+                      <td><span class="sg-swatch" style="background: var(--la-brand-soft)"></span></td>
+                      <td class="sg-token-table-value" data-sg-token-value="--la-brand-soft">var(--la-brand-soft)</td>
+                      <td class="sg-token-table-usage">Soft brand tint for badges, subtle highlights, quiet panels, and low-emphasis backgrounds.</td>
+                    </tr>
+                    <tr>
+                      <td class="la-cell-strong"><code>--la-brand-border</code></td>
+                      <td><span class="sg-swatch" style="background: var(--la-brand-border)"></span></td>
+                      <td class="sg-token-table-value" data-sg-token-value="--la-brand-border">var(--la-brand-border)</td>
+                      <td class="sg-token-table-usage">Brand-tinted border for outlines, dividers, pills, and quiet emphasis.</td>
+                    </tr>
+                    <tr>
+                      <td class="la-cell-strong"><code>--la-brand-ink</code></td>
+                      <td><span class="sg-swatch" style="background: var(--la-brand-ink)"></span></td>
+                      <td class="sg-token-table-value" data-sg-token-value="--la-brand-ink">var(--la-brand-ink)</td>
+                      <td class="sg-token-table-usage">Readable text color for content placed on soft brand backgrounds.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            <!-- action colors -->
+              <div class="sg-token-group-head">
+                <div>
+                  <h3>Action colors</h3>
+                  <p>Used by primary buttons, active links, selected states, and important interactive controls. Sometimes these are the same as the brand colors if the color palette is limited.</p>
+                </div>
+              </div>
+              <div class="la-table-wrap sg-token-table-wrap">
+                <table class="la-table sg-token-table">
+                  <thead>
+                    <tr><th>Token</th><th>Swatch</th><th>Value</th><th>Usage</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="la-cell-strong"><code>--la-brand-action</code></td>
+                      <td><span class="sg-swatch" style="background: var(--la-brand-action)"></span></td>
+                      <td class="sg-token-table-value" data-sg-token-value="--la-brand-action">var(--la-brand-action)</td>
+                      <td class="sg-token-table-usage">Default action color for primary buttons, important links, and main interactive controls.</td>
+                    </tr>
+                    <tr>
+                      <td class="la-cell-strong"><code>--la-brand-action-hover</code></td>
+                      <td><span class="sg-swatch" style="background: var(--la-brand-action-hover)"></span></td>
+                      <td class="sg-token-table-value" data-sg-token-value="--la-brand-action-hover">var(--la-brand-action-hover)</td>
+                      <td class="sg-token-table-usage">Hover state for primary action controls.</td>
+                    </tr>
+                    <tr>
+                      <td class="la-cell-strong"><code>--la-brand-action-active</code></td>
+                      <td><span class="sg-swatch" style="background: var(--la-brand-action-active)"></span></td>
+                      <td class="sg-token-table-value" data-sg-token-value="--la-brand-action-active">var(--la-brand-action-active)</td>
+                      <td class="sg-token-table-usage">Pressed or active state for primary action controls.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            <!-- text colors -->
+              <div class="sg-token-group-head">
+                <div>
+                  <h3>Text colors</h3>
+                  <p>Use these for readable hierarchy. Do not add random gray values inside component files.</p>
+                </div>
+              </div>
+              <div class="la-table-wrap sg-token-table-wrap">
+                <table class="la-table sg-token-table">
+                  <thead>
+                    <tr><th>Token</th><th>Swatch</th><th>Value</th><th>Usage</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="la-cell-strong"><code>--la-ink</code></td>
+                      <td><span class="sg-swatch" style="background: var(--la-ink)"></span></td>
+                      <td class="sg-token-table-value" data-sg-token-value="--la-ink">var(--la-ink)</td>
+                      <td class="sg-token-table-usage">Primary text color. Use for headings and highest-emphasis body text.</td>
+                    </tr>
+                    <tr>
+                      <td class="la-cell-strong"><code>--la-ink-soft</code></td>
+                      <td><span class="sg-swatch" style="background: var(--la-ink-soft)"></span></td>
+                      <td class="sg-token-table-value" data-sg-token-value="--la-ink-soft">var(--la-ink-soft)</td>
+                      <td class="sg-token-table-usage">Secondary text color. Use when text should still feel clear but less dominant.</td>
+                    </tr>
+                    <tr>
+                      <td class="la-cell-strong"><code>--la-muted</code></td>
+                      <td><span class="sg-swatch" style="background: var(--la-muted)"></span></td>
+                      <td class="sg-token-table-value" data-sg-token-value="--la-muted">var(--la-muted)</td>
+                      <td class="sg-token-table-usage">Supporting text for descriptions, helper text, metadata, and less important labels.</td>
+                    </tr>
+                    <tr>
+                      <td class="la-cell-strong"><code>--la-disabled</code></td>
+                      <td><span class="sg-swatch" style="background: var(--la-disabled)"></span></td>
+                      <td class="sg-token-table-value" data-sg-token-value="--la-disabled">var(--la-disabled)</td>
+                      <td class="sg-token-table-usage">Disabled text and non-interactive UI states.</td>
+                    </tr>
+                    <tr>
+                      <td class="la-cell-strong"><code>--la-ink-inverse</code></td>
+                      <td><span class="sg-swatch" style="background: var(--la-ink-inverse)"></span></td>
+                      <td class="sg-token-table-value" data-sg-token-value="--la-ink-inverse">var(--la-ink-inverse)</td>
+                      <td class="sg-token-table-usage">Inverse text color for dark backgrounds.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            <!-- surface colors -->
+              <div class="sg-token-group-head">
+                <div>
+                  <h3>Page and surface colors</h3>
+                  <p>Most app backgrounds, cards, panels, table rows, and selected states should come from this group.</p>
+                </div>
+              </div>
+              <div class="la-table-wrap sg-token-table-wrap">
+                <table class="la-table sg-token-table">
+                  <thead>
+                    <tr><th>Token</th><th>Swatch</th><th>Value</th><th>Usage</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="la-cell-strong"><code>--la-page</code></td>
+                      <td><span class="sg-swatch" style="background: var(--la-page)"></span></td>
+                      <td class="sg-token-table-value" data-sg-token-value="--la-page">var(--la-page)</td>
+                      <td class="sg-token-table-usage">Default app page background.</td>
+                    </tr>
+                    <tr>
+                      <td class="la-cell-strong"><code>--la-surface</code></td>
+                      <td><span class="sg-swatch" style="background: var(--la-surface)"></span></td>
+                      <td class="sg-token-table-value" data-sg-token-value="--la-surface">var(--la-surface)</td>
+                      <td class="sg-token-table-usage">Default surface for cards, panels, modals, and clean content areas.</td>
+                    </tr>
+                    <tr>
+                      <td class="la-cell-strong"><code>--la-surface-subtle</code></td>
+                      <td><span class="sg-swatch" style="background: var(--la-surface-subtle)"></span></td>
+                      <td class="sg-token-table-value" data-sg-token-value="--la-surface-subtle">var(--la-surface-subtle)</td>
+                      <td class="sg-token-table-usage">Very light surface for table headers, nested blocks, and quiet background separation.</td>
+                    </tr>
+                    <tr>
+                      <td class="la-cell-strong"><code>--la-surface-selected</code></td>
+                      <td><span class="sg-swatch" style="background: var(--la-surface-selected)"></span></td>
+                      <td class="sg-token-table-value" data-sg-token-value="--la-surface-selected">var(--la-surface-selected)</td>
+                      <td class="sg-token-table-usage">Selected-row or selected-item background.</td>
+                    </tr>
+                    <tr>
+                      <td class="la-cell-strong"><code>--la-surface-hover</code></td>
+                      <td><span class="sg-swatch" style="background: var(--la-surface-hover)"></span></td>
+                      <td class="sg-token-table-value" data-sg-token-value="--la-surface-hover">var(--la-surface-hover)</td>
+                      <td class="sg-token-table-usage">Hover background for table rows and list rows.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            <!-- borders -->
+              <div class="sg-token-group-head">
+                <div>
+                  <h3>Borders and dividers</h3>
+                  <p>Use these for cards, tables, inputs, section dividers, quiet separators, and panel borders.</p>
+                </div>
+              </div>
+              <div class="la-table-wrap sg-token-table-wrap">
+                <table class="la-table sg-token-table">
+                  <thead>
+                    <tr><th>Token</th><th>Swatch</th><th>Value</th><th>Usage</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="la-cell-strong"><code>--la-border</code></td>
+                      <td><span class="sg-swatch" style="background: var(--la-border)"></span></td>
+                      <td class="sg-token-table-value" data-sg-token-value="--la-border">var(--la-border)</td>
+                      <td class="sg-token-table-usage">Default border for cards, tables, inputs, and main separators.</td>
+                    </tr>
+                    <tr>
+                      <td class="la-cell-strong"><code>--la-border-strong</code></td>
+                      <td><span class="sg-swatch" style="background: var(--la-border-strong)"></span></td>
+                      <td class="sg-token-table-value" data-sg-token-value="--la-border-strong">var(--la-border-strong)</td>
+                      <td class="sg-token-table-usage">Stronger border for hover states or clearer separation.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            <!-- status colors -->
+              <div class="sg-token-group-head">
+                <div>
+                  <h3>Status colors</h3>
+                  <p>Only use these when the UI is communicating a real state: info, success, warning, danger, or disabled. Please only use these when you have to. </p>
+                </div>
+              </div>
+              <div class="la-table-wrap sg-token-table-wrap">
+                <table class="la-table sg-token-table">
+                  <thead>
+                    <tr><th>Token</th><th>Swatch</th><th>Value</th><th>Usage</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="la-cell-strong"><code>--la-info</code></td>
+                      <td><span class="sg-swatch" style="background: var(--la-info)"></span></td>
+                      <td class="sg-token-table-value" data-sg-token-value="--la-info">var(--la-info)</td>
+                      <td class="sg-token-table-usage">Info state. Use for informational messages and neutral system notices.</td>
+                    </tr>
+                    <tr>
+                      <td class="la-cell-strong"><code>--la-success</code></td>
+                      <td><span class="sg-swatch" style="background: var(--la-success)"></span></td>
+                      <td class="sg-token-table-value" data-sg-token-value="--la-success">var(--la-success)</td>
+                      <td class="sg-token-table-usage">Success state. Use for completed, approved, valid, or positive states.</td>
+                    </tr>
+                    <tr>
+                      <td class="la-cell-strong"><code>--la-warning</code></td>
+                      <td><span class="sg-swatch" style="background: var(--la-warning)"></span></td>
+                      <td class="sg-token-table-value" data-sg-token-value="--la-warning">var(--la-warning)</td>
+                      <td class="sg-token-table-usage">Warning state. Use for caution, pending, attention, or risk states.</td>
+                    </tr>
+                    <tr>
+                      <td class="la-cell-strong"><code>--la-danger</code></td>
+                      <td><span class="sg-swatch" style="background: var(--la-danger)"></span></td>
+                      <td class="sg-token-table-value" data-sg-token-value="--la-danger">var(--la-danger)</td>
+                      <td class="sg-token-table-usage">Danger state. Use for errors, destructive actions, failed states, or urgent problems.</td>
+                    </tr>
+                    <tr>
+                      <td class="la-cell-strong"><code>--la-danger-soft</code></td>
+                      <td><span class="sg-swatch" style="background: var(--la-danger-soft)"></span></td>
+                      <td class="sg-token-table-value" data-sg-token-value="--la-danger-soft">var(--la-danger-soft)</td>
+                      <td class="sg-token-table-usage">Soft danger background.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+          </div>
+        </div>
+
+        <!-- ── Type scale ─────────────────────────────────────────── -->
+
+        <h3>Type scale</h3>
+        <p class="sg-soft">Keep text sizing predictable. New font sizes should be added here only when there is a real repeated need.</p>
+
+        <div class="sg-top-gap">
+          <div class="la-table-wrap sg-token-table-wrap">
+            <table class="la-table sg-token-table">
+              <thead>
+                <tr><th>Token</th><th>Value</th><th>Preview</th><th>Usage</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="la-cell-strong"><code>--la-font</code></td>
+                  <td class="sg-token-table-value">IBM Plex Sans, system UI stack</td>
+                  <td><span class="sg-type-sample">IBM Plex Sans</span></td>
+                  <td class="sg-token-table-usage">Primary UI font for app text, labels, headings, and body copy.</td>
+                </tr>
+                <tr>
+                  <td class="la-cell-strong"><code>--la-mono</code></td>
+                  <td class="sg-token-table-value">IBM Plex Mono, monospace stack</td>
+                  <td><code>IBM Plex Mono</code></td>
+                  <td class="sg-token-table-usage">Use for code, tokens, numeric values, and implementation references.</td>
+                </tr>
+                <tr>
+                  <td class="la-cell-strong"><code>--la-text-xs</code></td>
+                  <td class="sg-token-table-value">0.75rem / 12px</td>
+                  <td class="sg-type-xs sg-type-sample">Tiny metadata sample</td>
+                  <td class="sg-token-table-usage">Tiny labels, metadata, helper notes.</td>
+                </tr>
+                <tr>
+                  <td class="la-cell-strong"><code>--la-text-sm</code></td>
+                  <td class="sg-token-table-value">0.875rem / 14px</td>
+                  <td class="sg-type-sm sg-type-sample">Small UI text sample</td>
+                  <td class="sg-token-table-usage">Small UI text and table details.</td>
+                </tr>
+                <tr>
+                  <td class="la-cell-strong"><code>--la-text-md</code></td>
+                  <td class="sg-token-table-value">0.95rem / 15px</td>
+                  <td class="sg-type-md sg-type-sample">Default component text sample</td>
+                  <td class="sg-token-table-usage">Default component text.</td>
+                </tr>
+                <tr>
+                  <td class="la-cell-strong"><code>--la-text-base</code></td>
+                  <td class="sg-token-table-value">1rem / 16px</td>
+                  <td class="sg-type-base sg-type-sample">Normal page body text sample</td>
+                  <td class="sg-token-table-usage">Normal page body text.</td>
+                </tr>
+                <tr>
+                  <td class="la-cell-strong"><code>--la-text-lg</code></td>
+                  <td class="sg-token-table-value">1.125rem / 18px</td>
+                  <td class="sg-type-lg sg-type-sample">Small section heading sample</td>
+                  <td class="sg-token-table-usage">Small section headings.</td>
+                </tr>
+                <tr>
+                  <td class="la-cell-strong"><code>--la-text-xl</code></td>
+                  <td class="sg-token-table-value">1.375rem / 22px</td>
+                  <td class="sg-type-xl sg-type-sample">Section heading sample</td>
+                  <td class="sg-token-table-usage">Page section headings.</td>
+                </tr>
+                <tr>
+                  <td class="la-cell-strong"><code>--la-text-2xl</code></td>
+                  <td class="sg-token-table-value">1.75rem / 28px</td>
+                  <td class="sg-type-2xl sg-type-sample">Main page title sample</td>
+                  <td class="sg-token-table-usage">Main page titles.</td>
+                </tr>
+                <tr>
+                  <td class="la-cell-strong"><code>--la-weight-light</code></td>
+                  <td class="sg-token-table-value">500</td>
+                  <td style="font-weight: var(--la-weight-light);">Light weight sample</td>
+                  <td class="sg-token-table-usage">Labels, small headings, and UI emphasis.</td>
+                </tr>
+                <tr>
+                  <td class="la-cell-strong"><code>--la-weight-bold</code></td>
+                  <td class="sg-token-table-value">600</td>
+                  <td style="font-weight: var(--la-weight-bold);">Bold weight sample</td>
+                  <td class="sg-token-table-usage">Section headings and stronger emphasis.</td>
+                </tr>
+                <tr>
+                  <td class="la-cell-strong"><code>--la-weight-strong</code></td>
+                  <td class="sg-token-table-value">700</td>
+                  <td style="font-weight: var(--la-weight-strong);">Strong weight sample</td>
+                  <td class="sg-token-table-usage">Table headers, sort labels, and important emphasis.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ── Spacing scale ──────────────────────────────────────── -->
+
+        <h3>Spacing scale</h3>
+        <p class="sg-soft">Use this scale for all gaps, padding, and section rhythm. Do not introduce one-off pixel values outside this scale.</p>
+
+        <div class="sg-top-gap">
+          <div class="la-table-wrap sg-token-table-wrap">
+            <table class="la-table sg-token-table">
+              <thead>
+                <tr><th style="width: 30%;">Token</th><th style="width: 35%;">Value</th><th>Preview</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="la-cell-strong"><code>--la-1</code></td>
+                  <td class="sg-token-table-value">0.25rem / 4px</td>
+                  <td>
+                    <div class="sg-space-preview-pad" style="padding: var(--la-1); flex-direction: row; gap: var(--la-1);">
+                      <span class="sg-space-preview-inner"></span>
+                      <span class="sg-space-preview-inner"></span>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="la-cell-strong"><code>--la-2</code></td>
+                  <td class="sg-token-table-value">0.5rem / 8px</td>
+                  <td>
+                    <div class="sg-space-preview-pad" style="padding: var(--la-2); flex-direction: row; gap: var(--la-2);">
+                      <span class="sg-space-preview-inner"></span>
+                      <span class="sg-space-preview-inner"></span>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="la-cell-strong"><code>--la-3</code></td>
+                  <td class="sg-token-table-value">0.75rem / 12px</td>
+                  <td>
+                    <div class="sg-space-preview-pad" style="padding: var(--la-3); flex-direction: row; gap: var(--la-3);">
+                      <span class="sg-space-preview-inner"></span>
+                      <span class="sg-space-preview-inner"></span>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="la-cell-strong"><code>--la-4</code></td>
+                  <td class="sg-token-table-value">1rem / 16px</td>
+                  <td>
+                    <div class="sg-space-preview-pad" style="padding: var(--la-4); flex-direction: row; gap: var(--la-4);">
+                      <span class="sg-space-preview-inner"></span>
+                      <span class="sg-space-preview-inner"></span>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="la-cell-strong"><code>--la-5</code></td>
+                  <td class="sg-token-table-value">1.25rem / 20px</td>
+                  <td>
+                    <div class="sg-space-preview-pad" style="padding: var(--la-5); flex-direction: row; gap: var(--la-5);">
+                      <span class="sg-space-preview-inner"></span>
+                      <span class="sg-space-preview-inner"></span>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="la-cell-strong"><code>--la-6</code></td>
+                  <td class="sg-token-table-value">1.5rem / 24px</td>
+                  <td>
+                    <div class="sg-space-preview-pad" style="padding: var(--la-6); flex-direction: row; gap: var(--la-6);">
+                      <span class="sg-space-preview-inner"></span>
+                      <span class="sg-space-preview-inner"></span>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="la-cell-strong"><code>--la-8</code></td>
+                  <td class="sg-token-table-value">2rem / 32px</td>
+                  <td>
+                    <div class="sg-space-preview-pad" style="padding: var(--la-8); flex-direction: row; gap: var(--la-8);">
+                      <span class="sg-space-preview-inner"></span>
+                      <span class="sg-space-preview-inner"></span>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="la-cell-strong"><code>--la-10</code></td>
+                  <td class="sg-token-table-value">2.5rem / 40px</td>
+                  <td>
+                    <div class="sg-space-preview-pad" style="padding: var(--la-10); flex-direction: row; gap: var(--la-10);">
+                      <span class="sg-space-preview-inner"></span>
+                      <span class="sg-space-preview-inner"></span>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="la-cell-strong"><code>--la-12</code></td>
+                  <td class="sg-token-table-value">3rem / 48px</td>
+                  <td>
+                    <div class="sg-space-preview-pad" style="padding: var(--la-12); flex-direction: row; gap: var(--la-12);">
+                      <span class="sg-space-preview-inner"></span>
+                      <span class="sg-space-preview-inner"></span>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ── Shape and shadows ──────────────────────────────────── -->
+
+        <h3>Shape and shadows</h3>
+        <p class="sg-soft">These keep controls, panels, popovers, and the app shell consistent. Do not use arbitrary border-radius or box-shadow values in component CSS. Never use sharp corners.</p>
+
+        <!-- Radius scale -->
+        <div class="sg-top-gap">
+          <div class="sg-radius-grid">
+            <div class="sg-radius-card">
+              <code>--la-radius-xs</code>
+              <div class="sg-radius-shape" style="border-radius: var(--la-radius-xs);"></div>
+              <div class="sg-radius-note">4px. Tight corners for tiny UI elements and small internal shapes.</div>
+            </div>
+            <div class="sg-radius-card">
+              <code>--la-radius-sm</code>
+              <div class="sg-radius-shape" style="border-radius: var(--la-radius-sm);"></div>
+              <div class="sg-radius-note">6px. Use for buttons, inputs, chips, and compact controls.</div>
+            </div>
+            <div class="sg-radius-card">
+              <code>--la-radius-md</code>
+              <div class="sg-radius-shape" style="border-radius: var(--la-radius-md);"></div>
+              <div class="sg-radius-note">8px. Default component radius for tables, cards, and containers.</div>
+            </div>
+            <div class="sg-radius-card">
+              <code>--la-radius-lg</code>
+              <div class="sg-radius-shape" style="border-radius: var(--la-radius-lg);"></div>
+              <div class="sg-radius-note">12px. Larger featured surfaces, modals, and softer large panels.</div>
+            </div>
+            <div class="sg-radius-card">
+              <code>--la-radius-pill</code>
+              <div class="sg-radius-shape" style="border-radius: var(--la-radius-pill);"></div>
+              <div class="sg-radius-note">999px. Use only for segmented toggles, and intentionally rounded UI.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Shadow levels -->
+        <div class="sg-top-gap">
+          <div class="sg-shadow-grid">
+            <div class="sg-shadow-card">
+              <div class="sg-label"><code>--la-shadow-shell</code></div>
+              <h4 style="margin: 0;">Shell shadow</h4>
+              <p class="sg-soft">Use for app shells, floating cards, or larger containers that should lift gently from the page.</p>
+              <div class="sg-shadow-demo">
+                <div class="sg-shadow-shell-box"></div>
+              </div>
+            </div>
+            <div class="sg-shadow-card">
+              <div class="sg-label"><code>--la-shadow-popover</code></div>
+              <h4 style="margin: 0;">Popover shadow</h4>
+              <p class="sg-soft">Use for menus, popovers, floating panels, and overlays that need clearer separation.</p>
+              <div class="sg-shadow-demo">
+                <div class="sg-shadow-popover-box">
+                  <div class="sg-shadow-popover-head"></div>
+                  <div class="sg-shadow-popover-body">
+                    <span class="sg-shadow-popover-line"></span>
+                    <span class="sg-shadow-popover-line short"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+</div>
+<script>
+window.SHELL_PAGE = { active: 'tokens', breadcrumb: 'Tokens', nav: 'page', base: '' };
+</script>
+<script src="app.js"></script>
+</body>
+</html>
