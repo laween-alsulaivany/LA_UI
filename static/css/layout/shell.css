@@ -130,9 +130,27 @@
     display: flex;
     align-items: center;
     gap: var(--la-2);
+    padding: var(--la-1) var(--la-2);
+    border: 1px solid transparent;
+    border-radius: var(--la-radius-sm);
+    background: none;
     color: var(--la-ink-soft);
+    font-family: var(--la-font);
     font-size: var(--la-text-sm);
     white-space: nowrap;
+    cursor: pointer;
+    transition:
+        background-color var(--la-transition-fast),
+        border-color var(--la-transition-fast),
+        color var(--la-transition-fast);
+}
+
+.la-user-menu:hover,
+.la-user-menu:focus-visible {
+    background: var(--la-surface-subtle);
+    border-color: var(--la-border);
+    color: var(--la-ink);
+    outline: none;
 }
 
 /* initials avatar tile */
@@ -395,4 +413,23 @@
     .la-site-footer {
         padding: var(--la-4);
     }
+}
+
+
+/* =======================================
+   SHELL SKELETON
+   Placeholder elements in the page HTML that hold sidebar + topbar
+   space before injectShell fires. Uses real class names so CSS layout
+   is correct on first paint. Replaced atomically by injectShell.
+========================================== */
+
+.la-shell-skeleton {
+    background: var(--la-surface-subtle);
+    animation: la-skel-pulse 1.5s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes la-skel-pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.4; }
 }
