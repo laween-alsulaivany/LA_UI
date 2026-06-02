@@ -7,11 +7,13 @@
   <title>LA UI Style Guide - Tokens</title>
   <link rel="stylesheet" href="app.css" />
   <link rel="stylesheet" href="showcase-only-new.css" />
+  <script defer src="app.js"></script>
 </head>
 <body class="sg-page">
 <div class="la-app">
-  <!-- sidebar and topbar injected by app.js -->
+  <div class="la-sidebar la-shell-skeleton" aria-hidden="true"></div>
   <main class="la-main">
+    <div class="la-topbar la-shell-skeleton" aria-hidden="true"></div>
     <div class="la-content la-content--wide">
 
       <section id="tokens" class="sg-section">
@@ -471,6 +473,16 @@
                   </td>
                 </tr>
                 <tr>
+                  <td class="la-cell-strong"><code>--la-7</code></td>
+                  <td class="sg-token-table-value">1.75rem / 28px</td>
+                  <td>
+                    <div class="sg-space-preview-pad" style="padding: var(--la-7); flex-direction: row; gap: var(--la-7);">
+                      <span class="sg-space-preview-inner"></span>
+                      <span class="sg-space-preview-inner"></span>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
                   <td class="la-cell-strong"><code>--la-8</code></td>
                   <td class="sg-token-table-value">2rem / 32px</td>
                   <td>
@@ -579,6 +591,5 @@
 <script>
 window.SHELL_PAGE = { active: 'tokens', breadcrumb: 'Tokens', nav: 'page', base: '' };
 </script>
-<script src="app.js"></script>
 </body>
 </html>

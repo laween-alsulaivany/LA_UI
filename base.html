@@ -2,6 +2,8 @@
 <html lang="en" data-theme="light">
 <head>
   <meta charset="utf-8" />
+  <!-- Redirect anyone who opens base.html directly — it's a shell template, not a page. -->
+  <script>if (window.location.pathname.endsWith('base.html') && !window.SHELL_PAGE) { window.location.replace('overview.html'); }</script>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>LA UI Style Guide</title>
   <link rel="stylesheet" href="app.css" />
@@ -177,11 +179,11 @@
   <div class="la-nav-section">
     <p class="la-nav-title">Preview</p>
     <nav class="la-nav" aria-label="Preview">
-      <a class="la-nav-link" href="previews/preview_1.html" data-key="preview_1">
+      <a class="la-nav-link" href="previews/preview_1.html" target="_blank" rel="noopener noreferrer" data-key="preview_1">
         <span class="la-nav-code">13</span>
         <span class="la-nav-label">Example 1</span>
       </a>
-      <a class="la-nav-link" href="previews/preview_2.html" data-key="preview_2">
+      <a class="la-nav-link" href="previews/preview_2.html" target="_blank" rel="noopener noreferrer" data-key="preview_2">
         <span class="la-nav-code">14</span>
         <span class="la-nav-label">Example 2</span>
       </a>

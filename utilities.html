@@ -7,11 +7,13 @@
   <title>LA UI Style Guide - Utilities</title>
   <link rel="stylesheet" href="app.css" />
   <link rel="stylesheet" href="showcase-only-new.css" />
+  <script defer src="app.js"></script>
 </head>
 <body class="sg-page">
 <div class="la-app">
-  <!-- sidebar and topbar injected by app.js -->
+  <div class="la-sidebar la-shell-skeleton" aria-hidden="true"></div>
   <main class="la-main">
+    <div class="la-topbar la-shell-skeleton" aria-hidden="true"></div>
     <div class="la-content la-content--wide">
 
       <section id="utilities" class="sg-section">
@@ -436,6 +438,5 @@ console.log(`${result.length} records ready for export.`);</pre>
 <script>
 window.SHELL_PAGE = { active: 'utilities', breadcrumb: 'Utilities', nav: 'page', base: '' };
 </script>
-<script src="app.js"></script>
 </body>
 </html>
