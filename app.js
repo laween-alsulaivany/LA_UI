@@ -1,45 +1,40 @@
-/**
- * app.js — LA UI Style Guide
- * ─────────────────────────────────────────────────────────────────────────
- * Single script for every guide page. Handles two things:
+/*
+ * app.js - shared JS for the LA UI docs.
  *
- *  1. SHELL INJECTION
- *     When a page declares window.SHELL_PAGE, this script fetches base.html
- *     and injects .la-sidebar and .la-topbar into the host page. After
- *     injection it builds the in-page section nav and activates scroll
- *     tracking. (This is what shell.js used to do — it lives here now.)
+ * There are two modes here:
+ * - multi-page docs set window.SHELL_PAGE, then we pull in base.html
+ * - the old one-page showcase skips that and already has the shell in HTML
  *
- *     Each guide page sets this before the script loads:
- *       window.SHELL_PAGE = { active: 'pagename', breadcrumb: 'Label', nav: 'page', base: '' }
- *
- *       active     — data-key of the nav link to mark active in the sidebar
- *       breadcrumb — label shown in the topbar after "LA UI /"
- *       nav        — 'page' shows the in-page section nav;
- *                    anything else (e.g. 'site') shows the full site nav
- *       base       — relative prefix for subdirectory pages, e.g. '../'
- *
- *  2. SHOWCASE INTERACTIONS
- *     Component demos that need JS: token theme preview, notice dismiss,
- *     password field toggle.
- *
- * Requires VS Code Live Server or any local HTTP server.
- * fetch() does not work over file:// URLs.
+ * Needs a local server. fetch() will not load base.html from file://.
  */
 (function () {
   'use strict';
 
-  // PAGE is null on the monolithic showcase (no window.SHELL_PAGE).
-  // On every individual guide page it is the object set by the page.
+  // Set by guide pages before this file loads. Null means standalone showcase.
+  // active: sidebar key, breadcrumb: topbar label, nav: page or site, base: ../ etc.
   var PAGE = window.SHELL_PAGE || null;
   var B    = PAGE ? (PAGE.base || '') : '';
 
+  // Start the shell fetch (or sessionStorage read) immediately — defer guarantees
+  // the DOM is already parsed here, so the sooner this runs the less visible flash.
+  var shellPromise = null;
+  if (PAGE) {
+    var shellKey     = 'la-shell:' + B;
+    var cachedShell  = sessionStorage.getItem(shellKey);
+    if (cachedShell) {
+      shellPromise = Promise.resolve(cachedShell);
+    } else {
+      shellPromise = fetch(B + 'base.html')
+        .then(function (r) { return r.text(); })
+        .then(function (html) {
+          try { sessionStorage.setItem(shellKey, html); } catch (e) {}
+          return html;
+        });
+    }
+  }
 
-  // ─────────────────────────────────────────────────────────────────────────
-  // ACTIVE NAV STATE
-  // Marks the sidebar nav link whose data-key matches the current page.
-  // Called immediately after the sidebar HTML is inserted into the DOM.
-  // ─────────────────────────────────────────────────────────────────────────
 
+  // Marks the matching sidebar link as active.
   function setActive(key) {
     document.querySelectorAll('.la-nav-link').forEach(function (link) {
       link.classList.toggle('is-active', link.dataset.key === key);
@@ -47,14 +42,7 @@
   }
 
 
-  // ─────────────────────────────────────────────────────────────────────────
-  // DATA-SECTION SCROLL SPY
-  // Watches elements that carry [data-section] and keeps the matching
-  // sidebar nav link active as the user scrolls. The "current" section is
-  // the last one whose top edge has reached the scroll threshold — this
-  // handles tall sections whose headings can never reach the viewport center.
-  // ─────────────────────────────────────────────────────────────────────────
-
+  // Old data-section scroll spy. Last section above the top offset wins.
   function initScrollSpy() {
     var sections = Array.from(document.querySelectorAll('[data-section]'));
     if (!sections.length) return;
@@ -76,13 +64,7 @@
   }
 
 
-  // ─────────────────────────────────────────────────────────────────────────
-  // PATH REWRITING
-  // base.html uses root-relative paths (href="tokens.html", src="app.css").
-  // Pages in subdirectories set PAGE.base = '../' so every relative href
-  // and src in the injected HTML is prefixed to resolve correctly.
-  // ─────────────────────────────────────────────────────────────────────────
-
+  // base.html uses local paths. Nested pages need those paths prefixed.
   function rewritePaths(fragment, base) {
     if (!base) return;
     fragment.querySelectorAll('[href]').forEach(function (el) {
@@ -100,28 +82,18 @@
   }
 
 
-  // ─────────────────────────────────────────────────────────────────────────
-  // SHELL INJECTION
-  // Called with the raw HTML text of base.html once the fetch resolves.
-  // Parses it, extracts .la-sidebar, .la-topbar, and .la-site-footer, inserts
-  // them into the host page. Also handles:
-  //   - Breadcrumb label from PAGE.breadcrumb
-  //   - Hiding the parent crumb on non-topic pages (e.g. overview)
-  //   - Switching between site nav and in-page section nav
-  //   - Marking the active nav link and starting scroll tracking
-  // ─────────────────────────────────────────────────────────────────────────
-
+  // Pull shared shell pieces from base.html and drop them into the page.
   function injectShell(html) {
     var doc = new DOMParser().parseFromString(html, 'text/html');
 
-    // Fix relative paths if the page lives in a subdirectory
+    // Fix links/scripts if this page is inside a folder.
     rewritePaths(doc, B);
 
-    // Write the page label into the topbar breadcrumb slot
+    // Topbar crumb text for the current page.
     var bc = doc.querySelector('[data-breadcrumb]');
     if (bc) bc.textContent = PAGE.breadcrumb;
 
-    // Non-topic pages (nav: 'site') omit the parent crumb and separator
+    // Site-level pages do not need the parent crumb.
     if (PAGE.nav !== 'page') {
       var bcParent = doc.querySelector('[data-breadcrumb-parent]');
       var bcSep    = doc.querySelector('[data-breadcrumb-sep]');
@@ -133,18 +105,32 @@
     var main    = document.querySelector('.la-main');
     var content = document.querySelector('.la-content');
 
-    // Sidebar goes before <main>, topbar as first child of <main>
+    // Insert shell around the page content — atomically replace skeleton
+    // placeholders so the layout never shifts.
     var sidebar = doc.querySelector('.la-sidebar');
-    if (sidebar && app) app.insertBefore(sidebar, main);
+    if (sidebar && app) {
+      var skelSidebar = app.querySelector('.la-sidebar.la-shell-skeleton');
+      if (skelSidebar) {
+        app.replaceChild(sidebar, skelSidebar);
+      } else {
+        app.insertBefore(sidebar, main);
+      }
+    }
 
     var topbar = doc.querySelector('.la-topbar');
-    if (topbar && main) main.insertBefore(topbar, content);
+    if (topbar && main) {
+      var skelTopbar = main.querySelector('.la-topbar.la-shell-skeleton');
+      if (skelTopbar) {
+        main.replaceChild(topbar, skelTopbar);
+      } else {
+        main.insertBefore(topbar, content);
+      }
+    }
 
-    // Footer appended as last child of <main>
     var footer = doc.querySelector('.la-site-footer');
     if (footer && main) main.appendChild(footer);
 
-    // 'page' nav = in-page section links; anything else = full site nav
+    // Topic pages show section links. Overview-style pages show site nav.
     var siteNav = document.getElementById('sg-site-nav');
     var pageNav = document.getElementById('page-categories');
     if (PAGE.nav === 'page') {
@@ -155,23 +141,15 @@
       if (pageNav) pageNav.hidden = true;
     }
 
-    // Mark the current page active, then start the data-section scroll spy
     setActive(PAGE.active);
     initScrollSpy();
 
-    // Sidebar is now in the DOM — run setup that depends on it
+    // Anything that needs the injected sidebar runs after this.
     initPageSetup();
   }
 
 
-  // ─────────────────────────────────────────────────────────────────────────
-  // PAGE CATEGORIES  (in-page section nav)
-  // Scans direct h3 children of .sg-section and builds a nav block inside
-  // #page-categories. Uses :scope > h3 to exclude h3 elements nested inside
-  // component demos (card titles, modal headings, etc.) from appearing here.
-  // Each h3 gets an auto-generated id from its text if it does not have one.
-  // ─────────────────────────────────────────────────────────────────────────
-
+  // Builds the small in-page nav from direct h3 headings only.
   function setupPageCategories() {
     var container = document.getElementById('page-categories');
     if (!container) return;
@@ -179,14 +157,14 @@
     var contentRoot = document.querySelector('.la-content .sg-section');
     if (!contentRoot) return;
 
-    // :scope > h3 — direct children only, excludes nested demo headings
+    // Direct h3 only, otherwise demo card titles would get pulled in too.
     var headings = Array.prototype.slice.call(contentRoot.querySelectorAll(':scope > h3'));
     if (!headings.length) return;
 
     var wrapper = document.createElement('div');
     wrapper.className = 'la-nav-section';
 
-    // Page label above the nav links — pulled from SHELL_PAGE.breadcrumb
+    // Small label above the section list.
     if (PAGE && PAGE.breadcrumb) {
       var title = document.createElement('p');
       title.className = 'la-nav-title';
@@ -202,7 +180,7 @@
       var text = h.textContent.trim();
       if (!text) return;
 
-      // Auto-generate a stable id from the heading text
+      // Make a simple id if the heading does not already have one.
       if (!h.id) {
         h.id = text
           .toLowerCase()
@@ -224,19 +202,29 @@
 
     wrapper.appendChild(nav);
     container.innerHTML = '';
+
+    // Manual back link, kept separate so it does not join the scroll spy list.
+    var backSection = document.createElement('div');
+    backSection.className = 'la-nav-section';
+    var backNav = document.createElement('nav');
+    backNav.className = 'la-nav';
+    backNav.setAttribute('aria-label', 'Back');
+    var backLink = document.createElement('a');
+    backLink.className = 'la-nav-link la-nav-link--plain la-nav-link--back';
+    backLink.href = B + 'overview.html';
+    var backLabel = document.createElement('span');
+    backLabel.className = 'la-nav-label';
+    backLabel.textContent = '\u2190 Back to Overview';
+    backLink.appendChild(backLabel);
+    backNav.appendChild(backLink);
+    backSection.appendChild(backNav);
+    container.appendChild(backSection);
+
     container.appendChild(wrapper);
   }
 
 
-  // ─────────────────────────────────────────────────────────────────────────
-  // HASH SCROLL SPY  (section nav links)
-  // After setupPageCategories builds the in-page nav, this spy watches the
-  // corresponding heading elements and keeps the matching nav link active
-  // as the user scrolls. Same "last section above threshold" logic as
-  // initScrollSpy, but driven by the anchor href list rather than
-  // [data-section] attributes.
-  // ─────────────────────────────────────────────────────────────────────────
-
+  // Scroll spy for the generated hash links in the sidebar.
   function setupScrollSpy() {
     var links = Array.prototype.slice.call(
       document.querySelectorAll('.la-sidebar .la-nav-link[href^="#"]')
@@ -277,13 +265,7 @@
   }
 
 
-  // ─────────────────────────────────────────────────────────────────────────
-  // SIDEBAR TOGGLE
-  // The collapse button (#sg-sidebar-toggle) lives inside the injected
-  // sidebar. It toggles .sidebar-collapsed on .la-app and persists the
-  // state in localStorage so the preference survives page navigation.
-  // ─────────────────────────────────────────────────────────────────────────
-
+  // Sidebar collapse button. Saves the state because it is annoying otherwise.
   function setupSidebarToggle() {
     var btn = document.getElementById('sg-sidebar-toggle');
     var app = document.querySelector('.la-app');
@@ -300,21 +282,14 @@
       applyState(!app.classList.contains('sidebar-collapsed'));
     });
 
-    // Restore the previous state on page load
+    // Put it back the way the user left it.
     try {
       if (localStorage.getItem('sgSidebarCollapsed') === '1') applyState(true);
     } catch (e) {}
   }
 
 
-  // ─────────────────────────────────────────────────────────────────────────
-  // PAGE SETUP
-  // Groups the three sidebar-dependent setup functions. In multi-page mode,
-  // injectShell calls this once the sidebar has been inserted. On the
-  // monolithic showcase, DOMContentLoaded calls it directly because the
-  // sidebar is already in the HTML.
-  // ─────────────────────────────────────────────────────────────────────────
-
+  // Stuff that needs the sidebar to already exist.
   function initPageSetup() {
     setupPageCategories();
     setupScrollSpy();
@@ -323,15 +298,7 @@
   }
 
 
-  // ─────────────────────────────────────────────────────────────────────────
-  // TOKEN THEME PREVIEW
-  // The tokens page has a color preview block (#sg-token-color-preview).
-  // Theme toggle buttons switch its data-theme attribute on demand. After
-  // each switch the live CSS custom property values are re-read and written
-  // into [data-sg-token-value] spans so the resolved values update in real
-  // time without a page reload.
-  // ─────────────────────────────────────────────────────────────────────────
-
+  // Reads the live CSS token values from the token preview box.
   function refreshTokenValues(preview) {
     var styles = window.getComputedStyle(preview);
 
@@ -345,6 +312,7 @@
     });
   }
 
+  // Light/dark preview for the tokens page only.
   function setupTokenThemeToggle() {
     var preview = document.getElementById('sg-token-color-preview');
     if (!preview) return;
@@ -354,7 +322,7 @@
         var theme = btn.getAttribute('data-sg-theme-btn');
         preview.setAttribute('data-theme', theme);
 
-        // Mark the clicked button active and deactivate all others
+        // Only the clicked theme button should look selected.
         document.querySelectorAll('[data-sg-theme-btn]').forEach(function (other) {
           other.classList.toggle('is-active', other === btn);
         });
@@ -367,13 +335,7 @@
   }
 
 
-  // ─────────────────────────────────────────────────────────────────────────
-  // NOTICE DISMISS
-  // Dismissible notice demo on the feedback page. Clicking × fades the
-  // notice and hides it from assistive tech. The element stays in the DOM
-  // so it remains inspectable in devtools after dismissal.
-  // ─────────────────────────────────────────────────────────────────────────
-
+  // Simple dismiss behavior for static notice demos.
   function setupNoticeDismiss() {
     document.querySelectorAll('.la-notice-dismiss').forEach(function (btn) {
       btn.addEventListener('click', function () {
@@ -385,14 +347,7 @@
     });
   }
 
-  // ─────────────────────────────────────────────────────────────────────────
-  // DEMO TOASTS
-  // Live demo buttons on the feedback page trigger these. They create a
-  // notice element, append it to the stack container, and set a timer to
-  // auto-dismiss after 4 seconds. Clicks on the dismiss button clear the
-  // timer and remove the notice immediately.
-  // ──
-
+  // Demo toast helper used by buttons on the feedback page.
   window.demoToast = function (type, message) {
     var stack = document.getElementById('la-demo-toasts');
     if (!stack) {
@@ -421,14 +376,7 @@
   };
 
 
-  // ─────────────────────────────────────────────────────────────────────────
-  // THEME TOGGLE
-  // Reads the saved preference from localStorage on boot and keeps the
-  // toggle button in sync with the current data-theme on <html>. The
-  // early-boot inline script in each page's <head> applies the saved theme
-  // before first paint, so there is no flash of the wrong theme.
-  // ─────────────────────────────────────────────────────────────────────────
-
+  // Main site theme toggle. Head script applies the saved theme before paint.
   function setupThemeToggle() {
     var btn = document.getElementById('sg-theme-toggle');
     if (!btn) return;
@@ -448,18 +396,12 @@
       apply(document.documentElement.getAttribute('data-theme') !== 'dark');
     });
 
-    // Sync button state with whatever the early-boot script already applied
+    // Match the button to whatever the head script already picked.
     apply(document.documentElement.getAttribute('data-theme') === 'dark');
   }
 
 
-  // ─────────────────────────────────────────────────────────────────────────
-  // PASSWORD TOGGLE
-  // Toggles the input type between 'password' and 'text'. Keeps aria-pressed
-  // and aria-label in sync on the toggle button so screen readers announce
-  // the current visibility state.
-  // ─────────────────────────────────────────────────────────────────────────
-
+  // Password visibility button for form demos.
   function setupPasswordToggle() {
     document.querySelectorAll('.la-password-toggle').forEach(function (btn) {
       btn.addEventListener('click', function () {
@@ -475,33 +417,23 @@
   }
 
 
-  // ─────────────────────────────────────────────────────────────────────────
-  // BOOT
-  // Runs on DOMContentLoaded. Showcase interactions fire on every page.
-  // Shell injection fires only when window.SHELL_PAGE is set (multi-page
-  // mode). On the monolithic showcase, initPageSetup runs directly since
-  // the sidebar is already present in the HTML.
-  // ─────────────────────────────────────────────────────────────────────────
-
+  // Boot. Demo bits run everywhere. Shell setup depends on the mode.
   document.addEventListener('DOMContentLoaded', function () {
 
-    // These run on every page regardless of mode
+    // Safe to run on every page. They bail if their markup is missing.
     setupTokenThemeToggle();
     setupNoticeDismiss();
     setupPasswordToggle();
 
     if (PAGE) {
-      // Multi-page mode: fetch the shell template, inject sidebar and topbar.
-      // injectShell calls initPageSetup once the DOM is ready.
-      fetch(B + 'base.html')
-        .then(function (r) { return r.text(); })
+      // shellPromise was started at script-load time to minimise the flash window.
+      shellPromise
         .then(injectShell)
         .catch(function (err) {
           console.warn('LA UI: could not load base.html.', err);
         });
     } else {
-      // Monolithic showcase: sidebar is already in the HTML. Run page setup
-      // immediately without waiting for a fetch.
+      // One-page showcase already has the shell in the document.
       initPageSetup();
     }
 
