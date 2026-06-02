@@ -341,3 +341,21 @@
         grid-template-columns: 1fr;
     }
 }
+
+
+/* =======================================
+   BACK LINK
+========================================== */
+
+/* back-to-parent link shown above in-page section nav */
+.la-nav-link--back {
+    color: var(--la-brand);
+    font-size: var(--la-text-xs);
+    font-weight: var(--la-weight-light);
+    padding-left: var(--la-3);
+}
+
+.la-nav-link--back:hover {
+    color: var(--la-brand-hover);
+    background: var(--la-brand-soft);
+}

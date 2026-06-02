@@ -416,3 +416,18 @@
 .la-chart-empty-icon {
     color: var(--la-border-strong);
 }
+
+
+/* =======================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 720px) {
+    .la-chart-header {
+        flex-wrap: wrap;
+    }
+
+    .la-hbar-row {
+        grid-template-columns: minmax(56px, 100px) 1fr auto;
+    }
+}

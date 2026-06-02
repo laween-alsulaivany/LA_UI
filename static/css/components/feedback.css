@@ -534,3 +534,26 @@
     font-size: var(--la-text-sm);
     white-space: nowrap;
 }
+
+
+/* =======================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 480px) {
+    .la-modal-header,
+    .la-modal-body,
+    .la-modal-footer {
+        padding-inline: var(--la-4);
+    }
+
+    .la-modal-footer {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .la-modal-footer .la-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
