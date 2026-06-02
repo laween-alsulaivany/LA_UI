@@ -296,3 +296,27 @@
     color: var(--la-border-strong);
     font-size: 1rem;
 }
+
+
+/* =======================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 480px) {
+    .la-workflow-step {
+        grid-template-columns: 28px minmax(0, 1fr);
+    }
+
+    /* action area drops below the content column on phones */
+    .la-workflow-step > :last-child:nth-child(3) {
+        grid-column: 2;
+    }
+
+    .la-steps {
+        gap: var(--la-1);
+    }
+
+    .la-step-label {
+        display: none;
+    }
+}
