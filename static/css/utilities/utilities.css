@@ -90,6 +90,23 @@
     border: 0;
 }
 
+/* keyboard skip link, hidden until focused */
+.la-skip-link {
+    position: fixed;
+    top: var(--la-3);
+    left: var(--la-3);
+    z-index: var(--la-z-modal);
+    padding: var(--la-3) var(--la-4);
+    background: var(--la-surface);
+    color: var(--la-ink);
+    border: 1px solid var(--la-brand);
+    transform: translateY(-200%);
+}
+
+.la-skip-link:focus {
+    transform: translateY(0);
+}
+
 /* hard hide helper */
 .la-hidden {
     display: none !important;
